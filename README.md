@@ -22,3 +22,7 @@ Construcción estática siguiendo el mockup visual de referencia aportado para C
 
 ## GitHub
 Sube el contenido de esta carpeta al repositorio que sirva `casabajocontrol.es` desde la raíz. Las rutas absolutas `/css/`, `/js/` e `/img/` presuponen dominio en la raíz.
+
+
+## GitHub Pages
+Esta versión usa rutas relativas para funcionar correctamente dentro del subdirectorio `/casabajocontrol/` de GitHub Pages. No cambiar las rutas a `/css/`, `/img/` o `/js/` salvo que el sitio pase a servirse desde la raíz del dominio.
