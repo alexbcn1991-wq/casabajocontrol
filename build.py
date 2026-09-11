@@ -1,8 +1,9 @@
 from pathlib import Path
-import json, html, shutil, re
+import json, html, shutil, re, urllib.parse
 
 ROOT=Path(__file__).resolve().parent
 BASE="https://casabajocontrol.es"
+PRODUCTS=json.loads((ROOT/"data/products.json").read_text(encoding="utf-8")) if (ROOT/"data/products.json").exists() else {"amazon_tag":"TU-TAG","products":[]}
 
 def read(p): return p.read_text(encoding="utf-8")
 def write(p,s):
@@ -18,6 +19,36 @@ def crumbs(slug,d=None):
         if i==len(bits)-1: out.append(f'<span aria-current="page">{html.escape(label)}</span>')
         else: out.append(f'<a href="{acc}/">{html.escape(label)}</a>')
     return ' <span aria-hidden="true">/</span> '.join(out)
+def amazon_url(product, tag):
+    if product.get("asin"):
+        return f"https://www.amazon.es/dp/{product['asin']}?tag={urllib.parse.quote(tag)}"
+    query=urllib.parse.quote_plus(product.get("query") or product["name"])
+    return f"https://www.amazon.es/s?k={query}&tag={urllib.parse.quote(tag)}"
+
+def render_affiliate_products(key):
+    groups={
+        "sin-internet":["seqrell-sq7024b","shelly-flood-gen4","switchbot-water-leak","tapo-t300","aqara-water-leak-t1"],
+        "fugas":["switchbot-water-leak","tapo-t300","aqara-water-leak-t1"]
+    }
+    ids=groups.get(key,[])
+    by_id={p["id"]:p for p in PRODUCTS.get("products",[])}
+    cards=[]
+    for pid in ids:
+        p=by_id[pid]
+        href=amazon_url(p, PRODUCTS.get("amazon_tag","TU-TAG"))
+        cards.append(
+            '<article class="affiliate-product">'
+            f'<div class="affiliate-product-copy"><p class="affiliate-product-type">{html.escape(p["type"])}</p>'
+            f'<h3>{html.escape(p["name"])}</h3>'
+            f'<p><strong>Por qué lo incluimos:</strong> {html.escape(p["fit"])}</p>'
+            f'<p class="affiliate-product-note">{html.escape(p["note"])}</p></div>'
+            f'<a class="button button-primary affiliate-button" href="{html.escape(href, quote=True)}" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a>'
+            '</article>'
+        )
+    return ('<section class="affiliate-products" aria-label="Productos recomendados">'
+            '<div class="affiliate-disclosure"><strong>Enlaces de afiliado:</strong> si compras a través de estos enlaces, Casa Bajo Control puede obtener una comisión, sin coste adicional para ti.</div>'
+            + ''.join(cards) + '</section>')
+
 def format_date(iso):
     months=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"]
     try:
@@ -80,6 +111,7 @@ def build_page(slug,d):
     schema=json.dumps({"@context":"https://schema.org","@type":"Article","headline":d[4],"description":d[2],"url":canonical,"datePublished":date_published,"dateModified":date_modified,"author":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/sobre-nosotros/"},"publisher":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/"},"image":[BASE+image]},ensure_ascii=False,separators=(",",":"))
     vals={"{{TITLE}}":html.escape(d[1]),"{{DESCRIPTION}}":html.escape(d[2]),"{{CANONICAL}}":canonical,"{{JSONLD}}":schema,"{{HEADER}}":header,"{{FOOTER}}":footer,"{{BREADCRUMBS}}":bc,"{{EYEBROW}}":html.escape(d[3]),"{{H1}}":html.escape(d[4]),"{{LEAD}}":html.escape(d[5]),"{{META}}":f'<p class="article-meta">Actualizado: {format_date(date_modified)}</p>',"{{HERO_MEDIA}}":hero_media(d),"{{OG_IMAGE}}":BASE+og_image,"{{BODY}}":d[6]}
     for a,b in vals.items(): tpl=tpl.replace(a,b)
+    tpl=tpl.replace("{{PRODUCTS:sin-internet}}", render_affiliate_products("sin-internet")).replace("{{PRODUCTS:fugas}}", render_affiliate_products("fugas"))
     tpl=tpl.replace("{{ROOT}}",p)
     write(ROOT/slug/"index.html",tpl)
 

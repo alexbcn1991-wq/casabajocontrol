@@ -410,3 +410,18 @@
 .hero-media-hero-guias{--hero-pos:55% 50%}
 .hero-media-hero-sobre-nosotros{--hero-pos:60% 50%}
 .hero-media-hero-sin-internet{--hero-pos:60% 50%}
+
+
+/* v2.17 — Affiliate product blocks */
+.affiliate-products{max-width:1270px;margin:34px 0 42px}
+.affiliate-disclosure{font-size:12px;line-height:1.5;color:#5d6a72;background:#f7f9f8;border:1px solid #e3e9e6;border-radius:8px;padding:11px 14px;margin-bottom:12px}
+.affiliate-product{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;padding:20px 22px;margin:12px 0;background:#fff;border:1px solid #dfe7e3;border-radius:10px;box-shadow:0 2px 8px rgba(18,45,40,.04)}
+.affiliate-product h3{margin:3px 0 7px;font-size:21px;color:#14242d}
+.affiliate-product p{max-width:none!important;margin:0 0 8px;font-size:15px;line-height:1.5}
+.affiliate-product-type{font-size:12px!important;text-transform:uppercase;letter-spacing:.07em;color:#147864;font-weight:700}
+.affiliate-product-note{color:#617078}
+.affiliate-button{white-space:nowrap}
+@media(max-width:700px){
+  .affiliate-product{grid-template-columns:1fr;gap:12px;padding:18px}
+  .affiliate-button{justify-self:start}
+}
