@@ -52,3 +52,13 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - Corregido: la tarjeta "Mejores sensores de humedad" de la home llevaba a una redirección cuyo destino (`/comparativas/sensores-humedad/`) no existía → 404. Ahora existe como stub (noindex) y la home enlaza directo.
 - Home: "Preparar mi casa", el banner del checklist y su tarjeta móvil enlazan directamente a `/segunda-residencia/` (antes pasaban por la redirección `proteger-segunda-residencia`). Retirado "Consejos" del menú de la home (era una redirección a Guías; las interiores no lo tenían). No cambia nada visual salvo ese elemento del menú.
 - Los cinco stubs de comparativas se generan ahora desde `build.py` (función `stub`): misma cabecera estándar, `noindex`, fuera del sitemap. Desaparecen las tres páginas antiguas con menú y cabecera de v1.
+
+## v2.13 — navegación unificada
+- Cabecera única: `build.py` genera el menú (`NAV` en build.py) para TODAS las páginas, incluida la home (se regenera desde `content/home/index.html` sustituyendo solo el bloque `<header>`), los stubs, las legales y `404.html`. No queda ningún header escrito a mano.
+- Menú: Inicio · Comparativas · Guías · Segunda residencia · Sobre nosotros. Estado activo por sección (`/guias/…` → Guías, etc.).
+- "Consejos" eliminado de todos los menús. `/consejos/` se mantiene solo como redirección heredada (noindex) a `/guias/`.
+- `404.html` con recursos y enlaces absolutos (GitHub Pages lo sirve desde cualquier ruta).
+- Para cambiar el menú en el futuro: editar la lista `NAV` en `build.py` y ejecutar el build.
+
+## v2.14
+- Buscador y lupa eliminados por decisión editorial (se valorará más adelante). Desaparecen `/buscar/`, `js/search.js` y `data/search-index.json`. El menú queda: Inicio · Comparativas · Guías · Segunda residencia · Sobre nosotros.

@@ -1,5 +1,5 @@
 from pathlib import Path
-import json, html, shutil
+import json, html, shutil, re
 
 ROOT=Path(__file__).resolve().parent
 BASE="https://casabajocontrol.es"
@@ -47,10 +47,28 @@ def hero_media(d):
             f'<img src="{html.escape(image)}" alt="{html.escape(alt)}" width="{width}" height="{height}" '
             f'fetchpriority="high" decoding="async"></div>')
 
+
+NAV=[("","Inicio"),("comparativas/","Comparativas"),("guias/","Guías"),("segunda-residencia/","Segunda residencia"),("sobre-nosotros/","Sobre nosotros")]
+def nav_html(root,slug):
+    section=slug.strip("/").split("/")[0] if slug.strip("/") else ""
+    out=[]
+    for path,label in NAV:
+        href=(root+path) if (root or path) else "./"
+        key=path.strip("/")
+        active=(key==section) if key else (section=="")
+        attrs=' class="active" aria-current="page"' if active else ""
+        out.append(f'<a{attrs} href="{href}">{label}</a>')
+    return "".join(out)
+def render_header(slug):
+    root=prefix(slug)
+    h=read(ROOT/"partials/header.html").replace("{{NAV}}",nav_html(root,slug))
+    h=h.replace('href="{{ROOT}}"','href="'+(root or "./")+'"')
+    return h.replace("{{ROOT}}",root)
+
 def build_page(slug,d):
     p=prefix(slug); canonical=BASE+"/"+slug.strip("/")+"/"
     tpl=read(ROOT/"templates"/(d[0]+".html"))
-    header=read(ROOT/"partials/header.html").replace("{{ROOT}}",p)
+    header=render_header(slug)
     footer=read(ROOT/"partials/footer.html").replace("{{ROOT}}",p)
     bc=read(ROOT/"partials/breadcrumbs.html").replace("{{BREADCRUMBS}}",crumbs(slug,d))
     date_published = d[7] if len(d)>7 and d[7] else "2026-09-11"
@@ -69,6 +87,15 @@ def redirect(slug,target):
     canonical=BASE+target
     s='<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="robots" content="noindex,follow"><link rel="canonical" href="'+canonical+'"><meta http-equiv="refresh" content="0;url='+canonical+'"><title>Redirigiendo | Casa Bajo Control</title></head><body><p>Esta página se ha movido a <a href="'+canonical+'">'+canonical+'</a>.</p><script>location.replace('+json.dumps(canonical)+');</script></body></html>'
     write(ROOT/slug/"index.html",s)
+
+# Home: se regenera desde la copia maestra sustituyendo solo la cabecera por la común.
+def build_home():
+    src=read(ROOT/"content/home/index.html")
+    hdr=render_header("")
+    hdr_only=hdr[hdr.index('<header class="site-header">'):hdr.index('</header>')+len('</header>')]
+    out=re.sub(r'<header class="site-header">.*?</header>',lambda m: hdr_only,src,count=1,flags=re.S)
+    write(ROOT/"index.html",out)
+build_home()
 
 pages=json.loads(read(ROOT/"content/pages.json"))
 for slug,d in pages.items():
@@ -90,7 +117,7 @@ def stub(slug,title,eyebrow,h1,lead,crumb,image,alt,parent_label="Comparativas",
     canonical=BASE+"/"+slug+"/"
     vals={"{{TITLE}}":html.escape(title),"{{DESCRIPTION}}":html.escape(lead),"{{CANONICAL}}":canonical,
           "{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"Article","headline":h1,"url":canonical,"image":[BASE+image]},ensure_ascii=False,separators=(",",":")),
-          "{{HEADER}}":read(ROOT/"partials/header.html").replace("{{ROOT}}",p),"{{FOOTER}}":read(ROOT/"partials/footer.html").replace("{{ROOT}}",p),
+          "{{HEADER}}":render_header(slug),"{{FOOTER}}":read(ROOT/"partials/footer.html").replace("{{ROOT}}",p),
           "{{BREADCRUMBS}}":read(ROOT/"partials/breadcrumbs.html").replace("{{BREADCRUMBS}}",f'<a href="/">Inicio</a> <span aria-hidden="true">/</span> <a href="{parent}">{parent_label}</a> <span aria-hidden="true">/</span> <span aria-current="page">{html.escape(crumb)}</span>'),
           "{{EYEBROW}}":eyebrow,"{{H1}}":html.escape(h1),"{{LEAD}}":html.escape(lead),"{{META}}":'<p class="article-meta">Pendiente de pruebas reales</p>',
           "{{HERO_MEDIA}}":hero_media(data),"{{OG_IMAGE}}":BASE+(image[:-5]+".png" if image.endswith(".webp") and (ROOT/(image[:-5]+".png").lstrip("/")).exists() else image),"{{BODY}}":body}
@@ -103,6 +130,33 @@ stub("comparativas/sensores-humedad","Sensores de humedad | Casa Bajo Control","
 stub("comparativas/sensores-temperatura","Sensores de temperatura | Casa Bajo Control","Temperatura","Mejores sensores de temperatura","Esta comparativa se publicará cuando existan resultados propios.","Sensores de temperatura","/img/hero-reference.webp","Sensor de temperatura y humedad en una vivienda")
 stub("comparativas/camaras-segunda-residencia","Cámaras para segunda residencia | Casa Bajo Control","Seguridad","Mejores cámaras para segunda residencia","Esta comparativa se publicará cuando existan resultados propios.","Cámaras","/img/hero-segunda-residencia.webp","Terraza de una segunda residencia con un móvil mostrando el estado de la casa")
 stub("comparativas/sensores-puertas-ventanas","Sensores de puertas y ventanas | Casa Bajo Control","Seguridad","Mejores sensores de puertas y ventanas","Esta comparativa se publicará cuando existan resultados propios.","Puertas y ventanas","/img/hero-comparativas.webp","Varios sensores domésticos sobre una mesa, listos para comparar")
+
+# Páginas planas fuera de pages.json (legales en borrador y 404): misma cabecera común, noindex, fuera del sitemap.
+def plain_page(slug,title,eyebrow,h1,lead,body,noindex=True,out_path=None,crumb=None):
+    p=prefix(slug) if slug else ""
+    tpl=read(ROOT/"templates/plana.html")
+    canonical=BASE+("/"+slug.strip("/")+"/" if slug else "/")
+    bc='<a href="/">Inicio</a> <span aria-hidden="true">/</span> <span aria-current="page">'+html.escape(crumb or h1)+'</span>'
+    vals={"{{TITLE}}":html.escape(title),"{{DESCRIPTION}}":html.escape(lead),"{{CANONICAL}}":canonical,
+          "{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"WebPage","name":h1,"url":canonical},ensure_ascii=False,separators=(",",":")),
+          "{{HEADER}}":render_header(slug),"{{FOOTER}}":read(ROOT/"partials/footer.html").replace("{{ROOT}}",p),
+          "{{BREADCRUMBS}}":read(ROOT/"partials/breadcrumbs.html").replace("{{BREADCRUMBS}}",bc),
+          "{{EYEBROW}}":eyebrow,"{{H1}}":html.escape(h1),"{{LEAD}}":html.escape(lead),"{{META}}":"","{{HERO_MEDIA}}":"","{{OG_IMAGE}}":BASE+"/img/og-default.png","{{BODY}}":body}
+    for a,c in vals.items(): tpl=tpl.replace(a,c)
+    tpl=tpl.replace("{{ROOT}}",p)
+    if noindex: tpl=tpl.replace("<head>","<head><meta name=\"robots\" content=\"noindex,follow\">",1)
+    write(out_path or (ROOT/slug/"index.html"),tpl)
+
+legal_body='<section class="article-content"><div class="callout"><strong>NO PUBLICAR TODAVÍA.</strong> Esta página queda preparada para incorporar el texto legal definitivo.</div></section>'
+plain_page("legal/aviso-legal","Aviso legal | Casa Bajo Control","Legal","Aviso legal","Borrador estructural. Completar con los datos reales antes del lanzamiento.",legal_body)
+plain_page("legal/privacidad","Política de privacidad | Casa Bajo Control","Legal","Política de privacidad","Borrador estructural. Completar con los datos reales antes del lanzamiento.",legal_body)
+plain_page("legal/cookies","Política de cookies | Casa Bajo Control","Legal","Política de cookies","Borrador estructural. Completar con los datos reales antes del lanzamiento.",legal_body)
+# 404: GitHub Pages sirve /404.html desde cualquier ruta, por eso sus recursos deben ser absolutos.
+plain_page("","Página no encontrada | Casa Bajo Control","404","Esta página no existe.","Puede que el enlace haya cambiado.",'<section class="article-content"><p><a class="button button-primary" href="/">Volver al inicio</a></p></section>',out_path=ROOT/"404.html",crumb="Página no encontrada")
+s404=read(ROOT/"404.html").replace('href="./"','href="/"').replace('href="css/','href="/css/').replace('src="img/','src="/img/').replace('src="js/','src="/js/').replace('href="img/','href="/img/')
+for path,_ in NAV: s404=s404.replace(f'href="{path}"',f'href="/{path}"')
+s404=s404.replace('href="legal/','href="/legal/').replace('href="comparativas/"','href="/comparativas/"').replace('href="guias/"','href="/guias/"').replace('href="segunda-residencia/"','href="/segunda-residencia/"').replace('href="como-probamos/"','href="/como-probamos/"').replace('href="sobre-nosotros/"','href="/sobre-nosotros/"').replace('href="contacto/"','href="/contacto/"')
+write(ROOT/"404.html",s404)
 
 write(ROOT/"robots.txt",f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
 excluded={"/comparativas/detectores-fugas-agua/","/comparativas/sensores-humedad/","/comparativas/sensores-temperatura/","/comparativas/camaras-segunda-residencia/","/comparativas/sensores-puertas-ventanas/","/legal/aviso-legal/","/legal/privacidad/","/legal/cookies/"}
