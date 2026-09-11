@@ -26,6 +26,28 @@ def format_date(iso):
     except Exception:
         return iso
 
+def hero_media(d):
+    image = d[10] if len(d)>10 and d[10] else None
+    alt = d[11] if len(d)>11 and d[11] else None
+    if not image:
+        return ""
+    if not alt:
+        raise ValueError("Falta hero_alt para una página con hero_image")
+    image_path = ROOT / image.lstrip("/")
+    if not image_path.exists():
+        raise FileNotFoundError(f"Hero no encontrado: {image}")
+    dimensions = {
+        "hero-metodologia": (675, 335),
+        "hero-fugas": (690, 440),
+        "hero-comparativas": (994, 440),
+        "hero-reference": (992, 430),
+    }
+    stem = image_path.stem
+    width, height = dimensions.get(stem, (1200, 675))
+    return (f'<div class="standard-page-hero-media hero-media-{html.escape(stem)}">'
+            f'<img src="{html.escape(image)}" alt="{html.escape(alt)}" width="{width}" height="{height}" '
+            f'fetchpriority="high" decoding="async"></div>')
+
 def build_page(slug,d):
     p=prefix(slug); canonical=BASE+"/"+slug.strip("/")+"/"
     tpl=read(ROOT/"templates"/(d[0]+".html"))
@@ -34,8 +56,9 @@ def build_page(slug,d):
     bc=read(ROOT/"partials/breadcrumbs.html").replace("{{BREADCRUMBS}}",crumbs(slug,d))
     date_published = d[7] if len(d)>7 and d[7] else "2026-09-11"
     date_modified = d[8] if len(d)>8 and d[8] else date_published
-    schema=json.dumps({"@context":"https://schema.org","@type":"Article","headline":d[4],"description":d[2],"url":canonical,"datePublished":date_published,"dateModified":date_modified,"author":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/sobre-nosotros/"},"publisher":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/"},"image":[BASE+"/img/og-default.png"]},ensure_ascii=False,separators=(",",":"))
-    vals={"{{TITLE}}":html.escape(d[1]),"{{DESCRIPTION}}":html.escape(d[2]),"{{CANONICAL}}":canonical,"{{JSONLD}}":schema,"{{HEADER}}":header,"{{FOOTER}}":footer,"{{BREADCRUMBS}}":bc,"{{EYEBROW}}":html.escape(d[3]),"{{H1}}":html.escape(d[4]),"{{LEAD}}":html.escape(d[5]),"{{META}}":f'<p class="article-meta">Actualizado: {format_date(date_modified)}</p>',"{{BODY}}":d[6]}
+    image = d[10] if len(d)>10 and d[10] else "/img/og-default.png"
+    schema=json.dumps({"@context":"https://schema.org","@type":"Article","headline":d[4],"description":d[2],"url":canonical,"datePublished":date_published,"dateModified":date_modified,"author":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/sobre-nosotros/"},"publisher":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/"},"image":[BASE+image]},ensure_ascii=False,separators=(",",":"))
+    vals={"{{TITLE}}":html.escape(d[1]),"{{DESCRIPTION}}":html.escape(d[2]),"{{CANONICAL}}":canonical,"{{JSONLD}}":schema,"{{HEADER}}":header,"{{FOOTER}}":footer,"{{BREADCRUMBS}}":bc,"{{EYEBROW}}":html.escape(d[3]),"{{H1}}":html.escape(d[4]),"{{LEAD}}":html.escape(d[5]),"{{META}}":f'<p class="article-meta">Actualizado: {format_date(date_modified)}</p>',"{{HERO_MEDIA}}":hero_media(d),"{{BODY}}":d[6]}
     for a,b in vals.items(): tpl=tpl.replace(a,b)
     tpl=tpl.replace("{{ROOT}}",p)
     write(ROOT/slug/"index.html",tpl)
@@ -47,7 +70,7 @@ def redirect(slug,target):
 
 pages=json.loads(read(ROOT/"content/pages.json"))
 for slug,d in pages.items():
-    while len(d)<9: d.append(None)
+    while len(d)<11: d.append(None)
     d[7]=d[7] or "2026-09-11"
     d[8]=d[8] or d[7]
     build_page(slug,d)
@@ -60,7 +83,9 @@ if old.exists(): shutil.rmtree(old)
 # Keep the first commercial URL structurally present, but explicitly unproven.
 slug="comparativas/detectores-fugas-agua"; p=prefix(slug)
 tpl=read(ROOT/"templates/plana.html")
-vals={"{{TITLE}}":"Detectores de fugas de agua | Casa Bajo Control","{{DESCRIPTION}}":"Comparativa de detectores de fugas de agua basada en pruebas reales.","{{CANONICAL}}":BASE+"/comparativas/detectores-fugas-agua/","{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"Article","headline":"Mejores detectores de fugas de agua","url":BASE+"/comparativas/detectores-fugas-agua/"}),"{{HEADER}}":read(ROOT/"partials/header.html").replace("{{ROOT}}",p),"{{FOOTER}}":read(ROOT/"partials/footer.html").replace("{{ROOT}}",p),"{{BREADCRUMBS}}":read(ROOT/"partials/breadcrumbs.html").replace("{{BREADCRUMBS}}",'<a href="/">Inicio</a> / <a href="/comparativas/">Comparativas</a> / <span aria-current="page">Detectores de fugas</span>'),"{{EYEBROW}}":"Agua","{{H1}}":"Mejores detectores de fugas de agua","{{LEAD}}":"Esta comparativa se publicará cuando existan resultados propios.","{{META}}":'<p class="article-meta">Pendiente de pruebas reales</p>','{{BODY}}':'<section class="article-content"><div class="callout"><strong>En preparación:</strong> no etiquetamos productos como probados hasta completar nuestro protocolo.</div><p><a class="button button-primary" href="/como-probamos/">Ver cómo probamos</a></p></section>'}
+stub_image="/img/hero-fugas.webp"; stub_alt="Sensor de fugas de agua junto a una lavadora en una vivienda"
+stub_data=["plana","Detectores de fugas de agua | Casa Bajo Control","Comparativa de detectores de fugas de agua basada en pruebas reales.","Agua","Mejores detectores de fugas de agua","Esta comparativa se publicará cuando existan resultados propios.",'<section class="article-content"><div class="callout"><strong>En preparación:</strong> no etiquetamos productos como probados hasta completar nuestro protocolo.</div><p><a class="button button-primary" href="/como-probamos/">Ver cómo probamos</a></p></section>',"2026-09-11","2026-09-11","Detectores de fugas",stub_image,stub_alt]
+vals={"{{TITLE}}":html.escape(stub_data[1]),"{{DESCRIPTION}}":html.escape(stub_data[2]),"{{CANONICAL}}":BASE+"/comparativas/detectores-fugas-agua/","{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"Article","headline":"Mejores detectores de fugas de agua","url":BASE+"/comparativas/detectores-fugas-agua/","image":[BASE+stub_image]},ensure_ascii=False,separators=(",",":")),"{{HEADER}}":read(ROOT/"partials/header.html").replace("{{ROOT}}",p),"{{FOOTER}}":read(ROOT/"partials/footer.html").replace("{{ROOT}}",p),"{{BREADCRUMBS}}":read(ROOT/"partials/breadcrumbs.html").replace("{{BREADCRUMBS}}",'<a href="/">Inicio</a> / <a href="/comparativas/">Comparativas</a> / <span aria-current="page">Detectores de fugas</span>'),"{{EYEBROW}}":stub_data[3],"{{H1}}":stub_data[4],"{{LEAD}}":stub_data[5],"{{META}}":'<p class="article-meta">Pendiente de pruebas reales</p>',"{{HERO_MEDIA}}":hero_media(stub_data),"{{BODY}}":stub_data[6]}
 for a,b in vals.items(): tpl=tpl.replace(a,b)
 tpl=tpl.replace("{{ROOT}}",p)
 tpl=tpl.replace("<head>","<head><meta name=\"robots\" content=\"noindex,follow\">",1)
