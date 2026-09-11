@@ -194,3 +194,14 @@
   .hero-image img{height:auto;object-fit:initial;object-position:initial}
   .hero-image:before{display:none!important}
 }
+
+/* v1.2 — logo con lema más grande (viewBox 650) y hero sin difuminar la lavadora/detector */
+.brand img{width:304px}
+.footer-grid>div>img{width:267px}
+@media (max-width:850px){.brand img{width:246px}}
+@media (max-width:560px){.brand img{width:225px}}
+/* El blanco cubre solo la zona del texto; la foto aparece entera justo después. */
+.hero-image:before{background:linear-gradient(90deg,#fff calc(var(--overlap) - 60px),rgba(255,255,255,.85) calc(var(--overlap) - 20px),rgba(255,255,255,0) calc(var(--overlap) + 30px))}
+@media (min-width:1600px){
+  .hero-image:before{background:linear-gradient(90deg,#fff calc(var(--overlap) - 95px),rgba(255,255,255,.8) calc(var(--overlap) - 55px),rgba(255,255,255,0) calc(var(--overlap) - 12px))}
+}

@@ -59,3 +59,8 @@ Esta versión usa rutas relativas para funcionar correctamente dentro del subdir
 - A partir de 1300 px de ancho la foto del hero se muestra a tamaño real (992×430), ocupando toda la altura del bloque, del header a las tarjetas. Su borde derecho sigue alineado con el margen del contenedor; por la izquierda se extiende bajo el texto con un degradado blanco (composición del mockup).
 - Por debajo de 1300 px no cabe sin recortar: se mantiene la composición v1.0 (foto entera sin degradado).
 - Opción: si prefieres que la foto llegue hasta el borde de la ventana como en el mockup, cambia en la regla v1.1 `.hero-image{right:0}` por `right:-50px`.
+
+## v1.2
+- Logo: lema "Tu hogar siempre un paso por delante" más grande (17,5 en vez de 13 en el SVG). Un solo archivo (`img/logo.svg`) alimenta header y footer de todas las páginas.
+- Hero: el degradado blanco ya no tapa la lavadora, el rótulo "Detecta fugas" ni el detector; cubre solo la zona del texto.
+- Hero: eliminado de la foto el rótulo manuscrito "Pequeños dispositivos, grandes tranquilidad" y su flecha: quedaban siempre bajo el texto y se veían cortados. El original se conserva en `img/hero-reference-original.png` por si quieres revertirlo (no se usa en la web).
