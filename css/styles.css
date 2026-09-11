@@ -265,3 +265,21 @@
   .topic-icon,.topic-icon img{width:46px;height:46px}
 }
 
+/* v1.6 — SOLO: ancho/alineación del bloque de categorías */
+.topics > .container{
+  width:min(calc(100% - 100px),1400px);
+}
+.topic-grid{
+  width:100%;
+}
+@media(max-width:900px){
+  .topics > .container{
+    width:min(calc(100% - 48px),1200px);
+  }
+}
+@media(max-width:560px){
+  .topics > .container{
+    width:calc(100% - 28px);
+  }
+}
+
