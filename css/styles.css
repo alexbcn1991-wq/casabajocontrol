@@ -136,3 +136,27 @@
     height:315px;
   }
 }
+
+/* v1.0 — correcciones estructurales (sin cambios de diseño) */
+/* La imagen del hero se posiciona respecto a .hero-inner (el contenedor),
+   no respecto a la ventana: así termina en el mismo margen que el resto de la web. */
+.hero-inner{position:relative}
+.hero-image{left:48%;width:52%;right:auto}
+@media (max-width:1100px){.hero-image{left:49%;width:51%}}
+@media (max-width:850px){.hero-image{left:0;width:100%}}
+/* Los iconos SVG inline no tenían tamaño ni trazo: se veían en negro (categorías) o no se veían (beneficios). */
+.topic-icon svg,.benefit-icon svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;display:block}
+.benefit-icon{display:grid;place-items:center;width:30px;height:30px;flex:none}
+.benefit-icon svg{width:28px;height:28px;stroke-width:1.8}
+/* Menú móvil: solo se muestra un icono a la vez (faltaba la regla en v0.9). */
+.mobile-menu .icon-close{display:none}
+.mobile-menu[aria-expanded="true"] .icon-open{display:none}
+.mobile-menu[aria-expanded="true"] .icon-close{display:block}
+/* Móvil/tablet: la foto pasa a fluir debajo del texto en vez de solaparse con "Cómo funciona". */
+@media (max-width:850px){
+  .hero,.hero-inner{min-height:0}
+  .hero-inner{padding-bottom:8px}
+  .hero-image{position:relative;left:auto;right:auto;top:auto;bottom:auto;width:100%;height:auto;margin-top:22px}
+  .hero-image picture{position:static}
+  .hero-image img{height:auto;object-fit:initial}
+}

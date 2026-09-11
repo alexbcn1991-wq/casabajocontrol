@@ -35,3 +35,21 @@ Esta versión usa rutas relativas para funcionar correctamente dentro del subdir
 - Composición del hero centrada mediante contenedor de hasta 1440 px.
 - Iconos de beneficios en SVG.
 - Mantener el mockup como referencia visual; no usar etiquetas “Probado” hasta tener pruebas reales.
+
+## v1.0 — auditoría estructural (sin cambios de diseño)
+- Hero: la imagen ahora se posiciona dentro del contenedor (`.hero-inner`), no respecto a la ventana. Termina en el mismo margen derecho que el resto de la web (50 px en escritorio).
+- Hero: eliminados los restos de texto del mockup ("vivienda / residencia") en el borde izquierdo de la imagen. Añadida versión WebP (56 KB frente a 620 KB PNG) con fallback PNG.
+- Imágenes de las comparativas: eliminadas las etiquetas "Probado/Analizado" que venían incrustadas en los PNG y se duplicaban con las etiquetas HTML.
+- Iconos SVG de categorías y beneficios: faltaban tamaño y trazo (se veían en negro o no se veían).
+- Menú móvil: se mostraban los dos iconos (abrir y cerrar) a la vez.
+- Móvil: la foto del hero se solapaba con "Cómo funciona"; ahora fluye debajo del texto.
+- `/comparativas/` no existía (enlace roto en el menú de todas las páginas). Creada como página hub con enlaces a las cinco comparativas.
+- `/comparativas/seguridad/door-window/` duplicaba `/comparativas/sensores-puertas-ventanas/`: convertida en redirección y retirada del sitemap. La tarjeta "Seguridad" de la home enlaza ahora a la URL en español.
+- Páginas "en construcción" (10): `noindex,follow` hasta que tengan contenido. Quitar la meta al publicarlas y añadirlas al sitemap.
+- `sitemap.xml` solo con las 6 URLs con contenido real.
+
+### Pendiente (no se ha tocado)
+- Etiquetas "Probado" en la home: solo cuando haya pruebas reales (regla editorial propia).
+- `img/og-default.jpg` no existe; crearlo (1200×630) o quitar la meta `og:image`.
+- `img/hero-home.webp` y `hero-home@2x.webp` no se usan (recorte peor que `hero-reference`). Se pueden borrar.
+- El botón de búsqueda sigue oculto (`hidden`) hasta que exista un buscador real.
