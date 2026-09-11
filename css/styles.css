@@ -10,73 +10,159 @@
 
 .article-hero{background:#eef4f1;padding:90px 0 75px}.article-hero .container{max-width:900px}.article-hero h1{font-size:clamp(42px,5vw,68px);line-height:1.02;letter-spacing:-.05em;margin:0 0 20px}.article-hero p{font-size:19px;color:#53616a;max-width:760px;margin:0}.article-body{background:#fff;padding:65px 0 100px}.article-container{max-width:850px}.article-section{padding:0 0 45px}.article-section h2{font-size:30px;line-height:1.1;letter-spacing:-.035em;margin:0 0 14px}.article-section p,.article-section li{font-size:16px;line-height:1.7;color:#46545d}.article-section ul{padding-left:22px}.article-cta{border-top:1px solid #e3e9e5;padding-top:30px}
 
-/* v0.5 — ajuste visual de la home contra el mockup maestro */
-.container{width:min(calc(100% - 96px),1440px)}
+/* v0.7 — composición determinista del hero: marco derecho contenido */
+.container{width:min(calc(100% - 64px),1400px);margin-inline:auto}
+
 .site-header{height:74px}
-.header-inner{max-width:1440px}
-.brand{width:330px}
-.brand img{width:300px;height:auto}
-.main-nav{gap:31px;font-size:13px}
-.header-tools{margin-left:28px}
+.header-inner{max-width:1400px}
 
-.hero{min-height:430px}
-.hero-image{width:68%;height:430px;right:0;top:0}
-.hero-image:before{background:linear-gradient(90deg,#fff 0%,rgba(255,255,255,.98) 7%,rgba(255,255,255,.72) 19%,rgba(255,255,255,.18) 35%,rgba(255,255,255,0) 49%)}
-.hero-image picture,.hero-image img{display:block;width:100%;height:100%}
-.hero-image img{object-fit:cover;object-position:center right}
-.hero-inner{min-height:430px}
-.hero-copy{width:54%;padding:18px 0 24px}
-.hero h1{font-size:58px;line-height:.96;letter-spacing:-.055em;max-width:650px}
-.hero-copy>p{font-size:17px;max-width:610px}
-.hero-actions{gap:27px}
-.button{min-height:51px;border-radius:10px}
-.hero-benefits{margin-top:26px;font-size:11px}
-.benefit-icon{width:28px;height:28px;display:grid;place-items:center;font-size:0}
-.benefit-icon svg{width:27px;height:27px;fill:none;stroke:#166873;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-
-.topics{padding:18px 0 28px}
-.topic-grid{gap:18px}
-.topic{height:94px;padding:13px 17px;gap:15px}
-.topic-icon{width:50px;height:50px;font-size:0}
-.topic-icon svg{width:29px;height:29px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.topic strong{font-size:17px}
-.topic small{font-size:11px}
-.topic>b{width:32px;height:32px}
-
-.featured{padding:2px 0 82px}
-.section-top{padding:0 12px;margin-bottom:15px}
-.section-top h2{font-size:29px}
-.compare-grid{gap:17px}
-.compare-card{min-height:300px;padding:0 16px 18px;border-radius:10px}
-.compare-image{height:112px}
-.compare-image img{max-height:104px}
-.pill{font-size:9px;padding:5px 10px;top:10px}
-.compare-card h3{font-size:15px;margin-top:6px}
-.compare-card p{font-size:11px}
-
-@media(max-width:1100px){
-  .container{width:min(calc(100% - 48px),1280px)}
-  .hero-copy{width:58%}
-  .hero h1{font-size:52px}
-  .hero-image{width:72%}
-  .main-nav{gap:19px}
+.hero{
+  position:relative;
+  min-height:430px;
+  overflow:hidden;
 }
-@media(max-width:850px){
-  .container{width:calc(100% - 40px)}
-  .brand{width:245px}
-  .brand img{width:235px}
-  .hero{min-height:590px}
-  .hero-image{width:100%;height:330px;bottom:0;top:auto}
-  .hero-image:before{background:linear-gradient(180deg,#fff 0%,rgba(255,255,255,.62) 25%,rgba(255,255,255,0) 60%)}
-  .hero-inner{min-height:590px}
-  .hero-copy{width:100%;padding-top:44px}
-  .hero h1{font-size:clamp(42px,9vw,54px);max-width:650px}
+.hero-inner{
+  position:relative;
+  min-height:430px;
+  display:block;
 }
-@media(max-width:560px){
-  .container{width:calc(100% - 32px)}
-  .brand{width:220px}.brand img{width:215px}
-  .hero{min-height:650px}.hero-inner{min-height:650px}
-  .hero-copy{padding-top:38px}
+.hero-copy{
+  position:relative;
+  z-index:5;
+  width:52%;
+  max-width:690px;
+  padding:55px 0 30px;
+}
+.hero h1{
+  font-size:clamp(46px,4.15vw,58px);
+  line-height:.96;
+  letter-spacing:-.055em;
+  max-width:650px;
+}
+.hero-copy>p{
+  font-size:16px;
+  line-height:1.42;
+  max-width:590px;
+}
+.hero-actions{gap:25px;margin-top:22px}
+.hero-benefits{margin-top:27px}
+
+/* El bloque fotográfico es independiente de la columna de texto.
+   No puede crecer más allá de este rectángulo. */
+.hero-image{
+  position:absolute;
+  z-index:1;
+  top:0;
+  right:0;
+  width:58%;
+  height:430px;
+  overflow:hidden;
+  isolation:isolate;
+}
+.hero-image picture{
+  position:absolute;
+  inset:0;
+  display:block;
+}
+.hero-image img{
+  position:absolute;
+  top:0;
+  right:0;
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  object-position:58% 50%;
+}
+.hero-image:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:3;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,
+      rgba(255,255,255,1) 0%,
+      rgba(255,255,255,.98) 7%,
+      rgba(255,255,255,.78) 17%,
+      rgba(255,255,255,.28) 30%,
+      rgba(255,255,255,0) 45%),
+    linear-gradient(180deg,
+      rgba(255,255,255,0) 76%,
+      rgba(255,255,255,.08) 100%);
+}
+
+/* Etiquetas/anotaciones dentro del marco: nunca pueden desbordarlo. */
+.hero-image .hero-callout,
+.hero-image .hero-note{
+  position:absolute;
+  z-index:5;
+  max-width:180px;
+}
+
+/* El móvil de la referencia queda dentro del marco derecho. */
+.hero-image .phone{
+  position:absolute;
+  z-index:4;
+  right:2.5%;
+  bottom:-5px;
+  height:68%;
+  width:auto;
+  object-fit:contain;
+}
+
+/* Categorías y comparativas mantienen el ancho óptico del mockup. */
+.topics{padding:18px 0 30px}
+.topic-grid{gap:16px}
+.topic{height:94px}
+.featured{padding-top:0}
+.compare-grid{gap:16px}
+
+/* Pantallas intermedias: el bloque derecho se reduce, no invade el texto. */
+@media (max-width:1100px){
+  .container{width:min(calc(100% - 48px),1200px)}
+  .hero-copy{width:56%;padding-top:48px}
+  .hero h1{font-size:50px}
+  .hero-image{width:54%;height:430px}
+}
+
+/* Móvil: composición vertical; la foto vuelve a ser un bloque propio. */
+@media (max-width:850px){
+  .container{width:calc(100% - 36px)}
+  .hero{min-height:650px}
+  .hero-inner{min-height:650px}
+  .hero-copy{
+    width:100%;
+    max-width:none;
+    padding:42px 0 0;
+  }
+  .hero h1{
+    font-size:clamp(42px,10vw,52px);
+    max-width:650px;
+  }
+  .hero-image{
+    top:auto;
+    bottom:0;
+    left:0;
+    right:0;
+    width:100%;
+    height:320px;
+  }
+  .hero-image:before{
+    background:
+      linear-gradient(180deg,
+        rgba(255,255,255,1) 0%,
+        rgba(255,255,255,.82) 17%,
+        rgba(255,255,255,.18) 43%,
+        rgba(255,255,255,0) 62%);
+  }
+}
+
+@media (max-width:560px){
+  .container{width:calc(100% - 28px)}
+  .hero{min-height:670px}
+  .hero-inner{min-height:670px}
+  .hero-copy{padding-top:34px}
   .hero h1{font-size:43px}
-  .hero-image{height:335px}
+  .hero-image{height:315px}
 }
