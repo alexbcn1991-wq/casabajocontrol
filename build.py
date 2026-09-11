@@ -30,10 +30,35 @@ def render_affiliate_products(key):
         "sin-internet":["seqrell-sq7024b","shelly-flood-gen4","switchbot-water-leak","tapo-t300","aqara-water-leak-t1"],
         "fugas":["switchbot-water-leak","tapo-t300","aqara-water-leak-t1"]
     }
+    featured={
+        "sin-internet":"seqrell-sq7024b",
+        "fugas":"switchbot-water-leak"
+    }
     ids=groups.get(key,[])
     by_id={p["id"]:p for p in PRODUCTS.get("products",[])}
+    featured_id=featured.get(key)
     cards=[]
+    featured_card=""
+    if featured_id and featured_id in by_id:
+        p=by_id[featured_id]
+        href=amazon_url(p, PRODUCTS.get("amazon_tag","TU-TAG"))
+        featured_card=(
+            '<article class="affiliate-product affiliate-product-featured">'
+            '<div class="affiliate-featured-badge">Nuestra selección</div>'
+            '<div class="affiliate-product-copy">'
+            f'<p class="affiliate-product-type">{html.escape(p["type"])}</p>'
+            f'<h3>{html.escape(p["name"])}</h3>'
+            f'<p class="affiliate-featured-lead">{html.escape(p["fit"])}</p>'
+            f'<p class="affiliate-product-note">{html.escape(p["note"])}</p>'
+            '<div class="affiliate-featured-points">'
+            '<span>Encaja con este escenario</span><span>Analizado por Casa Bajo Control</span>'
+            '</div></div>'
+            f'<a class="button button-primary affiliate-button affiliate-button-featured" href="{html.escape(href, quote=True)}" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon <span aria-hidden="true">↗</span></a>'
+            '</article>'
+        )
     for pid in ids:
+        if pid == featured_id:
+            continue
         p=by_id[pid]
         href=amazon_url(p, PRODUCTS.get("amazon_tag","TU-TAG"))
         cards.append(
@@ -45,9 +70,17 @@ def render_affiliate_products(key):
             f'<a class="button button-primary affiliate-button" href="{html.escape(href, quote=True)}" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a>'
             '</article>'
         )
-    return ('<section class="affiliate-products" aria-label="Productos recomendados">'
+    others=(''.join(cards))
+    others_block=(
+        '<div class="affiliate-others-heading"><span class="eyebrow">También contemplamos</span>'
+        '<h3>Otras opciones a considerar</h3></div>' + others if cards else ''
+    )
+    return ('<section class="affiliate-products" aria-label="Selección de productos recomendados">'
             '<div class="affiliate-disclosure"><strong>Enlaces de afiliado:</strong> si compras a través de estos enlaces, Casa Bajo Control puede obtener una comisión, sin coste adicional para ti.</div>'
-            + ''.join(cards) + '</section>')
+            '<div class="affiliate-selection-heading"><span class="eyebrow">Nuestra selección</span>'
+            '<h2>Una opción que encaja especialmente bien</h2>'
+            '<p>No la presentamos como “la mejor” en términos absolutos. La destacamos porque responde especialmente bien al escenario que estamos explicando en este artículo.</p></div>'
+            + featured_card + others_block + '</section>')
 
 def format_date(iso):
     months=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"]
