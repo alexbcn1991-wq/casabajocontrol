@@ -205,126 +205,63 @@
 @media (min-width:1600px){
   .hero-image:before{background:linear-gradient(90deg,#fff calc(var(--overlap) - 120px),rgba(255,255,255,.7) calc(var(--overlap) - 85px),rgba(255,255,255,0) calc(var(--overlap) - 45px))}
 }
-
-/* v1.4 — SOLO: botones de categorías del mockup */
-.topics{
-  padding:18px 0 28px;
-  background:#fff;
+/* v1.5 FINAL — SOLO bloque de categorías, igualado a la segunda captura */
+.topics{padding:12px 0 24px}
+.topics > .container{
+  width:min(calc(100% - 10px),1163px);
+  margin-inline:auto;
 }
 .topic-grid{
   display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:18px;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
 }
 .topic{
-  height:94px;
-  min-width:0;
+  height:70px;
   box-sizing:border-box;
-  border-radius:11px;
-  display:flex;
-  align-items:center;
-  padding:13px 16px 13px 18px;
-  gap:17px;
-  border:1px solid transparent;
-  transition:transform .18s ease,box-shadow .18s ease;
+  border-radius:9px;
+  padding:6px 10px 6px 12px;
+  gap:11px;
 }
-.topic:hover{
-  transform:translateY(-2px);
-  box-shadow:0 8px 20px rgba(16,29,41,.08);
-}
-.topic.water{
-  background:#eaf7ff;
-  border-color:#dff0fa;
-}
-.topic.humidity{
-  background:#f0f8f3;
-  border-color:#e3f0e8;
-}
-.topic.temperature{
-  background:#fff8eb;
-  border-color:#f8ecd5;
-}
-.topic.security{
-  background:#f1f3f6;
-  border-color:#e8ebee;
-}
-
-/* Iconos como en la referencia: círculo grande, fondo pastel y trazo limpio */
 .topic-icon{
-  width:64px;
-  height:64px;
+  width:52px;
+  height:52px;
+  flex:0 0 52px;
   border-radius:50%;
-  display:grid;
-  place-items:center;
-  flex:0 0 64px;
-  font-size:0;
-}
-.topic-icon svg{
-  width:38px;
-  height:38px;
   display:block;
-  fill:none !important;
-  stroke:currentColor !important;
-  stroke-width:2.35;
-  stroke-linecap:round;
-  stroke-linejoin:round;
+  overflow:hidden;
 }
-.water .topic-icon{
-  background:#b9e2ff;
-  color:#1685d1;
-}
-.humidity .topic-icon{
-  background:#bfe5ca;
-  color:#168b55;
-}
-.temperature .topic-icon{
-  background:#ffdfa1;
-  color:#d97908;
-}
-.security .topic-icon{
-  background:#d6e0eb;
-  color:#17394f;
-}
-
-.topic span:nth-child(2){
-  min-width:0;
-  flex:1 1 auto;
+.topic-icon img{
+  display:block;
+  width:52px;
+  height:52px;
+  object-fit:contain;
 }
 .topic strong{
-  display:block;
-  font-size:17px;
-  line-height:1.1;
-  margin-bottom:5px;
-  color:#101d29;
+  font-size:14px;
+  line-height:1.05;
+  margin-bottom:2px;
 }
 .topic small{
-  display:block;
-  font-size:12px;
-  line-height:1.28;
-  color:#4e5d67;
+  font-size:10px;
+  line-height:1.15;
 }
 .topic>b{
-  width:36px;
-  height:36px;
-  flex:0 0 36px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:#fff;
-  color:#101d29;
-  font-size:24px;
+  width:28px;
+  height:28px;
+  flex:0 0 28px;
+  font-size:19px;
   line-height:1;
-  font-weight:400;
-  box-shadow:0 2px 7px rgba(16,29,41,.08);
+  box-shadow:0 1px 5px rgba(16,29,41,.08);
 }
-
 @media(max-width:900px){
-  .topic-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .topics > .container{width:calc(100% - 20px)}
+  .topic-grid{grid-template-columns:repeat(2,1fr);gap:12px}
 }
 @media(max-width:560px){
-  .topic-grid{grid-template-columns:1fr;gap:12px}
-  .topic{height:88px}
-  .topic-icon{width:58px;height:58px;flex-basis:58px}
-  .topic-icon svg{width:34px;height:34px}
+  .topics > .container{width:calc(100% - 16px)}
+  .topic-grid{grid-template-columns:1fr;gap:10px}
+  .topic{height:66px}
+  .topic-icon,.topic-icon img{width:46px;height:46px}
 }
 
