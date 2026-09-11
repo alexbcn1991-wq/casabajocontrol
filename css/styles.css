@@ -203,5 +203,5 @@
 /* El blanco cubre solo la zona del texto; la foto aparece entera justo después. */
 .hero-image:before{background:linear-gradient(90deg,#fff calc(var(--overlap) - 60px),rgba(255,255,255,.85) calc(var(--overlap) - 20px),rgba(255,255,255,0) calc(var(--overlap) + 30px))}
 @media (min-width:1600px){
-  .hero-image:before{background:linear-gradient(90deg,#fff calc(var(--overlap) - 95px),rgba(255,255,255,.8) calc(var(--overlap) - 55px),rgba(255,255,255,0) calc(var(--overlap) - 12px))}
+  .hero-image:before{background:linear-gradient(90deg,#fff calc(var(--overlap) - 120px),rgba(255,255,255,.7) calc(var(--overlap) - 85px),rgba(255,255,255,0) calc(var(--overlap) - 45px))}
 }
