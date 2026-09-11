@@ -24,8 +24,8 @@
     "2026-09-11",
     "2026-09-11",
     "Detectar una fuga de agua",
-    "/img/hero-fugas.webp",
-    "Sensor de fugas junto a una lavadora en una vivienda"
+    "/img/hero-fuga-lavadora.webp",
+    "Sensor de fugas de agua sobre un charco junto a una lavadora que pierde agua"
   ],
   "segunda-residencia": [
     "guia",
@@ -38,8 +38,8 @@
     "2026-09-11",
     "2026-09-11",
     null,
-    "/img/hero-reference.webp",
-    "Segunda residencia con sensor de humedad y móvil recibiendo una alerta"
+    "/img/hero-segunda-residencia.webp",
+    "Salón de una segunda residencia con un sensor de humedad y un móvil recibiendo una alerta de fuga"
   ],
   "agua": [
     "plana",
@@ -52,8 +52,8 @@
     "2026-09-11",
     "2026-09-11",
     null,
-    "/img/hero-fugas.webp",
-    "Sensor de fugas de agua junto a una lavadora en una vivienda"
+    "/img/hero-alerta-fuga.webp",
+    "Fuga bajo un fregadero con un sensor de agua y un móvil mostrando la alerta de Casa Bajo Control"
   ],
   "humedad": [
     "plana",
@@ -94,8 +94,8 @@
     "2026-09-11",
     "2026-09-11",
     null,
-    "/img/hero-fugas.webp",
-    "Sensor de fugas de agua en un entorno doméstico"
+    "/img/hero-fuga-lavadora.webp",
+    "Sensor de fugas de agua junto a una lavadora en una vivienda"
   ],
   "sobre-nosotros": [
     "plana",

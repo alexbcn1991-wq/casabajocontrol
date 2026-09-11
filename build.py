@@ -36,14 +36,13 @@ def hero_media(d):
     image_path = ROOT / image.lstrip("/")
     if not image_path.exists():
         raise FileNotFoundError(f"Hero no encontrado: {image}")
-    dimensions = {
-        "hero-metodologia": (675, 335),
-        "hero-fugas": (690, 440),
-        "hero-comparativas": (994, 440),
-        "hero-reference": (992, 430),
-    }
     stem = image_path.stem
-    width, height = dimensions.get(stem, (1200, 675))
+    try:
+        from PIL import Image
+        with Image.open(image_path) as im:
+            width, height = im.size
+    except Exception:
+        width, height = (1200, 675)
     return (f'<div class="standard-page-hero-media hero-media-{html.escape(stem)}">'
             f'<img src="{html.escape(image)}" alt="{html.escape(alt)}" width="{width}" height="{height}" '
             f'fetchpriority="high" decoding="async"></div>')
@@ -57,8 +56,11 @@ def build_page(slug,d):
     date_published = d[7] if len(d)>7 and d[7] else "2026-09-11"
     date_modified = d[8] if len(d)>8 and d[8] else date_published
     image = d[10] if len(d)>10 and d[10] else "/img/og-default.png"
+    og_image = image
+    if image.endswith(".webp") and (ROOT / (image[:-5] + ".png").lstrip("/")).exists():
+        og_image = image[:-5] + ".png"
     schema=json.dumps({"@context":"https://schema.org","@type":"Article","headline":d[4],"description":d[2],"url":canonical,"datePublished":date_published,"dateModified":date_modified,"author":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/sobre-nosotros/"},"publisher":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/"},"image":[BASE+image]},ensure_ascii=False,separators=(",",":"))
-    vals={"{{TITLE}}":html.escape(d[1]),"{{DESCRIPTION}}":html.escape(d[2]),"{{CANONICAL}}":canonical,"{{JSONLD}}":schema,"{{HEADER}}":header,"{{FOOTER}}":footer,"{{BREADCRUMBS}}":bc,"{{EYEBROW}}":html.escape(d[3]),"{{H1}}":html.escape(d[4]),"{{LEAD}}":html.escape(d[5]),"{{META}}":f'<p class="article-meta">Actualizado: {format_date(date_modified)}</p>',"{{HERO_MEDIA}}":hero_media(d),"{{BODY}}":d[6]}
+    vals={"{{TITLE}}":html.escape(d[1]),"{{DESCRIPTION}}":html.escape(d[2]),"{{CANONICAL}}":canonical,"{{JSONLD}}":schema,"{{HEADER}}":header,"{{FOOTER}}":footer,"{{BREADCRUMBS}}":bc,"{{EYEBROW}}":html.escape(d[3]),"{{H1}}":html.escape(d[4]),"{{LEAD}}":html.escape(d[5]),"{{META}}":f'<p class="article-meta">Actualizado: {format_date(date_modified)}</p>',"{{HERO_MEDIA}}":hero_media(d),"{{OG_IMAGE}}":BASE+og_image,"{{BODY}}":d[6]}
     for a,b in vals.items(): tpl=tpl.replace(a,b)
     tpl=tpl.replace("{{ROOT}}",p)
     write(ROOT/slug/"index.html",tpl)

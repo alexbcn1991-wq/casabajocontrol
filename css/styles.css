@@ -358,3 +358,51 @@
 @media(max-width:900px){.standard-page-hero-inner{width:calc(100% - 32px);grid-template-columns:1fr}.standard-page-hero-copy{min-height:0;padding:38px 28px}.standard-page-hero-media{height:300px}.methodology-cards{grid-template-columns:repeat(2,minmax(0,1fr))}.recommendation-callout{width:calc(100% - 32px)}.article-content{width:calc(100% - 32px)}}
 @media(max-width:700px){.comparison-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}.article-grid{grid-template-columns:1fr}.page-breadcrumbs{width:calc(100% - 32px);padding-top:14px}.article-content{padding-top:18px}}
 @media(max-width:560px){.standard-page-hero-inner{width:calc(100% - 28px);border-radius:10px}.standard-page-hero-copy{padding:30px 22px}.standard-page-hero h1{font-size:36px}.standard-page-hero .article-lead{font-size:17px}.standard-page-hero-media{height:240px}.article-content{width:calc(100% - 28px);font-size:16px}.methodology-cards{grid-template-columns:1fr}.recommendation-callout{width:calc(100% - 28px);grid-template-columns:48px 1fr;padding:18px}.recommendation-callout .button{grid-column:1/-1;width:100%}.card-icon{width:48px;height:48px;flex-basis:48px}.methodology-cards .article-card{gap:13px;padding:16px;min-height:0}.recommendation-icon{width:48px;height:48px}}
+
+/* v2.9 — Hero interior según mockup: la foto llena la altura de la tarjeta y se funde con el fondo por la izquierda.
+   Se aplica a todas las páginas con .standard-page-hero; la posición de recorte se ajusta por imagen con la clase hero-media-<archivo> que genera build.py. */
+@media(min-width:901px){.standard-page-hero-inner{grid-template-columns:minmax(0,.92fr) minmax(360px,1.08fr);align-items:stretch}}
+.standard-page-hero-copy{padding:36px 30px 34px 34px;min-height:325px;justify-content:center}
+.standard-page-hero h1{max-width:600px;margin:6px 0 14px;font-size:clamp(34px,3.3vw,46px);line-height:1.04}
+.standard-page-hero .article-lead{max-width:560px;font-size:16.5px;line-height:1.5}
+.standard-page-hero .article-meta{margin-top:16px}
+.standard-page-hero-media{position:relative;height:auto;min-height:325px;align-self:stretch;overflow:hidden;background:#eef4f1}
+.standard-page-hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:var(--hero-pos,center)}
+.standard-page-hero-media::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,#eef4f1 0%,rgba(238,244,241,.92) 9%,rgba(238,244,241,.55) 20%,rgba(238,244,241,0) 38%)}
+/* Posición de recorte por imagen (qué parte se conserva cuando la caja es más estrecha que la foto) */
+.hero-media-hero-metodologia{--hero-pos:78% 50%}
+.hero-media-hero-fugas{--hero-pos:55% 50%}
+.hero-media-hero-comparativas{--hero-pos:72% 50%}
+.hero-media-hero-reference{--hero-pos:78% 50%}
+@media(max-width:900px){
+  .standard-page-hero-media{min-height:260px;height:260px}
+  .standard-page-hero-media::after{background:linear-gradient(180deg,#eef4f1 0%,rgba(238,244,241,0) 26%)}
+  .standard-page-hero-copy{min-height:0;padding:34px 26px 30px}
+}
+@media(max-width:560px){.standard-page-hero-media{min-height:220px;height:220px}.standard-page-hero h1{font-size:34px}}
+
+/* v2.10 — cierre responsive del hero: en ≤900 px cada foto conserva su proporción (sin recorte), y el degradado solo existe en dos columnas. */
+@media(max-width:900px){
+  .standard-page-hero-media{position:relative;height:auto;min-height:0}
+  .standard-page-hero-media img{position:static;width:100%;height:auto;object-fit:initial;object-position:initial}
+  .standard-page-hero-media::after{display:none}
+}
+@media(max-width:560px){.standard-page-hero-media{height:auto;min-height:0}}
+/* Degradado más contenido en escritorio: solo suaviza el borde entre texto y foto. */
+@media(min-width:901px){.standard-page-hero-media::after{background:linear-gradient(90deg,#eef4f1 0%,rgba(238,244,241,.85) 7%,rgba(238,244,241,.35) 16%,rgba(238,244,241,0) 28%)}}
+/* Encuadre de las fotos nuevas */
+.hero-media-hero-fuga-lavadora{--hero-pos:62% 60%}
+.hero-media-hero-alerta-fuga{--hero-pos:35% 50%}
+.hero-media-hero-lavadora-sensor{--hero-pos:40% 55%}
+.hero-media-hero-segunda-residencia{--hero-pos:70% 18%}
+
+/* v2.11 — Home: sección checklist como imagen (escritorio/tablet). En móvil se mantiene la tarjeta, porque el texto incrustado no sería legible. */
+.tool-banner{display:block;border-radius:25px;overflow:hidden;background:#eef4f1}
+.tool-banner img{display:block;width:100%;height:auto}
+.tool-banner:hover{opacity:.97}
+@media(min-width:701px){.tool-card-mobile{display:none}}
+@media(max-width:700px){.tool-banner{display:none}}
+/* Encuadre de las fotos nuevas */
+.hero-media-hero-fuga-lavadora{--hero-pos:70% 60%}
+.hero-media-hero-alerta-fuga{--hero-pos:45% 50%}
