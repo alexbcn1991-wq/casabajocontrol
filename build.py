@@ -82,19 +82,30 @@ redirect("comparativas/mejores-higrometros","/comparativas/sensores-humedad/")
 old=ROOT/"comparativas/seguridad/door-window"
 if old.exists(): shutil.rmtree(old)
 
-# Keep the first commercial URL structurally present, but explicitly unproven.
-slug="comparativas/detectores-fugas-agua"; p=prefix(slug)
-tpl=read(ROOT/"templates/plana.html")
-stub_image="/img/hero-fugas.webp"; stub_alt="Sensor de fugas de agua junto a una lavadora en una vivienda"
-stub_data=["plana","Detectores de fugas de agua | Casa Bajo Control","Comparativa de detectores de fugas de agua basada en pruebas reales.","Agua","Mejores detectores de fugas de agua","Esta comparativa se publicará cuando existan resultados propios.",'<section class="article-content"><div class="callout"><strong>En preparación:</strong> no etiquetamos productos como probados hasta completar nuestro protocolo.</div><p><a class="button button-primary" href="/como-probamos/">Ver cómo probamos</a></p></section>',"2026-09-11","2026-09-11","Detectores de fugas",stub_image,stub_alt]
-vals={"{{TITLE}}":html.escape(stub_data[1]),"{{DESCRIPTION}}":html.escape(stub_data[2]),"{{CANONICAL}}":BASE+"/comparativas/detectores-fugas-agua/","{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"Article","headline":"Mejores detectores de fugas de agua","url":BASE+"/comparativas/detectores-fugas-agua/","image":[BASE+stub_image]},ensure_ascii=False,separators=(",",":")),"{{HEADER}}":read(ROOT/"partials/header.html").replace("{{ROOT}}",p),"{{FOOTER}}":read(ROOT/"partials/footer.html").replace("{{ROOT}}",p),"{{BREADCRUMBS}}":read(ROOT/"partials/breadcrumbs.html").replace("{{BREADCRUMBS}}",'<a href="/">Inicio</a> / <a href="/comparativas/">Comparativas</a> / <span aria-current="page">Detectores de fugas</span>'),"{{EYEBROW}}":stub_data[3],"{{H1}}":stub_data[4],"{{LEAD}}":stub_data[5],"{{META}}":'<p class="article-meta">Pendiente de pruebas reales</p>',"{{HERO_MEDIA}}":hero_media(stub_data),"{{BODY}}":stub_data[6]}
-for a,b in vals.items(): tpl=tpl.replace(a,b)
-tpl=tpl.replace("{{ROOT}}",p)
-tpl=tpl.replace("<head>","<head><meta name=\"robots\" content=\"noindex,follow\">",1)
-write(ROOT/slug/"index.html",tpl)
+# Stubs de comparativas: URL presente, noindex, sin etiquetar nada como probado.
+def stub(slug,title,eyebrow,h1,lead,crumb,image,alt,parent_label="Comparativas",parent="/comparativas/"):
+    p=prefix(slug); tpl=read(ROOT/"templates/plana.html")
+    body='<section class="article-content"><div class="callout"><strong>En preparación:</strong> no etiquetamos productos como probados hasta completar nuestro protocolo.</div><p><a class="button button-primary" href="/como-probamos/">Ver cómo probamos</a></p></section>'
+    data=["plana",title,lead,eyebrow,h1,lead,body,"2026-09-11","2026-09-11",crumb,image,alt]
+    canonical=BASE+"/"+slug+"/"
+    vals={"{{TITLE}}":html.escape(title),"{{DESCRIPTION}}":html.escape(lead),"{{CANONICAL}}":canonical,
+          "{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"Article","headline":h1,"url":canonical,"image":[BASE+image]},ensure_ascii=False,separators=(",",":")),
+          "{{HEADER}}":read(ROOT/"partials/header.html").replace("{{ROOT}}",p),"{{FOOTER}}":read(ROOT/"partials/footer.html").replace("{{ROOT}}",p),
+          "{{BREADCRUMBS}}":read(ROOT/"partials/breadcrumbs.html").replace("{{BREADCRUMBS}}",f'<a href="/">Inicio</a> <span aria-hidden="true">/</span> <a href="{parent}">{parent_label}</a> <span aria-hidden="true">/</span> <span aria-current="page">{html.escape(crumb)}</span>'),
+          "{{EYEBROW}}":eyebrow,"{{H1}}":html.escape(h1),"{{LEAD}}":html.escape(lead),"{{META}}":'<p class="article-meta">Pendiente de pruebas reales</p>',
+          "{{HERO_MEDIA}}":hero_media(data),"{{OG_IMAGE}}":BASE+(image[:-5]+".png" if image.endswith(".webp") and (ROOT/(image[:-5]+".png").lstrip("/")).exists() else image),"{{BODY}}":body}
+    for a,c in vals.items(): tpl=tpl.replace(a,c)
+    tpl=tpl.replace("{{ROOT}}",p).replace("<head>","<head><meta name=\"robots\" content=\"noindex,follow\">",1)
+    write(ROOT/slug/"index.html",tpl)
+
+stub("comparativas/detectores-fugas-agua","Detectores de fugas de agua | Casa Bajo Control","Agua","Mejores detectores de fugas de agua","Esta comparativa se publicará cuando existan resultados propios.","Detectores de fugas","/img/hero-comparativas.webp","Varios detectores de fugas de agua de distintas marcas sobre una mesa")
+stub("comparativas/sensores-humedad","Sensores de humedad | Casa Bajo Control","Humedad","Mejores sensores de humedad","Esta comparativa se publicará cuando existan resultados propios.","Sensores de humedad","/img/hero-reference.webp","Sensor de humedad en una vivienda")
+stub("comparativas/sensores-temperatura","Sensores de temperatura | Casa Bajo Control","Temperatura","Mejores sensores de temperatura","Esta comparativa se publicará cuando existan resultados propios.","Sensores de temperatura","/img/hero-reference.webp","Sensor de temperatura y humedad en una vivienda")
+stub("comparativas/camaras-segunda-residencia","Cámaras para segunda residencia | Casa Bajo Control","Seguridad","Mejores cámaras para segunda residencia","Esta comparativa se publicará cuando existan resultados propios.","Cámaras","/img/hero-segunda-residencia.webp","Terraza de una segunda residencia con un móvil mostrando el estado de la casa")
+stub("comparativas/sensores-puertas-ventanas","Sensores de puertas y ventanas | Casa Bajo Control","Seguridad","Mejores sensores de puertas y ventanas","Esta comparativa se publicará cuando existan resultados propios.","Puertas y ventanas","/img/hero-comparativas.webp","Varios sensores domésticos sobre una mesa, listos para comparar")
 
 write(ROOT/"robots.txt",f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-excluded={"/comparativas/detectores-fugas-agua/","/legal/aviso-legal/","/legal/privacidad/","/legal/cookies/"}
+excluded={"/comparativas/detectores-fugas-agua/","/comparativas/sensores-humedad/","/comparativas/sensores-temperatura/","/comparativas/camaras-segunda-residencia/","/comparativas/sensores-puertas-ventanas/","/legal/aviso-legal/","/legal/privacidad/","/legal/cookies/"}
 urls={"/"}
 for slug in pages:
     u="/"+slug.strip("/")+"/"

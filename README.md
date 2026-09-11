@@ -46,3 +46,9 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - Guía de fugas y hub /guias/: `hero-fuga-lavadora` (lavadora + sensor sobre el charco). Hub /agua/: `hero-alerta-fuga` (fuga bajo fregadero + móvil con la app).
 - Las fotos de terceros de v2.10 se retiran del sitio y quedan en `_assets/banco-imagenes/` con los mockups de referencia. Las carpetas que empiezan por `_` no se publican en GitHub Pages.
 - `_assets/banco-imagenes/README.md` lista qué imagen falta para cada página según el collage de referencia.
+
+## v2.12 — heroes de comparativas/guías/segunda residencia/sobre nosotros y auditoría de enlaces
+- Nuevas fotos: `hero-comparativas`, `hero-guias`, `hero-segunda-residencia`, `hero-sobre-nosotros` (todas 1774×887, WebP + PNG para OG).
+- Corregido: la tarjeta "Mejores sensores de humedad" de la home llevaba a una redirección cuyo destino (`/comparativas/sensores-humedad/`) no existía → 404. Ahora existe como stub (noindex) y la home enlaza directo.
+- Home: "Preparar mi casa", el banner del checklist y su tarjeta móvil enlazan directamente a `/segunda-residencia/` (antes pasaban por la redirección `proteger-segunda-residencia`). Retirado "Consejos" del menú de la home (era una redirección a Guías; las interiores no lo tenían). No cambia nada visual salvo ese elemento del menú.
+- Los cinco stubs de comparativas se generan ahora desde `build.py` (función `stub`): misma cabecera estándar, `noindex`, fuera del sitemap. Desaparecen las tres páginas antiguas con menú y cabecera de v1.

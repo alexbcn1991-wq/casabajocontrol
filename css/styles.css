@@ -373,7 +373,7 @@
 /* Posición de recorte por imagen (qué parte se conserva cuando la caja es más estrecha que la foto) */
 .hero-media-hero-metodologia{--hero-pos:78% 50%}
 .hero-media-hero-fugas{--hero-pos:55% 50%}
-.hero-media-hero-comparativas{--hero-pos:72% 50%}
+.hero-media-hero-comparativas{--hero-pos:50% 55%}
 .hero-media-hero-reference{--hero-pos:78% 50%}
 @media(max-width:900px){
   .standard-page-hero-media{min-height:260px;height:260px}
@@ -395,7 +395,7 @@
 .hero-media-hero-fuga-lavadora{--hero-pos:62% 60%}
 .hero-media-hero-alerta-fuga{--hero-pos:35% 50%}
 .hero-media-hero-lavadora-sensor{--hero-pos:40% 55%}
-.hero-media-hero-segunda-residencia{--hero-pos:70% 18%}
+.hero-media-hero-segunda-residencia{--hero-pos:60% 50%}
 
 /* v2.11 — Home: sección checklist como imagen (escritorio/tablet). En móvil se mantiene la tarjeta, porque el texto incrustado no sería legible. */
 .tool-banner{display:block;border-radius:25px;overflow:hidden;background:#eef4f1}
@@ -406,3 +406,6 @@
 /* Encuadre de las fotos nuevas */
 .hero-media-hero-fuga-lavadora{--hero-pos:70% 60%}
 .hero-media-hero-alerta-fuga{--hero-pos:45% 50%}
+
+.hero-media-hero-guias{--hero-pos:55% 50%}
+.hero-media-hero-sobre-nosotros{--hero-pos:60% 50%}
