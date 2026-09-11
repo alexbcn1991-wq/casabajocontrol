@@ -53,3 +53,9 @@ Esta versión usa rutas relativas para funcionar correctamente dentro del subdir
 - `img/og-default.jpg` no existe; crearlo (1200×630) o quitar la meta `og:image`.
 - `img/hero-home.webp` y `hero-home@2x.webp` no se usan (recorte peor que `hero-reference`). Se pueden borrar.
 - El botón de búsqueda sigue oculto (`hidden`) hasta que exista un buscador real.
+
+## v1.1 — hero a tamaño completo y menú centrado
+- Menú de navegación centrado entre el logo y el buscador.
+- A partir de 1300 px de ancho la foto del hero se muestra a tamaño real (992×430), ocupando toda la altura del bloque, del header a las tarjetas. Su borde derecho sigue alineado con el margen del contenedor; por la izquierda se extiende bajo el texto con un degradado blanco (composición del mockup).
+- Por debajo de 1300 px no cabe sin recortar: se mantiene la composición v1.0 (foto entera sin degradado).
+- Opción: si prefieres que la foto llegue hasta el borde de la ventana como en el mockup, cambia en la regla v1.1 `.hero-image{right:0}` por `right:-50px`.
