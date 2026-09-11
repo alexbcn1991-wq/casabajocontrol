@@ -26,3 +26,12 @@ Sube el contenido de esta carpeta al repositorio que sirva `casabajocontrol.es` 
 
 ## GitHub Pages
 Esta versión usa rutas relativas para funcionar correctamente dentro del subdirectorio `/casabajocontrol/` de GitHub Pages. No cambiar las rutas a `/css/`, `/img/` o `/js/` salvo que el sitio pase a servirse desde la raíz del dominio.
+
+
+## v0.5 — ajuste visual
+- Home ajustada contra el mockup maestro.
+- Logo vectorial SVG para evitar pixelación.
+- Hero en alta resolución y `srcset` 1x/2x.
+- Composición del hero centrada mediante contenedor de hasta 1440 px.
+- Iconos de beneficios en SVG.
+- Mantener el mockup como referencia visual; no usar etiquetas “Probado” hasta tener pruebas reales.
