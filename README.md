@@ -66,3 +66,6 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 ## v2.15 — guía "Detector de fugas sin Internet" sobre la base v2.14
 - La guía llegó construida sobre v2.9 (sin los cambios v2.10–v2.14). Se ha portado a v2.14: entrada en `pages.json`, `hero-sin-internet` (WebP + PNG para OG), enlace desde la guía de fugas y tarjeta en `/guias/`, sitemap.
 - Ajustes mínimos en el texto: voz de equipo ("utilizaríamos"), ancla y entrada de sumario para la opción 4, enlaces de vuelta a la guía de fugas y al hub de agua, sección "Dónde colocarlo" resumida para no duplicar la guía de fugas, título acortado.
+
+## v2.16
+- La guía "Detector de fugas sin Internet" aparece en el hub `/agua/` (tarjeta) y en el pilar `/segunda-residencia/` (enlaces en "Agua" y "Conectividad"). Home sin cambios.
