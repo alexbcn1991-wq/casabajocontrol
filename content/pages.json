@@ -1,0 +1,101 @@
+{
+  "como-probamos": [
+    "guia",
+    "Cómo analizamos y probamos los productos | Casa Bajo Control",
+    "Cómo analiza y prueba Casa Bajo Control sensores, detectores y soluciones para proteger una vivienda: alertas, continuidad, conectividad, instalación y costes.",
+    "Metodología",
+    "Cómo analizamos y probamos los productos",
+    "En Casa Bajo Control analizamos sensores, detectores y soluciones para prevenir o detectar problemas en una vivienda. Cuando un producto pasa por nuestro banco de pruebas, además comprobamos cómo se comporta en situaciones que importan cuando no hay nadie en casa.",
+    "<section class=\"article-content\"><h2>Qué buscamos en cada producto</h2><p>Una buena ficha técnica no siempre significa que una solución sea adecuada para una vivienda concreta. Por eso centramos el análisis en lo que puede cambiar realmente la decisión de compra.</p><div class=\"article-grid\"><div class=\"article-card\"><h3><a href=\"#deteccion\">Detección</a></h3><p>Qué detecta, cómo lo detecta y qué limitaciones tiene para el problema concreto.</p></div><div class=\"article-card\"><h3><a href=\"#alertas\">Alertas</a></h3><p>Qué avisos ofrece, dónde llegan y de qué depende que el aviso sea útil.</p></div><div class=\"article-card\"><h3><a href=\"#continuidad\">Continuidad</a></h3><p>Qué ocurre cuando falla Internet o la alimentación y qué hace el sistema al recuperarse.</p></div><div class=\"article-card\"><h3><a href=\"#dependencias\">Dependencias y longevidad</a></h3><p>Hub, cuenta, suscripción, nube del fabricante y otros elementos necesarios para mantener la solución operativa.</p></div></div><h2 id=\"banco-de-pruebas\">El banco de pruebas</h2><p>Cuando un producto pasa por nuestras manos, lo sometemos a un protocolo orientado a una pregunta sencilla: <strong>¿seguirá siendo útil cuando más lo necesite?</strong></p><ul><li><strong>Tiempo hasta la alerta:</strong> desde que provocamos el evento hasta que el aviso llega al móvil.</li><li><strong>Sin Internet con el router encendido:</strong> qué funciones siguen disponibles cuando la conexión a Internet falla.</li><li><strong>Con el router apagado:</strong> qué ocurre cuando la red local deja de estar disponible.</li><li><strong>Recuperación de conexión:</strong> si el sistema recupera su funcionamiento y si los eventos pendientes se notifican al volver la conexión.</li><li><strong>Autonomía:</strong> evolución de la batería durante un periodo de observación, con referencias a 30 días cuando el protocolo y el producto lo permiten.</li><li><strong>Falsas alarmas:</strong> incidencias que pueden aparecer en condiciones como condensación u otras situaciones relevantes para el producto.</li></ul><p>Las pruebas se realizan en una vivienda real, con Wi‑Fi de 2,4 GHz cuando el dispositivo lo requiere, y utilizando móviles Android e iOS cuando la aplicación del fabricante lo permite. La observación mínima prevista es de 14 días para los productos en los que la duración tenga sentido.</p><p>Cuando publicamos resultados de pruebas, mostramos una tabla con <strong>qué esperábamos y qué ocurrió</strong> y, cuando sea útil, fotografías fechadas del proceso.</p><h2>Probado y Analizado</h2><div class=\"article-grid\"><div class=\"article-card\"><h3>Probado</h3><p>El producto ha pasado por el banco de pruebas de Casa Bajo Control y distinguimos los resultados observados de las especificaciones del fabricante.</p></div><div class=\"article-card\"><h3>Analizado</h3><p>Hemos realizado un estudio documental siguiendo los criterios de esta metodología, contrastando especificaciones, compatibilidades, requisitos y limitaciones.</p></div></div><h2>Cómo valoramos cada solución</h2><p>No utilizamos una puntuación numérica única para fingir que todos los productos se pueden reducir al mismo número. En su lugar, mostramos qué criterios tienen mayor importancia según el escenario.</p><table class=\"comparison-table\"><thead><tr><th>Criterio</th><th>Vivienda habitual</th><th>Segunda residencia</th></tr></thead><tbody><tr id=\"deteccion\"><td>Detección</td><td>Alta</td><td>Alta</td></tr><tr id=\"alertas\"><td>Alertas</td><td>Alta</td><td>Alta</td></tr><tr id=\"continuidad\"><td>Continuidad</td><td>Media</td><td>Alta</td></tr><tr id=\"conectividad\"><td>Conectividad</td><td>Media</td><td>Alta</td></tr><tr id=\"instalacion\"><td>Instalación y uso</td><td>Alta</td><td>Media</td></tr><tr id=\"dependencias\"><td>Dependencias y longevidad</td><td>Media</td><td>Alta</td></tr><tr id=\"aviso-local\"><td>Aviso local</td><td>Media</td><td>Baja</td></tr><tr id=\"coste-total\"><td>Coste total</td><td>Media</td><td>Media</td></tr></tbody></table><h2>El caso de uso importa</h2><p>Una solución puede ser excelente para una vivienda habitual y no ser la mejor opción para una segunda residencia. Por eso nuestras recomendaciones parten del escenario.</p><ul><li><strong>Vivienda habitual:</strong> facilidad de uso, avisos y mantenimiento.</li><li><strong>Segunda residencia:</strong> continuidad, conectividad y capacidad de avisar cuando no hay nadie en casa.</li><li><strong>Prevención de fugas:</strong> detección, ubicación y rapidez del aviso.</li><li><strong>Control de humedad:</strong> medición, facilidad de lectura y utilidad para tomar decisiones.</li></ul><h2>Qué información utilizamos</h2><p>Combinamos documentación del fabricante, manuales, especificaciones técnicas, compatibilidades, información de funcionamiento, registros de compatibilidad cuando son relevantes y experiencias de usuarios cuando aportan contexto. Cuando una característica depende de un hub, una suscripción, Internet o un determinado ecosistema, lo indicamos.</p><h2>Quién está detrás de los análisis</h2><p>Los contenidos los prepara el <strong>Equipo de Casa Bajo Control</strong>. Cuando necesitamos una unidad para una prueba propia, la compramos con nuestro propio dinero en tiendas normales y sin contacto previo con fabricantes. Si un fabricante ofrece una unidad, indicamos esa circunstancia. Buscamos que cada recomendación pueda entenderse y revisarse: explicamos de dónde salen las características, qué parte corresponde a pruebas propias cuando las hay y qué limitaciones encontramos.</p><p>Si detectamos un error relevante, corregimos la información y dejamos constancia de la revisión correspondiente.</p><h2>Qué no hacemos</h2><ul><li>No copiamos fichas de producto y las presentamos como análisis.</li><li>No damos por hecho que una característica sea útil solo porque aparece en la publicidad.</li><li>No recomendamos un producto únicamente porque tenga más funciones.</li><li>No ocultamos requisitos, limitaciones o costes necesarios para utilizar una solución.</li></ul><h2>Una recomendación depende de tu casa</h2><p>Nuestro objetivo no es encontrar un único producto ganador para todo el mundo. Queremos ayudarte a encontrar la solución que tenga sentido para tu vivienda, tu conectividad, tu presupuesto y el problema que quieres prevenir.</p><aside class=\"affiliate-disclosure\"><strong>Transparencia:</strong> algunas páginas pueden contener enlaces de afiliado. En calidad de Afiliado de Amazon, obtengo ingresos por las compras adscritas que cumplen los requisitos aplicables. Esto no cambia el precio que paga el usuario.</aside><footer class=\"article-footer\"><p><a href=\"/agua/\">Ver contenidos sobre protección frente al agua →</a></p><p><a href=\"/segunda-residencia/\">Ver cómo proteger una segunda residencia →</a></p><p><a href=\"/guias/\">Ir a las guías →</a></p><p><a href=\"/comparativas/\">Ver nuestras comparativas →</a></p></footer></section>",
+    "11 de septiembre de 2026",
+    "11 de septiembre de 2026"
+  ],
+  "guias/como-detectar-una-fuga-de-agua": [
+    "guia",
+    "Cómo detectar una fuga de agua | Casa Bajo Control",
+    "Guía práctica para detectar una fuga de agua y reducir el riesgo de daños en una vivienda.",
+    "Agua",
+    "Cómo detectar una fuga de agua antes de que sea demasiado tarde",
+    "Una pequeña fuga puede pasar desapercibida durante horas o días. Estas son las señales y medidas que conviene revisar.",
+    "<section class=\"article-content\"><h2>Empieza por las señales</h2><p>Manchas nuevas, humedad localizada, cambios inexplicables en el consumo o agua donde no debería haberla son señales que merecen una revisión.</p><h2>Revisa los puntos de riesgo</h2><ul><li>Conexiones bajo fregaderos y lavabos.</li><li>Lavadora, lavavajillas y otros electrodomésticos.</li><li>Caldera, termo y zonas próximas a tuberías.</li><li>Viviendas que permanecen cerradas durante largos periodos.</li></ul><h2>Cuando no estás en casa</h2><p>Un detector puede servir como segunda capa de vigilancia si las condiciones de alimentación y conectividad lo permiten.</p><p><a class=\"button button-primary\" href=\"/comparativas/detectores-fugas-agua/\">Ver la comparativa de detectores de fugas</a></p></section>",
+    "11 de septiembre de 2026",
+    "11 de septiembre de 2026"
+  ],
+  "segunda-residencia": [
+    "guia",
+    "Cómo proteger una segunda residencia | Casa Bajo Control",
+    "Guía de Casa Bajo Control para preparar una segunda residencia frente a fugas, humedad, temperatura y problemas de conectividad.",
+    "Segunda residencia",
+    "¿Qué pasa con tu casa cuando tú no estás?",
+    "Una segunda residencia necesita una estrategia distinta: detectar antes, avisar a distancia y saber qué ocurre cuando algo falla.",
+    "<section class=\"article-content\"><h2>Agua</h2><p>Detectar una fuga en una vivienda vacía es una prioridad porque el daño puede crecer durante días.</p><h2>Humedad</h2><p>Medir cambios de humedad ayuda a detectar problemas antes de que sean visibles.</p><h2>Conectividad</h2><p>Interesa saber qué ocurre si el router pierde Internet y qué ocurre si se corta la electricidad.</p><h2>Temperatura</h2><p>En determinadas viviendas conviene controlar frío, calor o riesgo de heladas.</p><div class=\"callout\"><strong>Objetivo:</strong> cubrir los riesgos importantes con el menor número posible de puntos de fallo.</div></section>",
+    "11 de septiembre de 2026",
+    "11 de septiembre de 2026"
+  ],
+  "agua": [
+    "plana",
+    "Agua | Casa Bajo Control",
+    "Detectores de fugas, sensores de inundación y soluciones para reducir el riesgo de daños por agua.",
+    "Agua",
+    "Agua bajo control",
+    "El primer clúster de Casa Bajo Control: detectar fugas y saber qué ocurre cuando no estás en casa.",
+    "<section class=\"article-content\"><div class=\"link-grid\"><a href=\"/guias/como-detectar-una-fuga-de-agua/\"><strong>Cómo detectar una fuga</strong><span>Guía de prevención y detección.</span></a><a href=\"/comparativas/detectores-fugas-agua/\"><strong>Detectores de fugas</strong><span>Comparativa cuando existan pruebas propias.</span></a><a href=\"/como-probamos/\"><strong>Cómo probamos</strong><span>Metodología de pruebas.</span></a></div></section>",
+    "11 de septiembre de 2026",
+    "11 de septiembre de 2026"
+  ],
+  "humedad": [
+    "plana",
+    "Humedad | Casa Bajo Control",
+    "Higrómetros, sensores de humedad y soluciones para detectar y prevenir problemas.",
+    "Humedad",
+    "Humedad bajo control",
+    "Medir antes de actuar: sensores, higrómetros y pruebas para entender qué ocurre realmente.",
+    "<section class=\"article-content\"><p>Empezaremos por instrumentos de medición y sensores antes de ampliar a soluciones de mayor coste.</p><div class=\"callout\">Las comparativas de humedad se publicarán cuando tengamos productos suficientes para aportar pruebas propias.</div></section>",
+    "11 de septiembre de 2026",
+    "11 de septiembre de 2026"
+  ],
+  "comparativas": [
+    "plana",
+    "Comparativas | Casa Bajo Control",
+    "Comparativas de productos para prevenir fugas, humedad y otros problemas domésticos.",
+    "Comparativas",
+    "Comparativas",
+    "Productos comparados con criterios claros y, cuando corresponda, pruebas propias.",
+    "<section class=\"article-content\"><p>La primera comparativa será la de detectores de fugas de agua y se publicará cuando existan resultados reales.</p><p><a class=\"button button-primary\" href=\"/como-probamos/\">Ver metodología</a></p></section>",
+    "11 de septiembre de 2026",
+    "11 de septiembre de 2026"
+  ],
+  "guias": [
+    "plana",
+    "Guías | Casa Bajo Control",
+    "Guías prácticas para prevenir y detectar problemas en casa.",
+    "Guías",
+    "Guías prácticas",
+    "Explicaciones claras para prevenir problemas antes de que se conviertan en daños.",
+    "<section class=\"article-content\"><div class=\"link-grid\"><a href=\"/guias/como-detectar-una-fuga-de-agua/\"><strong>Cómo detectar una fuga</strong><span>Señales y prevención.</span></a><a href=\"/segunda-residencia/\"><strong>Segunda residencia</strong><span>Pilar transversal.</span></a><a href=\"/como-probamos/\"><strong>Cómo probamos</strong><span>Metodología.</span></a></div></section>",
+    "11 de septiembre de 2026",
+    "11 de septiembre de 2026"
+  ],
+  "sobre-nosotros": [
+    "plana",
+    "Sobre Casa Bajo Control",
+    "Quién está detrás de Casa Bajo Control y cómo trabajamos.",
+    "Sobre nosotros",
+    "Casa Bajo Control",
+    "Un proyecto editorial independiente centrado en prevención doméstica, pruebas y decisiones de compra informadas.",
+    "<section class=\"article-content\"><h2>Cómo trabajamos</h2><p>Somos el equipo de Casa Bajo Control. No presentamos credenciales que no tengamos ni afirmamos haber probado un producto que no hayamos probado.</p></section>",
+    "11 de septiembre de 2026",
+    "11 de septiembre de 2026"
+  ],
+  "contacto": [
+    "plana",
+    "Contacto | Casa Bajo Control",
+    "Información de contacto de Casa Bajo Control.",
+    "Contacto",
+    "Contacto",
+    "Para consultas sobre el proyecto, colaboraciones o correcciones.",
+    "<section class=\"article-content\"><div class=\"callout\">Pendiente de configurar el canal de contacto definitivo antes del lanzamiento.</div></section>",
+    "11 de septiembre de 2026",
+    "11 de septiembre de 2026"
+  ]
+}
