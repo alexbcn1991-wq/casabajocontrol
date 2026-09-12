@@ -149,3 +149,8 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 ## v2.39
 - FAQ unificadas en todo el sitio (reviews, pilar y cualquier `.faq-list` futura): mismo estilo con botón redondo "+ / –", hover y foco visible.
 - Hub /reviews/: imagen de cabecera propia (`hero-analisis`, recorte de la imagen aportada sin el texto incrustado) y OG específico. El mockup completo queda en `_assets/banco-imagenes/`.
+
+## v2.41 — guía de okupación auditada
+- Añadido en "Qué hacer si descubres que han entrado" el efecto de la reforma de 2025 (LO 1/2025, art. 795 LECrim; Circular FGE 1/2025): allanamiento y usurpación con violencia por juicio rápido; la ocupación sin violencia de un inmueble que no es morada (245.2) sigue por delitos leves. Las fuentes ya estaban citadas pero el texto no lo explicaba.
+- Enlaces que faltaban: desde el H3 "Y si alguien entra" del pilar, desde el hub de guías y desde la tarjeta "Y si alguien entra" de la home (solo cambia el destino).
+- PNG de la imagen de cabecera para el OG (solo existía WebP).
