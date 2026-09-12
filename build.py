@@ -159,7 +159,8 @@ def build_page(slug,d):
     schema=json.dumps({"@context":"https://schema.org","@type":"Article","headline":d[4],"description":d[2],"url":canonical,"datePublished":date_published,"dateModified":date_modified,"author":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/sobre-nosotros/"},"publisher":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/"},"image":[BASE+image]},ensure_ascii=False,separators=(",",":"))
     vals={"{{TITLE}}":html.escape(d[1]),"{{DESCRIPTION}}":html.escape(d[2]),"{{CANONICAL}}":canonical,"{{JSONLD}}":schema,"{{HEADER}}":header,"{{FOOTER}}":footer,"{{BREADCRUMBS}}":bc,"{{EYEBROW}}":html.escape(d[3]),"{{H1}}":html.escape(d[4]),"{{LEAD}}":html.escape(d[5]),"{{META}}":f'<p class="article-meta">Actualizado: {format_date(date_modified)}</p>',"{{HERO_MEDIA}}":hero_media(d),"{{OG_IMAGE}}":BASE+og_image,"{{BODY}}":d[6]}
     for a,b in vals.items(): tpl=tpl.replace(a,b)
-    tpl=tpl.replace("{{PRODUCTS:sin-internet}}", render_affiliate_products("sin-internet")).replace("{{PRODUCTS:fugas}}", render_affiliate_products("fugas")).replace("{{PRODUCT:shelly-flood-gen4}}", render_single_affiliate_product("shelly-flood-gen4")).replace("{{PRODUCT:aqara-water-leak-t1}}", render_single_affiliate_product("aqara-water-leak-t1"))
+    tpl=tpl.replace("{{PRODUCTS:sin-internet}}", render_affiliate_products("sin-internet")).replace("{{PRODUCTS:fugas}}", render_affiliate_products("fugas"))
+    tpl=re.sub(r"\{\{PRODUCT:([a-z0-9-]+)\}\}", lambda m: render_single_affiliate_product(m.group(1)), tpl)
     tpl=tpl.replace("{{ROOT}}",p)
     write(ROOT/slug/"index.html",tpl)
 

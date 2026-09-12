@@ -644,3 +644,18 @@
 @media(max-width:700px){.article-content table.comparison-table,.article-content .comparison-table{display:block!important;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}}
 .pill.pending{background:#8a949a}
 .compare-image img[src$="hero-comparativas.png"]{width:100%;height:100%;object-fit:cover;border-radius:6px}
+
+/* Reviews: tarjetas de alternativas clicables enteras, con estado hover/focus */
+.review-alternatives article{position:relative;background:#fff;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+.review-alternatives h3 a{color:#14242d}
+.review-alternatives h3 a::after{content:"";position:absolute;inset:0;border-radius:17px}
+.review-alternatives article:hover{border-color:#176d68;box-shadow:0 10px 26px rgba(18,50,43,.10);transform:translateY(-2px)}
+.review-alternatives article:hover h3 a{color:#176d68}
+.review-alternatives article:focus-within{outline:3px solid rgba(23,109,104,.35);outline-offset:2px}
+.review-alternatives p{position:relative;pointer-events:none}
+/* Bloque final de metodología: el botón no se rompe en varias líneas */
+.review-methodology-end{flex-wrap:nowrap}
+.review-methodology-end .button{flex:0 0 auto;white-space:nowrap;min-height:48px;padding:0 22px;font-size:15px}
+@media(max-width:700px){.review-methodology-end .button{width:100%;justify-content:center}}
+/* Botones dentro del cuerpo de artículos (stubs, hubs): mismo tamaño que el resto del sitio */
+.article-content a.button{white-space:nowrap;min-height:48px;padding:0 22px;font-size:15px;text-decoration:none}

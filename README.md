@@ -121,3 +121,8 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - Menú: Inicio · Comparativas · Guías · Análisis · Segunda residencia · Sobre nosotros (lista NAV en build.py). /reviews/ en el sitemap.
 - Home: en el bloque de comparativas solo cambia el rótulo ("Nuestra selección · Analizados por Casa Bajo Control"). Las cinco tarjetas y su enlace se mantienen como estaban, por decisión del propietario.
 - ASIN SwitchBot Water Leak Detector (B0CRRL9DNN): botón a ficha.
+
+## v2.32
+- Corregido: la caja de producto (Amazon) no aparecía en la review del SwitchBot porque el build solo sustituía los marcadores {{PRODUCT:…}} de Shelly y Aqara. Ahora sustituye cualquier {{PRODUCT:id}}.
+- Alternativas de las reviews: la tarjeta entera es clicable y resalta al pasar el ratón (borde, sombra, elevación); foco visible por teclado.
+- Botón "Ver cómo probamos" del bloque final de metodología: ya no se parte en tres líneas; tamaño y padding iguales al resto de botones del sitio. Mismo ajuste para los botones dentro del cuerpo de artículos (stubs de comparativas, hubs). En móvil ocupa todo el ancho.
