@@ -159,3 +159,20 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - El ZIP recibido tenía la maquetación en el campo equivocado de `pages.json` (índice 8, el de la fecha de modificación), lo que generaba eyebrow y H1 cambiados, fecha vacía y JSON-LD con HTML dentro; además revertía el enlace de la home a la guía. Reconstruido sobre v2.41: cuerpo maquetado en su campo, títulos, fechas y enlaces correctos.
 - Ajustes sobre la maquetación: índice antes de la introducción (como en el pilar); iconos de check con la clase del sistema (se veían como círculos negros); prevención en tres tarjetas con título propio en vez de cuatro "Antes de cerrar"; checklist con la tabla editorial numerada del pilar.
 - CSS: bloque `.ok-*` añadido; nada global cambia.
+
+## v2.43 — bloque de preguntas frecuentes en la home (antes del footer)
+- 18 preguntas en tres columnas: "Agua y casa vacía" (6), "Okupación y vigilancia" (6) y "Alarmas, cerraduras y cámaras" (6). Mismo componente de FAQ que el resto del sitio; enlaces a las guías donde existen.
+- No incluidas, por no poder responderse sin inventar precios o marcas: "cuánto cuesta instalar videovigilancia" y "qué marcas de puertas acorazadas". Las demás preguntas de seguridad se responden con criterios y normativa (EN 50131, UNE-EN 1303, AEPD, Código Penal), sin marcas.
+- Sección nueva `.home-faq`; el resto de la home no cambia.
+
+## v2.44 — páginas legales y contacto
+- Aviso legal, política de privacidad y política de cookies redactados (LSSI-CE, RGPD/LOPDGDD, criterio AEPD): sin cookies propias ni banner (no hay analítica), enlaces de afiliación explicados, GitHub Pages y Google Fonts declarados. Indexables y en el sitemap.
+- PENDIENTE DEL TITULAR: nombre y apellidos, NIF y dirección postal en el aviso legal y en la privacidad (marcado con un aviso en ambas páginas). La LSSI-CE lo exige.
+- Contacto: correo alexworksbcn1991@gmail.com, qué enviar y qué no hacemos.
+- Si algún día se añade analítica (GA4, etc.), hay que crear banner de consentimiento y actualizar la política de cookies.
+
+## v2.45
+- Página de contacto retirada (decisión del propietario): fuera del footer, del sitemap y de pages.json; `/contacto/` queda como redirección (noindex) al aviso legal para no dejar un 404. El correo de contacto sigue en el aviso legal y en la política de privacidad, donde la ley lo exige.
+
+## v2.46
+- "Sobre nosotros" redactada (antes 25 palabras): qué es la web, quiénes (Equipo Casa Bajo Control, sin credenciales inventadas), cómo trabajamos (Analizado/Probado), cómo se financia (afiliación Amazon), lo que no hacemos, y remisión al aviso legal para contacto.
