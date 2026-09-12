@@ -1,4 +1,4 @@
-# Casa Bajo Control — v2.17
+# Casa Bajo Control — v2.22
 
 La home de v1.6 queda congelada como diseño maestro.
 
@@ -74,3 +74,20 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - Solo cambian `content/pages.json` (cuerpo de la página), `css/styles.css` (bloque `.second-home-*`, reescrito limpio; sustituye al de v2.19) y `segunda-residencia/index.html` regenerado. Hero, cabecera, footer y resto de páginas: byte a byte iguales.
 - Estructura: índice bajo el hero (3 columnas) → intro → 1 riesgos (4 tarjetas + cita de la tesis en columna lateral) → 2 agua en 3 tarjetas con checks (cerrar / vigilar + contador / corte automático con secuencia y caja "sirena") → 3 humedad con tarjeta lateral → 4 electricidad con flujo vertical "si se va la luz" → 5 personas (dos tarjetas) + "Y si alguien entra" → 6 checklist numerada (20 filas) con "Al volver a la casa" en columna lateral → 7 FAQ en `<details>` → 8 metodología con tres escenarios y botón.
 - Sin fotos nuevas (el boceto las tiene; se ha priorizado componentes, como indica el brief). Sin productos ni marcas en esta página.
+
+## v2.21
+- Botón "Volver arriba" en todas las páginas interiores (plantillas guía, comparativa, review y plana): fijo abajo a la derecha, aparece tras 600 px de scroll, respeta `prefers-reduced-motion`, accesible por teclado. La home no lo lleva.
+- Corregido el botón "Cómo analizamos y probamos" de /segunda-residencia/: el color de enlace de la página pisaba el texto blanco del botón.
+
+
+## v2.22 — Review Shelly Flood Gen4
+- Añadido `/reviews/shelly-flood-gen4/` como análisis documental.
+- Añadido bloque de afiliación con ASIN real y tag `alex19910c-21`.
+- Añadido hub `/reviews/` y stubs noindex para futuras reviews.
+- Diseño específico de review añadido sin modificar Home ni Hero de páginas existentes.
+
+## v2.23 — review Shelly Flood Gen4 contrastada con la ficha oficial
+- Corregido: Matter y Zigbee son firmwares alternativos (no simultáneos); hub necesario solo con firmware Zigbee.
+- Añadido desde kb.shelly.cloud (S4SN-0071A): modo Económico pensado por Shelly para casas de vacaciones (zumbador y aviso acústico de batería baja desactivados); comprobación del cable cada 5 s; causas documentadas de falsas alarmas y ajuste "State hold time"; condiciones de trabajo (–20 a 40 °C, 30–70 % HR); acciones locales reales (webhooks, MQTT, UDP; sin scripting); cómo lo expone cada ecosistema; mención al Shelly Flood S Gen4 para evitar confusiones.
+- Retirada la fila de garantía (sin fuente). URLs de soporte codificadas. Fuente añadida: Knowledge Base oficial.
+- Jerarquía: el nombre del producto en los bloques de afiliación deja de ser H3 (duplicaba el H1); el cierre de metodología deja de ser H3.

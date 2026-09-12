@@ -47,7 +47,7 @@ def render_affiliate_products(key):
             '<div class="affiliate-featured-badge">Nuestra selección</div>'
             '<div class="affiliate-product-copy">'
             f'<p class="affiliate-product-type">{html.escape(p["type"])}</p>'
-            f'<h3>{html.escape(p["name"])}</h3>'
+            f'<p class="affiliate-product-name"><strong>{html.escape(p["name"])}</strong></p>'
             f'<p class="affiliate-featured-lead">{html.escape(p["fit"])}</p>'
             f'<p class="affiliate-product-note">{html.escape(p["note"])}</p>'
             '<div class="affiliate-featured-points">'
@@ -64,7 +64,7 @@ def render_affiliate_products(key):
         cards.append(
             '<article class="affiliate-product">'
             f'<div class="affiliate-product-copy"><p class="affiliate-product-type">{html.escape(p["type"])}</p>'
-            f'<h3>{html.escape(p["name"])}</h3>'
+            f'<p class="affiliate-product-name"><strong>{html.escape(p["name"])}</strong></p>'
             f'<p><strong>Por qué lo incluimos:</strong> {html.escape(p["fit"])}</p>'
             f'<p class="affiliate-product-note">{html.escape(p["note"])}</p></div>'
             f'<a class="button button-primary affiliate-button" href="{html.escape(href, quote=True)}" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a>'
@@ -82,6 +82,20 @@ def render_affiliate_products(key):
             '<p>No la presentamos como “la mejor” en términos absolutos. La destacamos porque responde especialmente bien al escenario que estamos explicando en este artículo.</p></div>'
             + featured_card + others_block + '</section>')
 
+
+def render_single_affiliate_product(product_id):
+    by_id={p["id"]:p for p in PRODUCTS.get("products",[])}
+    p=by_id.get(product_id)
+    if not p: return ""
+    href=amazon_url(p, PRODUCTS.get("amazon_tag","TU-TAG"))
+    return ('<section class="affiliate-product-single" aria-label="Comprar Shelly Flood Gen4">'
+      '<div class="affiliate-disclosure"><strong>Enlace de afiliado:</strong> si compras a través de este enlace, Casa Bajo Control puede obtener una comisión, sin coste adicional para ti.</div>'
+      '<div class="affiliate-single-inner"><div class="affiliate-single-copy">'
+      '<span class="affiliate-featured-badge">Analizado por Casa Bajo Control</span>'
+      '<p class="affiliate-product-type">Sensor de fugas · Wi-Fi / Zigbee / Bluetooth / Matter</p><p class="affiliate-product-name"><strong>Shelly Flood Gen4</strong></p>'
+      '<p>Una opción especialmente interesante si buscas un detector de fugas que pueda integrarse en una instalación domótica y mantener parte de la lógica local cuando Internet deja de estar disponible.</p>'
+      '<p class="affiliate-single-note">No lo presentamos como “el mejor” ni como un producto probado: este análisis se basa en la documentación publicada por Shelly.</p>'
+      '</div><a class="button button-primary affiliate-button affiliate-button-featured" href="'+html.escape(href,quote=True)+'" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon <span aria-hidden="true">↗</span></a></div></section>')
 def format_date(iso):
     months=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"]
     try:
@@ -144,7 +158,7 @@ def build_page(slug,d):
     schema=json.dumps({"@context":"https://schema.org","@type":"Article","headline":d[4],"description":d[2],"url":canonical,"datePublished":date_published,"dateModified":date_modified,"author":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/sobre-nosotros/"},"publisher":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/"},"image":[BASE+image]},ensure_ascii=False,separators=(",",":"))
     vals={"{{TITLE}}":html.escape(d[1]),"{{DESCRIPTION}}":html.escape(d[2]),"{{CANONICAL}}":canonical,"{{JSONLD}}":schema,"{{HEADER}}":header,"{{FOOTER}}":footer,"{{BREADCRUMBS}}":bc,"{{EYEBROW}}":html.escape(d[3]),"{{H1}}":html.escape(d[4]),"{{LEAD}}":html.escape(d[5]),"{{META}}":f'<p class="article-meta">Actualizado: {format_date(date_modified)}</p>',"{{HERO_MEDIA}}":hero_media(d),"{{OG_IMAGE}}":BASE+og_image,"{{BODY}}":d[6]}
     for a,b in vals.items(): tpl=tpl.replace(a,b)
-    tpl=tpl.replace("{{PRODUCTS:sin-internet}}", render_affiliate_products("sin-internet")).replace("{{PRODUCTS:fugas}}", render_affiliate_products("fugas"))
+    tpl=tpl.replace("{{PRODUCTS:sin-internet}}", render_affiliate_products("sin-internet")).replace("{{PRODUCTS:fugas}}", render_affiliate_products("fugas")).replace("{{PRODUCT:shelly-flood-gen4}}", render_single_affiliate_product("shelly-flood-gen4"))
     tpl=tpl.replace("{{ROOT}}",p)
     write(ROOT/slug/"index.html",tpl)
 
@@ -196,6 +210,53 @@ stub("comparativas/sensores-temperatura","Sensores de temperatura | Casa Bajo Co
 stub("comparativas/camaras-segunda-residencia","Cámaras para segunda residencia | Casa Bajo Control","Seguridad","Mejores cámaras para segunda residencia","Esta comparativa se publicará cuando existan resultados propios.","Cámaras","/img/hero-segunda-residencia.webp","Terraza de una segunda residencia con un móvil mostrando el estado de la casa")
 stub("comparativas/sensores-puertas-ventanas","Sensores de puertas y ventanas | Casa Bajo Control","Seguridad","Mejores sensores de puertas y ventanas","Esta comparativa se publicará cuando existan resultados propios.","Puertas y ventanas","/img/hero-comparativas.webp","Varios sensores domésticos sobre una mesa, listos para comparar")
 
+
+# Hub y stubs de reviews: mantienen los enlaces internos sin presentar páginas pendientes como análisis publicados.
+def review_stub(slug, name, profile):
+    p=prefix(slug)
+    tpl=read(ROOT/"templates/plana.html")
+    canonical=BASE+"/"+slug.strip("/")+"/"
+    body=('<section class="article-content"><div class="callout"><strong>En preparación.</strong> Este análisis todavía no está publicado. '
+          'No etiquetamos un producto como probado hasta completar nuestro protocolo.</div>'
+          '<p><a class="button button-primary" href="/comparativas/detectores-fugas-agua/">Ver la comparativa de detectores de fugas →</a></p></section>')
+    bc=read(ROOT/"partials/breadcrumbs.html").replace("{{BREADCRUMBS}}",
+        f'<a href="/">Inicio</a> <span aria-hidden="true">/</span> <a href="/reviews/">Análisis</a> <span aria-hidden="true">/</span> <span aria-current="page">{html.escape(name)}</span>')
+    vals={"{{TITLE}}":html.escape(name+" | Casa Bajo Control"),"{{DESCRIPTION}}":html.escape("Análisis de producto en preparación en Casa Bajo Control."),
+          "{{CANONICAL}}":canonical,"{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"WebPage","name":name,"url":canonical},ensure_ascii=False,separators=(",",":")),
+          "{{HEADER}}":render_header(slug),"{{FOOTER}}":read(ROOT/"partials/footer.html").replace("{{ROOT}}",p),
+          "{{BREADCRUMBS}}":bc,"{{EYEBROW}}":"Análisis","{{H1}}":html.escape(name),"{{LEAD}}":html.escape(profile),
+          "{{META}}":"","{{HERO_MEDIA}}":"","{{OG_IMAGE}}":BASE+"/img/og-default.png","{{BODY}}":body}
+    for a,c in vals.items(): tpl=tpl.replace(a,c)
+    tpl=tpl.replace("{{ROOT}}",p).replace("<head>","<head><meta name=\"robots\" content=\"noindex,follow\">",1)
+    write(ROOT/slug/"index.html",tpl)
+
+def reviews_hub():
+    slug="reviews"; p=prefix(slug); tpl=read(ROOT/"templates/plana.html")
+    canonical=BASE+"/reviews/"
+    cards=[
+      ("Shelly Flood Gen4","/reviews/shelly-flood-gen4/","Análisis documental publicado."),
+      ("Aqara Water Leak Sensor T1","/reviews/aqara-water-leak-sensor-t1/","Análisis en preparación."),
+      ("SwitchBot Water Leak Detector","/reviews/switchbot-water-leak-detector/","Análisis en preparación."),
+      ("TP-Link Tapo T300","/reviews/tapo-t300/","Análisis en preparación."),
+      ("seQrell SQ7024B","/reviews/seqrell-sq7024b/","Análisis en preparación.")
+    ]
+    cards_html=''.join(f'<article class="article-card"><h3><a href="{u}">{html.escape(n)}</a></h3><p>{html.escape(d)}</p></article>' for n,u,d in cards)
+    body='<section class="article-content"><p>Analizamos sensores y soluciones para detectar problemas domésticos, siempre distinguiendo entre documentación y pruebas propias.</p><div class="article-grid">'+cards_html+'</div></section>'
+    bc='<a href="/">Inicio</a> <span aria-hidden="true">/</span> <span aria-current="page">Análisis</span>'
+    vals={"{{TITLE}}":"Análisis de productos | Casa Bajo Control","{{DESCRIPTION}}":"Análisis documentales y pruebas de sensores y soluciones para proteger una vivienda.",
+          "{{CANONICAL}}":canonical,"{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"CollectionPage","name":"Análisis de productos","url":canonical},ensure_ascii=False,separators=(",",":")),
+          "{{HEADER}}":render_header(slug),"{{FOOTER}}":read(ROOT/"partials/footer.html").replace("{{ROOT}}",p),
+          "{{BREADCRUMBS}}":bc,"{{EYEBROW}}":"Análisis","{{H1}}":"Análisis de productos","{{LEAD}}":"Estudios documentales y pruebas propias de sensores y soluciones para proteger una vivienda.",
+          "{{META}}":"","{{HERO_MEDIA}}":"","{{OG_IMAGE}}":BASE+"/img/og-default.png","{{BODY}}":body}
+    for a,c in vals.items(): tpl=tpl.replace(a,c)
+    tpl=tpl.replace("{{ROOT}}",p)
+    write(ROOT/"reviews/index.html",tpl)
+
+reviews_hub()
+review_stub("reviews/aqara-water-leak-sensor-t1","Aqara Water Leak Sensor T1","Análisis documental de un sensor Zigbee del ecosistema Aqara.")
+review_stub("reviews/switchbot-water-leak-detector","SwitchBot Water Leak Detector","Análisis documental de un detector de fugas con conexión Wi-Fi.")
+review_stub("reviews/tapo-t300","TP-Link Tapo T300","Análisis documental de un sensor de fugas del ecosistema Tapo.")
+review_stub("reviews/seqrell-sq7024b","seQrell SQ7024B","Análisis documental de una solución con comunicación móvil.")
 # Páginas planas fuera de pages.json (legales en borrador y 404): misma cabecera común, noindex, fuera del sitemap.
 def plain_page(slug,title,eyebrow,h1,lead,body,noindex=True,out_path=None,crumb=None):
     p=prefix(slug) if slug else ""

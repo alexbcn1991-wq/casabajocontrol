@@ -15,7 +15,8 @@
       "type": "Sensor local / híbrido",
       "fit": "Interesante si priorizas automatizaciones locales y quieres evitar depender de la nube para toda la lógica.",
       "note": "Puede ejecutar parte de la protección localmente; el aviso remoto sigue dependiendo del canal de comunicación disponible.",
-      "query": "Shelly Flood Gen4"
+      "query": "Shelly Flood Gen4",
+      "asin": "B0FPG9SGLJ"
     },
     {
       "id": "switchbot-water-leak",

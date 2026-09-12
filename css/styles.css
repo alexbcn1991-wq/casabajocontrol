@@ -600,3 +600,40 @@
   .second-home-checklist{min-width:640px}
   .second-home-thesis p{font-size:18px}
 }
+
+/* Botón "Volver arriba" (páginas interiores) */
+.back-to-top{position:fixed;right:22px;bottom:22px;z-index:30;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid #cfe3dc;box-shadow:0 8px 22px rgba(18,50,43,.14);color:#176d68;text-decoration:none;transition:transform .15s ease,background .15s ease}
+.back-to-top svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.back-to-top:hover{background:#eef7f4;transform:translateY(-2px)}
+.back-to-top:focus-visible{outline:3px solid rgba(23,109,104,.35);outline-offset:2px}
+.back-to-top[hidden]{display:none}
+@media(max-width:700px){.back-to-top{right:14px;bottom:14px;width:42px;height:42px}}
+/* Botones dentro del cuerpo de /segunda-residencia/: el color de enlace de la página no debe pisar al botón */
+.second-home-page a.button{color:#fff;text-decoration:none}
+.second-home-page a.button-secondary{color:#1b2732}
+
+
+/* Review product pages — Casa Bajo Control */
+.review-content{max-width:980px}
+.review-status{display:grid;grid-template-columns:42px 1fr;gap:16px;align-items:start;margin:0 0 34px;padding:20px 22px;border:1px solid #d9e8e4;border-radius:18px;background:#f3f8f6}
+.review-status-icon{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:#e1f0eb;color:#236b60;font-weight:800}
+.review-status p{margin:6px 0 0}
+.review-verdict{margin:42px 0;padding:30px;border-radius:24px;background:#f4f7f8;border:1px solid #e1e7e8}
+.review-verdict-heading{margin-bottom:20px}.review-verdict-heading h2{margin:5px 0 0}
+.review-verdict-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.review-verdict-grid article{background:#fff;border:1px solid #e4e9ea;border-radius:18px;padding:22px}
+.review-verdict-number,.review-alt-number{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:50%;background:#e8f1ee;color:#236b60;font-size:.78rem;font-weight:800}
+.review-verdict-grid h3{margin:14px 0 7px}.review-verdict-grid p{margin:0}
+.affiliate-product-single{margin:42px 0;padding:0;border:1px solid #cfe1db;border-radius:24px;background:#f5faf8;overflow:hidden}
+.affiliate-single-inner{display:flex;justify-content:space-between;gap:28px;align-items:center;padding:28px}
+.affiliate-single-copy{max-width:700px}.affiliate-single-copy h3{font-size:1.65rem;margin:8px 0}.affiliate-single-copy p{margin:7px 0}.affiliate-single-note{font-size:.9rem;color:#5c6969}
+.review-table-wrap{margin:24px 0 38px;overflow-x:auto;border:1px solid #dfe7e6;border-radius:18px}
+.review-spec-table{width:100%;border-collapse:collapse;background:#fff;min-width:650px}.review-spec-table th,.review-spec-table td{padding:15px 17px;border-bottom:1px solid #e7ecec;text-align:left;vertical-align:top}.review-spec-table thead th{background:#edf4f2;color:#245d54;font-size:.9rem}.review-spec-table tbody th{width:29%;font-weight:700}.review-spec-table tr:last-child th,.review-spec-table tr:last-child td{border-bottom:0}
+.review-failure-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin:25px 0}.review-failure-grid article{padding:23px;border:1px solid #e2e8e8;border-radius:18px;background:#fbfcfc}.review-failure-icon{display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#eef4f2;color:#276a60;font-size:.76rem;font-weight:800}.review-failure-grid h3{margin:13px 0 7px}.review-failure-grid p{margin:0}
+.review-inline-link{margin:24px 0;padding:17px 20px;border-left:4px solid #4b8a7d;background:#f4f8f7;border-radius:0 12px 12px 0}.review-inline-link a{font-weight:700}
+.review-fit-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin:24px 0}.review-fit-card{padding:25px;border-radius:20px;border:1px solid #dfe7e5;background:#fff}.review-fit-positive{background:#f3f8f6;border-color:#d1e3dd}.review-fit-negative{background:#fafafa}.review-fit-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;font-weight:800;color:#327366}.review-fit-card h3{margin:8px 0 12px}.review-fit-card ul{margin:0;padding-left:20px}
+.review-test-list{list-style:none;padding:0;margin:25px 0}.review-test-list li{padding:15px 18px;margin:8px 0;background:#f7f9f9;border:1px solid #e6ebeb;border-radius:13px}
+.review-alternatives{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:25px 0}.review-alternatives article{padding:20px;border:1px solid #e1e7e7;border-radius:17px}.review-alternatives h3{margin:10px 0 6px}.review-alternatives p{margin:0}.review-alternatives a{text-decoration:none}
+.source-list li{margin:10px 0;overflow-wrap:anywhere}.review-faq details{border-bottom:1px solid #dfe6e5;padding:18px 0}.review-faq summary{cursor:pointer;font-weight:700;padding-right:20px}.review-faq p{margin:12px 0 0}
+.review-methodology-end{margin-top:42px;padding:27px 28px;border-radius:22px;background:#edf5f2;border:1px solid #d4e5df;display:flex;align-items:center;justify-content:space-between;gap:24px}.review-methodology-end h3{margin:6px 0}.review-methodology-end p{margin:0}
+@media(max-width:800px){.review-verdict-grid,.review-failure-grid,.review-fit-grid,.review-alternatives{grid-template-columns:1fr}.affiliate-single-inner{flex-direction:column;align-items:flex-start}.affiliate-button-featured{width:100%;text-align:center}.review-methodology-end{align-items:flex-start;flex-direction:column}}
+.affiliate-product-name{margin:3px 0 7px;font-size:30px;letter-spacing:-.035em;color:#14242d;line-height:1.15}.review-methodology-title{font-size:18px;margin:4px 0 8px;color:#14242d}
