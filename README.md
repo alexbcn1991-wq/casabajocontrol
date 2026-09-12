@@ -1,4 +1,4 @@
-# Casa Bajo Control — v2.10
+# Casa Bajo Control — v2.17
 
 La home de v1.6 queda congelada como diseño maestro.
 
@@ -67,9 +67,10 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - La guía llegó construida sobre v2.9 (sin los cambios v2.10–v2.14). Se ha portado a v2.14: entrada en `pages.json`, `hero-sin-internet` (WebP + PNG para OG), enlace desde la guía de fugas y tarjeta en `/guias/`, sitemap.
 - Ajustes mínimos en el texto: voz de equipo ("utilizaríamos"), ancla y entrada de sumario para la opción 4, enlaces de vuelta a la guía de fugas y al hub de agua, sección "Dónde colocarlo" resumida para no duplicar la guía de fugas, título acortado.
 
-## v2.16
+## v2.17
 - La guía "Detector de fugas sin Internet" aparece en el hub `/agua/` (tarjeta) y en el pilar `/segunda-residencia/` (enlaces en "Agua" y "Conectividad"). Home sin cambios.
 
-## v2.17 — pilar "Cómo proteger una segunda residencia cuando estás lejos"
-- `/segunda-residencia/` reescrita (2.400 palabras): H1, title, description, entradilla, alt y fecha nuevos; 8 H2, checklist de 20 filas + "Al volver", FAQ. Misma URL, mismos enlaces internos.
-- Un único cambio de orden respecto al texto entregado: la nota sobre calderas y circuitos cerrados pasa de la sección de electroválvula a "Qué dejar vigilando", donde se habla de no cortar el agua.
+## v2.20 — /segunda-residencia/ con la maquetación editorial del boceto
+- Solo cambian `content/pages.json` (cuerpo de la página), `css/styles.css` (bloque `.second-home-*`, reescrito limpio; sustituye al de v2.19) y `segunda-residencia/index.html` regenerado. Hero, cabecera, footer y resto de páginas: byte a byte iguales.
+- Estructura: índice bajo el hero (3 columnas) → intro → 1 riesgos (4 tarjetas + cita de la tesis en columna lateral) → 2 agua en 3 tarjetas con checks (cerrar / vigilar + contador / corte automático con secuencia y caja "sirena") → 3 humedad con tarjeta lateral → 4 electricidad con flujo vertical "si se va la luz" → 5 personas (dos tarjetas) + "Y si alguien entra" → 6 checklist numerada (20 filas) con "Al volver a la casa" en columna lateral → 7 FAQ en `<details>` → 8 metodología con tres escenarios y botón.
+- Sin fotos nuevas (el boceto las tiene; se ha priorizado componentes, como indica el brief). Sin productos ni marcas en esta página.
