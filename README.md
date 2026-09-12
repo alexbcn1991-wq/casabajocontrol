@@ -1,4 +1,4 @@
-# Casa Bajo Control — v2.17
+# Casa Bajo Control — v2.10
 
 La home de v1.6 queda congelada como diseño maestro.
 
@@ -67,5 +67,9 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - La guía llegó construida sobre v2.9 (sin los cambios v2.10–v2.14). Se ha portado a v2.14: entrada en `pages.json`, `hero-sin-internet` (WebP + PNG para OG), enlace desde la guía de fugas y tarjeta en `/guias/`, sitemap.
 - Ajustes mínimos en el texto: voz de equipo ("utilizaríamos"), ancla y entrada de sumario para la opción 4, enlaces de vuelta a la guía de fugas y al hub de agua, sección "Dónde colocarlo" resumida para no duplicar la guía de fugas, título acortado.
 
-## v2.17
+## v2.16
 - La guía "Detector de fugas sin Internet" aparece en el hub `/agua/` (tarjeta) y en el pilar `/segunda-residencia/` (enlaces en "Agua" y "Conectividad"). Home sin cambios.
+
+## v2.17 — pilar "Cómo proteger una segunda residencia cuando estás lejos"
+- `/segunda-residencia/` reescrita (2.400 palabras): H1, title, description, entradilla, alt y fecha nuevos; 8 H2, checklist de 20 filas + "Al volver", FAQ. Misma URL, mismos enlaces internos.
+- Un único cambio de orden respecto al texto entregado: la nota sobre calderas y circuitos cerrados pasa de la sección de electroválvula a "Qué dejar vigilando", donde se habla de no cortar el agua.
