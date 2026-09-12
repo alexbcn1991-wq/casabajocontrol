@@ -96,3 +96,17 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - Bloques de producto: cuando un producto tiene análisis propio (`review` en products.json), aparece "Leer nuestro análisis →" junto a "Ver en Amazon". Shelly Flood Gen4 entra también en el bloque de la guía de detección de fugas.
 - Tarjeta del análisis en `/agua/`; enlace desde `/comparativas/`, desde el stub de la comparativa de detectores y desde la mención a Shelly en la guía sin Internet. Seis páginas enlazan ya a la review.
 - Corregido un desbordamiento horizontal en móvil de la guía sin Internet (tablas de 5 columnas): ahora desplazan dentro de su caja. Las 28 páginas comprobadas a 390 px sin overflow.
+
+## v2.26 — review Aqara T1 contrastada con la documentación de Aqara
+- Corregido: la temperatura –10 a 55 °C era del sensor anterior (sin T1); la ficha del T1 (WL-S02D) dice 0–55 °C, 0–100 % HR sin condensación, 13 dBm. Añadida la advertencia de no confundir ambos modelos.
+- Ecosistemas según la ficha del T1 (Apple Home, Google Home, Alexa, IFTTT, Matter, siempre vía hub); Home Assistant no documentado por Aqara.
+- Alarma local: es el hub el que suena; depende de que tenga altavoz (E1 no).
+- Sin Internet: ya no "no especificado": Aqara documenta que el Hub M3 ejecuta automatizaciones y sirena en local sin Internet y que las notificaciones push necesitan la nube; hubs anteriores, automatizaciones en la nube salvo con M3.
+- Añadido el Valve Controller T1 (cierre automático documentado por Aqara) como puente al clúster de corte de agua.
+- Title alineado con el H1 ("opinión" implicaba uso). Fuentes: Hub M3 y página del Valve Controller; ficha europea etiquetada como del modelo anterior.
+
+## v2.27
+- ASIN del Aqara Water Leak Sensor T1 (B0DWXHMFQS) en products.json: el botón pasa de búsqueda a ficha. Enlace "Leer nuestro análisis" activo en los bloques de producto de las dos guías.
+
+## v2.28
+- El análisis del Aqara T1 enlazado desde /agua/, /comparativas/, el stub de la comparativa, los bloques de producto de ambas guías y las alternativas del Shelly.

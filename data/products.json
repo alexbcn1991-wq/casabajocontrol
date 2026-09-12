@@ -41,7 +41,10 @@
       "type": "Zigbee + hub",
       "fit": "Tiene sentido si ya utilizas Aqara y quieres ampliar el sistema con sensores de agua.",
       "note": "Necesita un hub Aqara y no debe confundirse con un sistema capaz de enviar alertas remotas sin conexión exterior.",
-      "query": "Aqara Water Leak Sensor T1"
+      "query": "Aqara Water Leak Sensor T1",
+      "review": "/reviews/aqara-water-leak-sensor-t1/",
+      "single_description": "Una opción especialmente interesante si ya utilizas Aqara o quieres construir una instalación basada en Zigbee y un hub central.",
+      "asin": "B0DWXHMFQS"
     }
   ]
 }
