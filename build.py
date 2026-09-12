@@ -28,7 +28,7 @@ def amazon_url(product, tag):
 def render_affiliate_products(key):
     groups={
         "sin-internet":["seqrell-sq7024b","shelly-flood-gen4","switchbot-water-leak","tapo-t300","aqara-water-leak-t1"],
-        "fugas":["switchbot-water-leak","tapo-t300","aqara-water-leak-t1"]
+        "fugas":["shelly-flood-gen4","switchbot-water-leak","tapo-t300","aqara-water-leak-t1"]
     }
     featured={
         "sin-internet":"seqrell-sq7024b",
@@ -53,7 +53,7 @@ def render_affiliate_products(key):
             '<div class="affiliate-featured-points">'
             '<span>Encaja con este escenario</span><span>Analizado por Casa Bajo Control</span>'
             '</div></div>'
-            f'<a class="button button-primary affiliate-button affiliate-button-featured" href="{html.escape(href, quote=True)}" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon <span aria-hidden="true">↗</span></a>'
+            f'<div class="affiliate-actions">'+(f'<a class="button button-secondary affiliate-review-link" href="{p["review"]}">Leer nuestro análisis →</a>' if p.get("review") else '')+f'<a class="button button-primary affiliate-button affiliate-button-featured" href="{html.escape(href, quote=True)}" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon <span aria-hidden="true">↗</span></a></div>'
             '</article>'
         )
     for pid in ids:
@@ -67,7 +67,7 @@ def render_affiliate_products(key):
             f'<p class="affiliate-product-name"><strong>{html.escape(p["name"])}</strong></p>'
             f'<p><strong>Por qué lo incluimos:</strong> {html.escape(p["fit"])}</p>'
             f'<p class="affiliate-product-note">{html.escape(p["note"])}</p></div>'
-            f'<a class="button button-primary affiliate-button" href="{html.escape(href, quote=True)}" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a>'
+            '<div class="affiliate-actions">'+(f'<a class="button button-secondary affiliate-review-link" href="{p["review"]}">Leer nuestro análisis →</a>' if p.get("review") else '')+f'<a class="button button-primary affiliate-button" href="{html.escape(href, quote=True)}" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon</a></div>'
             '</article>'
         )
     others=(''.join(cards))
@@ -191,7 +191,8 @@ if old.exists(): shutil.rmtree(old)
 # Stubs de comparativas: URL presente, noindex, sin etiquetar nada como probado.
 def stub(slug,title,eyebrow,h1,lead,crumb,image,alt,parent_label="Comparativas",parent="/comparativas/"):
     p=prefix(slug); tpl=read(ROOT/"templates/plana.html")
-    body='<section class="article-content"><div class="callout"><strong>En preparación:</strong> no etiquetamos productos como probados hasta completar nuestro protocolo.</div><p><a class="button button-primary" href="/como-probamos/">Ver cómo probamos</a></p></section>'
+    extra='<p>Mientras tanto, ya puedes leer nuestro primer análisis individual: <a href="/reviews/shelly-flood-gen4/">Shelly Flood Gen4</a>.</p>' if slug=="comparativas/detectores-fugas-agua" else ''
+    body='<section class="article-content"><div class="callout"><strong>En preparación:</strong> no etiquetamos productos como probados hasta completar nuestro protocolo.</div>'+extra+'<p><a class="button button-primary" href="/como-probamos/">Ver cómo probamos</a></p></section>'
     data=["plana",title,lead,eyebrow,h1,lead,body,"2026-09-11","2026-09-11",crumb,image,alt]
     canonical=BASE+"/"+slug+"/"
     vals={"{{TITLE}}":html.escape(title),"{{DESCRIPTION}}":html.escape(lead),"{{CANONICAL}}":canonical,

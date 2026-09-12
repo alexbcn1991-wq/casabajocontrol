@@ -637,3 +637,8 @@
 .review-methodology-end{margin-top:42px;padding:27px 28px;border-radius:22px;background:#edf5f2;border:1px solid #d4e5df;display:flex;align-items:center;justify-content:space-between;gap:24px}.review-methodology-end h3{margin:6px 0}.review-methodology-end p{margin:0}
 @media(max-width:800px){.review-verdict-grid,.review-failure-grid,.review-fit-grid,.review-alternatives{grid-template-columns:1fr}.affiliate-single-inner{flex-direction:column;align-items:flex-start}.affiliate-button-featured{width:100%;text-align:center}.review-methodology-end{align-items:flex-start;flex-direction:column}}
 .affiliate-product-name{margin:3px 0 7px;font-size:30px;letter-spacing:-.035em;color:#14242d;line-height:1.15}.review-methodology-title{font-size:18px;margin:4px 0 8px;color:#14242d}
+.affiliate-actions{display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.affiliate-review-link{white-space:nowrap}
+@media(max-width:700px){.affiliate-actions{width:100%}}
+/* Tablas anchas dentro de artículos: scroll horizontal propio en móvil, nunca de toda la página */
+@media(max-width:700px){.article-content table.comparison-table,.article-content .comparison-table{display:block!important;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}}

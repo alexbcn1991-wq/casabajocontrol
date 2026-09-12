@@ -91,3 +91,8 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - Añadido desde kb.shelly.cloud (S4SN-0071A): modo Económico pensado por Shelly para casas de vacaciones (zumbador y aviso acústico de batería baja desactivados); comprobación del cable cada 5 s; causas documentadas de falsas alarmas y ajuste "State hold time"; condiciones de trabajo (–20 a 40 °C, 30–70 % HR); acciones locales reales (webhooks, MQTT, UDP; sin scripting); cómo lo expone cada ecosistema; mención al Shelly Flood S Gen4 para evitar confusiones.
 - Retirada la fila de garantía (sin fuente). URLs de soporte codificadas. Fuente añadida: Knowledge Base oficial.
 - Jerarquía: el nombre del producto en los bloques de afiliación deja de ser H3 (duplicaba el H1); el cierre de metodología deja de ser H3.
+
+## v2.24 — la review es alcanzable desde la web
+- Bloques de producto: cuando un producto tiene análisis propio (`review` en products.json), aparece "Leer nuestro análisis →" junto a "Ver en Amazon". Shelly Flood Gen4 entra también en el bloque de la guía de detección de fugas.
+- Tarjeta del análisis en `/agua/`; enlace desde `/comparativas/`, desde el stub de la comparativa de detectores y desde la mención a Shelly en la guía sin Internet. Seis páginas enlazan ya a la review.
+- Corregido un desbordamiento horizontal en móvil de la guía sin Internet (tablas de 5 columnas): ahora desplazan dentro de su caja. Las 28 páginas comprobadas a 390 px sin overflow.
