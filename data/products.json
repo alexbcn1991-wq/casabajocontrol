@@ -25,7 +25,9 @@
       "type": "Wi‑Fi sin hub",
       "fit": "Buena opción sencilla si ya tienes Wi‑Fi estable y quieres evitar añadir una centralita.",
       "note": "No necesita hub, pero las alertas remotas dependen de la conexión Wi‑Fi/Internet de la vivienda.",
-      "query": "SwitchBot Water Leak Detector"
+      "query": "SwitchBot Water Leak Detector",
+      "review": "/reviews/switchbot-water-leak-detector/",
+      "asin": "B0CRRL9DNN"
     },
     {
       "id": "tapo-t300",

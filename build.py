@@ -127,7 +127,7 @@ def hero_media(d):
             f'fetchpriority="high" decoding="async"></div>')
 
 
-NAV=[("","Inicio"),("comparativas/","Comparativas"),("guias/","Guías"),("segunda-residencia/","Segunda residencia"),("sobre-nosotros/","Sobre nosotros")]
+NAV=[("","Inicio"),("comparativas/","Comparativas"),("guias/","Guías"),("reviews/","Análisis"),("segunda-residencia/","Segunda residencia"),("sobre-nosotros/","Sobre nosotros")]
 def nav_html(root,slug):
     section=slug.strip("/").split("/")[0] if slug.strip("/") else ""
     out=[]
@@ -192,7 +192,7 @@ if old.exists(): shutil.rmtree(old)
 # Stubs de comparativas: URL presente, noindex, sin etiquetar nada como probado.
 def stub(slug,title,eyebrow,h1,lead,crumb,image,alt,parent_label="Comparativas",parent="/comparativas/"):
     p=prefix(slug); tpl=read(ROOT/"templates/plana.html")
-    extra='<p>Mientras tanto, ya puedes leer nuestros primeros análisis individuales: <a href="/reviews/shelly-flood-gen4/">Shelly Flood Gen4</a> y <a href="/reviews/aqara-water-leak-sensor-t1/">Aqara Water Leak Sensor T1</a>.</p>' if slug=="comparativas/detectores-fugas-agua" else ''
+    extra='<p>Mientras tanto, ya puedes leer nuestros primeros análisis individuales: <a href="/reviews/shelly-flood-gen4/">Shelly Flood Gen4</a> y <a href="/reviews/aqara-water-leak-sensor-t1/">Aqara Water Leak Sensor T1</a> y <a href="/reviews/switchbot-water-leak-detector/">SwitchBot Water Leak Detector</a>.</p>' if slug=="comparativas/detectores-fugas-agua" else ''
     body='<section class="article-content"><div class="callout"><strong>En preparación:</strong> no etiquetamos productos como probados hasta completar nuestro protocolo.</div>'+extra+'<p><a class="button button-primary" href="/como-probamos/">Ver cómo probamos</a></p></section>'
     data=["plana",title,lead,eyebrow,h1,lead,body,"2026-09-11","2026-09-11",crumb,image,alt]
     canonical=BASE+"/"+slug+"/"
@@ -238,7 +238,7 @@ def reviews_hub():
     cards=[
       ("Shelly Flood Gen4","/reviews/shelly-flood-gen4/","Análisis documental publicado."),
       ("Aqara Water Leak Sensor T1","/reviews/aqara-water-leak-sensor-t1/","Análisis documental publicado."),
-      ("SwitchBot Water Leak Detector","/reviews/switchbot-water-leak-detector/","Análisis en preparación."),
+      ("SwitchBot Water Leak Detector","/reviews/switchbot-water-leak-detector/","Análisis documental publicado."),
       ("TP-Link Tapo T300","/reviews/tapo-t300/","Análisis en preparación."),
       ("seQrell SQ7024B","/reviews/seqrell-sq7024b/","Análisis en preparación.")
     ]
@@ -255,7 +255,6 @@ def reviews_hub():
     write(ROOT/"reviews/index.html",tpl)
 
 reviews_hub()
-review_stub("reviews/switchbot-water-leak-detector","SwitchBot Water Leak Detector","Análisis documental de un detector de fugas con conexión Wi-Fi.")
 review_stub("reviews/tapo-t300","TP-Link Tapo T300","Análisis documental de un sensor de fugas del ecosistema Tapo.")
 review_stub("reviews/seqrell-sq7024b","seQrell SQ7024B","Análisis documental de una solución con comunicación móvil.")
 # Páginas planas fuera de pages.json (legales en borrador y 404): misma cabecera común, noindex, fuera del sitemap.
@@ -287,7 +286,7 @@ write(ROOT/"404.html",s404)
 
 write(ROOT/"robots.txt",f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
 excluded={"/comparativas/detectores-fugas-agua/","/comparativas/sensores-humedad/","/comparativas/sensores-temperatura/","/comparativas/camaras-segunda-residencia/","/comparativas/sensores-puertas-ventanas/","/legal/aviso-legal/","/legal/privacidad/","/legal/cookies/"}
-urls={"/"}
+urls={"/","/reviews/"}
 for slug in pages:
     u="/"+slug.strip("/")+"/"
     if u not in excluded: urls.add(u)

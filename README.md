@@ -110,3 +110,14 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 
 ## v2.28
 - El análisis del Aqara T1 enlazado desde /agua/, /comparativas/, el stub de la comparativa, los bloques de producto de ambas guías y las alternativas del Shelly.
+
+## v2.29 — review SwitchBot Water Leak Detector (sobre la base v2.28)
+- La review llegó construida sobre v2.24; portada a v2.28 (Aqara con ASIN y enlaces de hubs conservados).
+- Contrastada con el Help Center y la página de producto de SwitchBot; añadido lo documentado que faltaba: alarma de 60 s por defecto que sigue intentando enviar el aviso; latencia documentada (Wi‑Fi apagado en reposo, 30–120 s de conexión + ~20 s hasta la notificación); advertencia del fabricante de que una salpicadura breve puede sonar sin generar notificación; un hub cercano acelera el aviso; Alexa.
+- Title/H1 sin "opinión" (implica uso). Enlazada desde /agua/, /comparativas/, el stub de la comparativa, ambas guías y las otras dos reviews. Hub /reviews/ la marca como publicada.
+- ASIN pendiente: el botón sigue en búsqueda hasta confirmarlo en Amazon.es.
+
+## v2.30 — menú "Análisis", hub indexable, home con la selección de análisis
+- Menú: Inicio · Comparativas · Guías · Análisis · Segunda residencia · Sobre nosotros (lista NAV en build.py). /reviews/ en el sitemap.
+- Home: en el bloque de comparativas solo cambia el rótulo ("Nuestra selección · Analizados por Casa Bajo Control"). Las cinco tarjetas y su enlace se mantienen como estaban, por decisión del propietario.
+- ASIN SwitchBot Water Leak Detector (B0CRRL9DNN): botón a ficha.
