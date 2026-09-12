@@ -10,7 +10,7 @@ def write(p,s):
     p.parent.mkdir(parents=True,exist_ok=True); p.write_text(s,encoding="utf-8")
 def prefix(slug): return "../"*len([x for x in slug.split("/") if x])
 def crumbs(slug,d=None):
-    labels={"guias":"Guías","comparativas":"Comparativas","agua":"Agua","humedad":"Humedad","segunda-residencia":"Segunda residencia","como-probamos":"Cómo probamos","sobre-nosotros":"Sobre nosotros","contacto":"Contacto"}
+    labels={"guias":"Guías","comparativas":"Comparativas","agua":"Agua","humedad":"Humedad","segunda-residencia":"Segunda residencia","como-probamos":"Cómo probamos","sobre-nosotros":"Sobre nosotros","contacto":"Contacto","reviews":"Análisis"}
     bits=[x for x in slug.strip("/").split("/") if x]
     out=['<a href="/">Inicio</a>']; acc=""
     for i,b in enumerate(bits):
@@ -193,7 +193,7 @@ if old.exists(): shutil.rmtree(old)
 # Stubs de comparativas: URL presente, noindex, sin etiquetar nada como probado.
 def stub(slug,title,eyebrow,h1,lead,crumb,image,alt,parent_label="Comparativas",parent="/comparativas/"):
     p=prefix(slug); tpl=read(ROOT/"templates/plana.html")
-    extra='<p>Mientras tanto, ya puedes leer nuestros primeros análisis individuales: <a href="/reviews/shelly-flood-gen4/">Shelly Flood Gen4</a> y <a href="/reviews/aqara-water-leak-sensor-t1/">Aqara Water Leak Sensor T1</a> y <a href="/reviews/switchbot-water-leak-detector/">SwitchBot Water Leak Detector</a>.</p>' if slug=="comparativas/detectores-fugas-agua" else ''
+    extra='<p>Mientras tanto, ya puedes leer nuestros primeros análisis individuales: <a href="/reviews/shelly-flood-gen4/">Shelly Flood Gen4</a> y <a href="/reviews/aqara-water-leak-sensor-t1/">Aqara Water Leak Sensor T1</a> y <a href="/reviews/switchbot-water-leak-detector/">SwitchBot Water Leak Detector</a> y <a href="/reviews/tapo-t300/">TP-Link Tapo T300</a>.</p>' if slug=="comparativas/detectores-fugas-agua" else ''
     body='<section class="article-content"><div class="callout"><strong>En preparación:</strong> no etiquetamos productos como probados hasta completar nuestro protocolo.</div>'+extra+'<p><a class="button button-primary" href="/como-probamos/">Ver cómo probamos</a></p></section>'
     data=["plana",title,lead,eyebrow,h1,lead,body,"2026-09-11","2026-09-11",crumb,image,alt]
     canonical=BASE+"/"+slug+"/"
@@ -252,7 +252,7 @@ def reviews_hub():
           "{{CANONICAL}}":canonical,"{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"CollectionPage","name":"Análisis de productos","url":canonical},ensure_ascii=False,separators=(",",":")),
           "{{HEADER}}":render_header(slug),"{{FOOTER}}":read(ROOT/"partials/footer.html").replace("{{ROOT}}",p),
           "{{BREADCRUMBS}}":bc,"{{EYEBROW}}":"Análisis","{{H1}}":"Análisis de productos","{{LEAD}}":"Estudios documentales y pruebas propias de sensores y soluciones para proteger una vivienda.",
-          "{{META}}":"","{{HERO_MEDIA}}":"","{{OG_IMAGE}}":BASE+"/img/og-default.png","{{BODY}}":body}
+          "{{META}}":"","{{HERO_MEDIA}}":hero_media(["plana","","","","","","","","","","/img/hero-analisis.webp","Suelo mojado bajo un fregadero con una fuga, junto a una planta y varios libros sobre seguridad en casa"]),"{{OG_IMAGE}}":BASE+"/img/hero-analisis.png","{{BODY}}":body}
     for a,c in vals.items(): tpl=tpl.replace(a,c)
     tpl=tpl.replace("{{ROOT}}",p)
     write(ROOT/"reviews/index.html",tpl)

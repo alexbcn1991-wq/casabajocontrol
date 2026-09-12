@@ -140,3 +140,12 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 
 ## v2.37
 - ASIN del Tapo T300 (B0CHZ83LQD): botón a ficha. Cuatro análisis con enlace a ficha de Amazon; solo el seQrell queda en búsqueda.
+
+## v2.38 — auditoría de las cuatro reviews
+- Migas de pan de las reviews: "Análisis" (antes "Reviews", que no coincidía con el menú); etiqueta corta de SwitchBot y Tapo corregidas (antes se generaban desde el slug).
+- El análisis del Tapo T300 enlazado desde /agua/, /comparativas/ y el stub de la comparativa, como los otros tres. Fecha de publicación del Tapo: 13 de septiembre.
+- Shelly: la arquitectura del veredicto usa los nombres de la guía sin Internet ("sensor + Wi‑Fi con lógica local"), coherente con las otras tres.
+
+## v2.39
+- FAQ unificadas en todo el sitio (reviews, pilar y cualquier `.faq-list` futura): mismo estilo con botón redondo "+ / –", hover y foco visible.
+- Hub /reviews/: imagen de cabecera propia (`hero-analisis`, recorte de la imagen aportada sin el texto incrustado) y OG específico. El mockup completo queda en `_assets/banco-imagenes/`.
