@@ -35,7 +35,9 @@
       "type": "Sensor + hub",
       "fit": "Buena alternativa si ya estás dentro del ecosistema Tapo o quieres varios sensores con una sola central.",
       "note": "Requiere un Tapo Hub; por tanto, no es una solución independiente de la infraestructura de red.",
-      "query": "TP-Link Tapo T300 sensor fugas agua"
+      "query": "TP-Link Tapo T300 sensor fugas agua",
+      "review": "/reviews/tapo-t300/",
+      "asin": "B0CHZ83LQD"
     },
     {
       "id": "aqara-water-leak-t1",

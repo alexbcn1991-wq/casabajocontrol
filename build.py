@@ -216,6 +216,8 @@ stub("comparativas/sensores-puertas-ventanas","Sensores de puertas y ventanas | 
 
 # Hub y stubs de reviews: mantienen los enlaces internos sin presentar páginas pendientes como análisis publicados.
 def review_stub(slug, name, profile):
+    if slug in pages:
+        return
     p=prefix(slug)
     tpl=read(ROOT/"templates/plana.html")
     canonical=BASE+"/"+slug.strip("/")+"/"
@@ -240,7 +242,7 @@ def reviews_hub():
       ("Shelly Flood Gen4","/reviews/shelly-flood-gen4/","Análisis documental publicado."),
       ("Aqara Water Leak Sensor T1","/reviews/aqara-water-leak-sensor-t1/","Análisis documental publicado."),
       ("SwitchBot Water Leak Detector","/reviews/switchbot-water-leak-detector/","Análisis documental publicado."),
-      ("TP-Link Tapo T300","/reviews/tapo-t300/","Análisis en preparación."),
+      ("TP-Link Tapo T300","/reviews/tapo-t300/","Análisis documental publicado."),
       ("seQrell SQ7024B","/reviews/seqrell-sq7024b/","Análisis en preparación.")
     ]
     cards_html=''.join(f'<article class="article-card"><h3><a href="{u}">{html.escape(n)}</a></h3><p>{html.escape(d)}</p></article>' for n,u,d in cards)

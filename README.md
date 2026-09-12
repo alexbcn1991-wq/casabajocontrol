@@ -126,3 +126,17 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - Corregido: la caja de producto (Amazon) no aparecía en la review del SwitchBot porque el build solo sustituía los marcadores {{PRODUCT:…}} de Shelly y Aqara. Ahora sustituye cualquier {{PRODUCT:id}}.
 - Alternativas de las reviews: la tarjeta entera es clicable y resalta al pasar el ratón (borde, sombra, elevación); foco visible por teclado.
 - Botón "Ver cómo probamos" del bloque final de metodología: ya no se parte en tres líneas; tamaño y padding iguales al resto de botones del sitio. Mismo ajuste para los botones dentro del cuerpo de artículos (stubs de comparativas, hubs). En móvil ocupa todo el ancho.
+
+## v2.33 — estados hover/focus unificados en todo el sitio
+- Mismo lenguaje en todo lo pulsable: tarjetas-enlace de hubs (`.link-grid a`), tarjetas con título enlazado (`.article-card`, ahora clicables enteras), categorías y comparativas de la home (borde y título verdes al pasar), alternativas de reviews, índice del pilar, botones (primario y secundario), enlaces de texto en artículos (subrayado), resúmenes de FAQ y enlaces del footer. Foco visible por teclado en las tarjetas. Sin movimiento si el sistema tiene reducido el movimiento.
+
+## v2.34 — bloque "Nuestra selección" de la home (idea A)
+- Mismo diseño y mismas imágenes; cambian etiquetas, títulos, textos, botones y destinos: 1) Detector de fugas: nuestra elección → análisis del Shelly Flood Gen4 (Analizado); 2) Sensores de humedad → /humedad/ (En análisis); 3) Frío y heladas → pilar de segunda residencia (Guía); 4) Y si alguien entra → pilar, sección de intrusión (Guía); 5) Detector de fugas sin Internet → guía (Guía). Enlace de sección: "Ver todos los análisis →".
+- Desaparecen de la home las etiquetas "Probado" y "Recomendado" sin respaldo.
+
+## v2.36 — review Tapo T300 contrastada con el datasheet oficial
+- Añadido el datasheet EU/US 1.0 de TP-Link como fuente. De él: zumbador 0–90 dB con cuatro niveles y silencio con una pulsación; condiciones de trabajo 0–40 °C y 0–99 % HR; dimensiones; hasta 64 sensores por hub; y una tercera cifra de autonomía («1 año o más») que contradice la página de producto (3 años) y la FAQ (1,5): se muestran las tres, atribuidas.
+- ASIN pendiente (botón en búsqueda).
+
+## v2.37
+- ASIN del Tapo T300 (B0CHZ83LQD): botón a ficha. Cuatro análisis con enlace a ficha de Amazon; solo el seQrell queda en búsqueda.

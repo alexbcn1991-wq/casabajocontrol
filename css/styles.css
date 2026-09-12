@@ -659,3 +659,33 @@
 @media(max-width:700px){.review-methodology-end .button{width:100%;justify-content:center}}
 /* Botones dentro del cuerpo de artículos (stubs, hubs): mismo tamaño que el resto del sitio */
 .article-content a.button{white-space:nowrap;min-height:48px;padding:0 22px;font-size:15px;text-decoration:none}
+
+/* ===== Estados hover/focus unificados para todo lo que se puede pulsar ===== */
+/* Tarjetas-enlace de hubs (/agua/, /humedad/, /segunda-residencia/…) */
+.link-grid a{transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+.link-grid a:hover{border-color:#176d68;box-shadow:0 10px 26px rgba(18,50,43,.10);transform:translateY(-2px)}
+.link-grid a:hover strong{color:#176d68}
+.link-grid a:focus-visible{outline:3px solid rgba(23,109,104,.35);outline-offset:2px}
+/* Tarjetas con título enlazado (hubs de guías, comparativas y análisis): toda la tarjeta clicable */
+.article-card{position:relative;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+.article-card h3 a::after{content:"";position:absolute;inset:0;border-radius:9px}
+.article-card:hover{border-color:#176d68;box-shadow:0 10px 26px rgba(18,50,43,.10);transform:translateY(-2px)}
+.article-card:hover h3 a{color:#176d68}
+.article-card:focus-within{outline:3px solid rgba(23,109,104,.35);outline-offset:2px}
+.article-card p{position:relative;pointer-events:none}
+/* Tarjetas de la home (categorías y comparativas): mismo lenguaje que el resto */
+.topic:hover,.compare-card:hover{border-color:#176d68}
+.compare-card:hover h3{color:#176d68}
+/* Botones secundarios y enlaces de texto */
+.button-secondary:hover{border-color:#176d68;color:#176d68}
+.button{transition:background .15s ease,border-color .15s ease,color .15s ease,transform .15s ease}
+.button:hover{transform:translateY(-1px)}
+.article-content p a:not(.button):hover,.article-content li a:not(.button):hover,.review-inline-link a:hover,.text-link:hover,.methodology-link a:hover{text-decoration:underline}
+.second-home-toc-grid a:hover span{background:#125f52}
+.second-home-link-row a:hover{text-decoration:underline}
+.footer a:hover{text-decoration:underline}
+/* Índice de sumario en reviews (si existe) y desplegables FAQ */
+details summary{transition:color .15s ease}
+details summary:hover{color:#176d68}
+@media(prefers-reduced-motion:reduce){.link-grid a:hover,.article-card:hover,.topic:hover,.compare-card:hover,.button:hover{transform:none}}
+.pill.guide{background:#176d68}
