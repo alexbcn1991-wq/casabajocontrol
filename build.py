@@ -104,7 +104,7 @@ def render_comparison_products():
     by_id={p["id"]:p for p in PRODUCTS.get("products",[])}
     summaries={
         "aqara-water-leak-t1":("Zigbee + hub","Si ya utilizas Aqara o quieres una instalación basada en Zigbee.","Necesita hub Aqara y no es una solución móvil independiente."),
-        "shelly-flood-gen4":("Wi‑Fi / local-híbrido","Si priorizas automatizaciones locales y flexibilidad de integración.","No necesita hub Shelly en modo Wi‑Fi, pero el aviso remoto depende de la conectividad disponible."),
+        "shelly-flood-gen4":("Wi‑Fi / local-híbrido","Si priorizas acciones locales y flexibilidad de integración.","No necesita hub Shelly en modo Wi‑Fi, pero el aviso remoto depende de la conectividad disponible."),
         "switchbot-water-leak":("Wi‑Fi directo","Si quieres una instalación sencilla sin añadir un hub para la función básica.","La comunicación remota depende de la conexión Wi‑Fi/Internet de la vivienda."),
         "tapo-t300":("Sensor + Tapo Hub","Si ya estás dentro del ecosistema Tapo o quieres centralizar varios sensores.","Requiere Tapo Hub; es una arquitectura distinta de un sensor Wi‑Fi independiente."),
         "seqrell-sq7024b":("4G / GSM","Si la prioridad es mantener una vía de comunicación móvil en una segunda residencia.","Depende de cobertura móvil y de la SIM/servicio compatible; conviene valorar el coste total.")

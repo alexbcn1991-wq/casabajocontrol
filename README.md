@@ -185,3 +185,17 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 
 ## v2.49
 - Home: la tarjeta "Detector de fugas: nuestra elección" lleva ahora a la comparativa (texto y botón ajustados: "Ver la comparativa →"). Nada más cambia.
+
+## v2.50 — comparativa: correcciones finales aprobadas
+- Tabla: fila "Qué ocurre sin Internet"; columna seQrell con "Sin documentación verificada" donde no hay fuente (se conserva "Vía móvil (SIM)").
+- Párrafo sobre genéricos (Tuya/Smart Life, GoveeLife), packs y coste por sensor al final de "¿Cuál elegir según tu casa?".
+- FAQ nueva en primer lugar: "¿Cuál es el mejor detector de fugas para una segunda residencia?".
+- Enlace a /agua/ en la conclusión. "Acciones locales" en lugar de "automatizaciones locales" (Shelly). Title con sufijo "| Casa Bajo Control".
+- Sin cambios en hero, diseño, menú, Amazon ni otras páginas.
+
+## v2.52 — guía de válvulas de corte automático, correcciones antes de publicar
+- Slug acortado a `/guias/valvula-corte-automatico-agua/` (la guía no se había publicado); title de 108 a 87 caracteres.
+- Sección 3: bloque "Qué tipos de solución existen" (actuador sobre la llave, motorizada de bola, electroválvula de solenoide, sistemas de caudal), con qué hace cada tipo sin corriente, medidas habituales (1/2", 3/4", 1"), presión y sentido de flujo; regla del contador (nunca antes del contador, siempre tras la llave general del abonado).
+- Sección 5 y FAQ "si se va la luz": respondidas según el tipo de válvula en vez de dejarlas como preguntas abiertas.
+- Fuentes consultadas (Aqara Valve Controller T1, CTE DB-HS4, análisis propios).
+- Enlaces entrantes: comparativa (sección 7 y FAQ), pilar (corte automático), hubs de agua y guías, análisis del Aqara.
