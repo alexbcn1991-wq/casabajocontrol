@@ -813,3 +813,7 @@ details summary:hover{color:#176d68}
 .water-valve-types{margin:26px 0 18px}.water-valve-types>h3{font-size:20px;margin:0 0 12px}.water-valve-types .water-valve-check-grid article span{font-weight:800}
 .water-valve-types .water-valve-check-grid{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:700px){.water-valve-types .water-valve-check-grid{grid-template-columns:1fr}}
 .hero-media-hero-valvula{--hero-pos:70% 50%}
+/* Botones dentro de páginas con color de enlace propio (guía de válvulas, pilar…): el texto del botón no hereda el verde */
+.water-valve-guide a.button,.water-valve-guide .affiliate-button,.second-home-page .affiliate-button,.article-content a.button-primary,.article-content .affiliate-button{color:#fff!important;text-decoration:none}
+.water-valve-guide a.button-secondary,.article-content a.button-secondary{color:#1b2732!important}
+.water-valve-guide .affiliate-review-link{color:#1b2732!important}
