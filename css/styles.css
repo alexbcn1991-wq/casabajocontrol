@@ -817,3 +817,23 @@ details summary:hover{color:#176d68}
 .water-valve-guide a.button,.water-valve-guide .affiliate-button,.second-home-page .affiliate-button,.article-content a.button-primary,.article-content .affiliate-button{color:#fff!important;text-decoration:none}
 .water-valve-guide a.button-secondary,.article-content a.button-secondary{color:#1b2732!important}
 .water-valve-guide .affiliate-review-link{color:#1b2732!important}
+
+/* ===== Hubs: tarjetas con etiqueta de categoría, tipo y estado ===== */
+.hub-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:14px 0 34px}
+.hub-card{display:flex;flex-direction:column;gap:8px;padding:18px 20px;border:1px solid #e2e7e9;border-radius:14px;background:#fff;text-decoration:none;color:#101d29;transition:border-color .15s ease,box-shadow .15s ease,transform .15s ease}
+.hub-card:hover{border-color:#176d68;box-shadow:0 10px 26px rgba(18,50,43,.10);transform:translateY(-2px)}
+.hub-card:hover strong{color:#176d68}
+.hub-card strong{font-size:18px;line-height:1.25}
+.hub-card-desc{font-size:14px;color:#68757d;line-height:1.5}
+.hub-card-tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{display:inline-flex;align-items:center;padding:4px 9px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.02em;line-height:1}
+.tag-agua{background:#e3f0fb;color:#2f6fa8}
+.tag-humedad{background:#e6f4ea;color:#2e8a4f}
+.tag-temperatura{background:#fdf0e0;color:#b56a12}
+.tag-seguridad{background:#e9eef8;color:#3f5a86}
+.tag-residencia{background:#eef7f4;color:#176d68}
+.tag-kind{background:#f1f4f5;color:#40504b}
+.tag-status{background:#14242d;color:#fff}
+.article-content h2 + .hub-grid{margin-top:12px}
+.hub-note{color:#68757d;font-size:14px}
+@media(max-width:700px){.hub-grid{grid-template-columns:1fr}}

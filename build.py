@@ -276,15 +276,16 @@ def reviews_hub():
     slug="reviews"; p=prefix(slug); tpl=read(ROOT/"templates/plana.html")
     canonical=BASE+"/reviews/"
     cards=[
-      ("Shelly Flood Gen4","/reviews/shelly-flood-gen4/","Análisis documental publicado."),
-      ("Aqara Water Leak Sensor T1","/reviews/aqara-water-leak-sensor-t1/","Análisis documental publicado."),
-      ("SwitchBot Water Leak Detector","/reviews/switchbot-water-leak-detector/","Análisis documental publicado."),
-      ("TP-Link Tapo T300","/reviews/tapo-t300/","Análisis documental publicado."),
-      ("Aqara Valve Controller T1","/reviews/aqara-valve-controller-t1/","Análisis documental publicado."),
-      ("seQrell SQ7024B","/reviews/seqrell-sq7024b/","Análisis en preparación.")
+      ("Shelly Flood Gen4","/reviews/shelly-flood-gen4/","Detector de fugas · Wi‑Fi sin hub","agua","Analizado","Acciones locales en la red Wi‑Fi; qué pasa sin Internet según Shelly."),
+      ("Aqara Water Leak Sensor T1","/reviews/aqara-water-leak-sensor-t1/","Detector de fugas · Zigbee + hub","agua","Analizado","Sirena del hub y automatizaciones locales con Hub M3."),
+      ("SwitchBot Water Leak Detector","/reviews/switchbot-water-leak-detector/","Detector de fugas · Wi‑Fi sin hub","agua","Analizado","Latencia documentada, alarma de 100 dB, IP67."),
+      ("TP-Link Tapo T300","/reviews/tapo-t300/","Detector de fugas · Sensor + hub","agua","Analizado","Hub Tapo, 90 dB, tres cifras de autonomía del fabricante."),
+      ("Aqara Valve Controller T1","/reviews/aqara-valve-controller-t1/","Válvula de corte · Actuador sobre la llave","agua","Analizado","Gira tu llave de paso cuando un sensor detecta agua; sin obras, con hub."),
+      ("seQrell SQ7024B","/reviews/seqrell-sq7024b/","Detector de fugas · 4G/GSM","agua","En preparación","Vía móvil independiente del router; análisis pendiente."),
     ]
-    cards_html=''.join(f'<article class="article-card"><h3><a href="{u}">{html.escape(n)}</a></h3><p>{html.escape(d)}</p></article>' for n,u,d in cards)
-    body='<section class="article-content"><p>Analizamos sensores y soluciones para detectar problemas domésticos, siempre distinguiendo entre documentación y pruebas propias.</p><div class="article-grid">'+cards_html+'</div></section>'
+    CAT={"agua":"Agua","humedad":"Humedad","temperatura":"Temperatura","seguridad":"Seguridad"}
+    cards_html=''.join(f'<a class="hub-card" href="{u}"><span class="hub-card-tags"><span class="tag tag-{c}">{CAT[c]}</span><span class="tag tag-kind">{html.escape(k)}</span><span class="tag tag-status">{s}</span></span><strong>{html.escape(n)}</strong><span class="hub-card-desc">{html.escape(desc)}</span></a>' for n,u,k,c,s,desc in cards)
+    body='<section class="article-content"><p>Analizamos sensores y soluciones para detectar problemas domésticos, siempre distinguiendo entre documentación y pruebas propias.</p><div class="hub-grid">'+cards_html+'</div></section>'
     bc='<a href="/">Inicio</a> <span aria-hidden="true">/</span> <span aria-current="page">Análisis</span>'
     vals={"{{TITLE}}":"Análisis de productos | Casa Bajo Control","{{DESCRIPTION}}":"Análisis documentales y pruebas de sensores y soluciones para proteger una vivienda.",
           "{{CANONICAL}}":canonical,"{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"CollectionPage","name":"Análisis de productos","url":canonical},ensure_ascii=False,separators=(",",":")),

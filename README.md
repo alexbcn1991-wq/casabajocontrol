@@ -208,3 +208,9 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 ## v2.54
 - Corregido el botón "Ver en Amazon" en la guía de válvulas: la regla de color de enlace de la página (`.water-valve-guide a`) pisaba el texto blanco del botón. Regla general para que ningún botón herede el color de enlace de su página.
 - Análisis del Valve Controller T1: accionamiento manual descrito como en el manual (embrague «PUSH», girar el brazo, reenganchar); "qué ocurre sin corriente" marcado como no especificado por Aqara, con la deducción explícita; fuentes ampliadas con el manual en PDF, la ficha europea y el soporte de Aqara (fuera la ficha de Amazon).
+
+## v2.55 — hubs con etiquetas de categoría, tipo y estado
+- /comparativas/: lista todas las comparativas por categoría (Agua publicada; Humedad, Temperatura y Seguridad en preparación), cada una con etiqueta de categoría (color), tipo y estado.
+- /reviews/: cada análisis con etiqueta de categoría, tipo de producto (Detector de fugas · Wi‑Fi sin hub / Zigbee + hub / Sensor + hub / 4G; Válvula de corte · Actuador) y estado (Analizado / En preparación).
+- /agua/: reorganizado en Guías, Comparativa, Análisis de productos y Método, con las mismas etiquetas.
+- Sistema de etiquetas reutilizable (`.tag-agua/.tag-humedad/.tag-temperatura/.tag-seguridad/.tag-residencia`, `.tag-kind`, `.tag-status`) con los colores de las categorías de la home; tarjetas `.hub-card` con hover del sistema.
