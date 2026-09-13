@@ -812,3 +812,4 @@ details summary:hover{color:#176d68}
 @media(max-width:520px){.water-valve-toc{padding:16px}.water-valve-toc-grid{grid-template-columns:1fr}.water-valve-section{margin-bottom:48px}.water-valve-heading{gap:11px}.water-valve-heading>span{width:38px;height:38px;flex-basis:38px;font-size:12px}.water-valve-chain,.water-valve-priority-grid{grid-template-columns:1fr}.water-valve-decision-question{display:block}.water-valve-decision-question span{display:block;margin-top:6px}}
 .water-valve-types{margin:26px 0 18px}.water-valve-types>h3{font-size:20px;margin:0 0 12px}.water-valve-types .water-valve-check-grid article span{font-weight:800}
 .water-valve-types .water-valve-check-grid{grid-template-columns:repeat(2,minmax(0,1fr))}@media(max-width:700px){.water-valve-types .water-valve-check-grid{grid-template-columns:1fr}}
+.hero-media-hero-valvula{--hero-pos:70% 50%}

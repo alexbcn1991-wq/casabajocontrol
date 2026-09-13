@@ -199,3 +199,8 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - Sección 5 y FAQ "si se va la luz": respondidas según el tipo de válvula en vez de dejarlas como preguntas abiertas.
 - Fuentes consultadas (Aqara Valve Controller T1, CTE DB-HS4, análisis propios).
 - Enlaces entrantes: comparativa (sección 7 y FAQ), pilar (corte automático), hubs de agua y guías, análisis del Aqara.
+
+## v2.53 — análisis del Aqara Valve Controller T1 y bloque de producto en la guía de válvulas
+- Nuevo `/reviews/aqara-valve-controller-t1/` (2.200 palabras), redactado y contrastado con la ficha de especificaciones, la página de producto y el manual de Aqara (VC-X01D/E: DN15–25, maneta de palanca o mariposa, 3,6 N·m, 5–20 s, 4×AA hasta 2 años, hub Aqara obligatorio, –10 a 50 °C, no apto para exterior). Etiqueta Analizado; ASIN B0DB8KS8Q3 en products.json.
+- Bloque de producto en la guía de válvulas (tras el tipo A) y en la propia review; enlaces desde la guía, el análisis del sensor Aqara T1, la comparativa (sección 7) y el hub de análisis (5 publicados).
+- Imagen `hero-valvula` (aportada) en la guía y en el análisis. Nota: la foto muestra una válvula motorizada en línea, no el actuador de Aqara; el alt lo describe como tal y el texto explica la diferencia.

@@ -49,6 +49,16 @@
       "review": "/reviews/aqara-water-leak-sensor-t1/",
       "single_description": "Una opción especialmente interesante si ya utilizas Aqara o quieres construir una instalación basada en Zigbee y un hub central.",
       "asin": "B0DWXHMFQS"
+    },
+    {
+      "id": "aqara-valve-controller-t1",
+      "name": "Aqara Valve Controller T1",
+      "type": "Actuador para llave de paso · Zigbee + hub Aqara",
+      "fit": "Cierra la llave de paso existente cuando un sensor Aqara detecta agua, sin obras ni fontanero. Requiere hub Aqara; sin luz, el hub no puede dar la orden.",
+      "note": "Solo llaves de bola con maneta de palanca o mariposa (DN15, DN20, DN25). No apto para exterior.",
+      "query": "Aqara Valve Controller T1",
+      "review": "/reviews/aqara-valve-controller-t1/",
+      "asin": "B0DB8KS8Q3"
     }
   ]
 }

@@ -280,6 +280,7 @@ def reviews_hub():
       ("Aqara Water Leak Sensor T1","/reviews/aqara-water-leak-sensor-t1/","Análisis documental publicado."),
       ("SwitchBot Water Leak Detector","/reviews/switchbot-water-leak-detector/","Análisis documental publicado."),
       ("TP-Link Tapo T300","/reviews/tapo-t300/","Análisis documental publicado."),
+      ("Aqara Valve Controller T1","/reviews/aqara-valve-controller-t1/","Análisis documental publicado."),
       ("seQrell SQ7024B","/reviews/seqrell-sq7024b/","Análisis en preparación.")
     ]
     cards_html=''.join(f'<article class="article-card"><h3><a href="{u}">{html.escape(n)}</a></h3><p>{html.escape(d)}</p></article>' for n,u,d in cards)
