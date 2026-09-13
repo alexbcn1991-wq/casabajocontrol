@@ -97,6 +97,41 @@ def render_single_affiliate_product(product_id):
       f'<p>{html.escape(desc)}</p>'
       f'<p class="affiliate-single-note">No lo presentamos como “el mejor” ni como un producto probado: este análisis se basa en la documentación publicada por el fabricante.</p>'
       '</div><a class="button button-primary affiliate-button affiliate-button-featured" href="'+html.escape(href,quote=True)+'" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon <span aria-hidden="true">↗</span></a></div></section>')
+
+
+def render_comparison_products():
+    ids=["aqara-water-leak-t1","shelly-flood-gen4","switchbot-water-leak","tapo-t300","seqrell-sq7024b"]
+    by_id={p["id"]:p for p in PRODUCTS.get("products",[])}
+    summaries={
+        "aqara-water-leak-t1":("Zigbee + hub","Si ya utilizas Aqara o quieres una instalación basada en Zigbee.","Necesita hub Aqara y no es una solución móvil independiente."),
+        "shelly-flood-gen4":("Wi‑Fi / local-híbrido","Si priorizas automatizaciones locales y flexibilidad de integración.","No necesita hub Shelly en modo Wi‑Fi, pero el aviso remoto depende de la conectividad disponible."),
+        "switchbot-water-leak":("Wi‑Fi directo","Si quieres una instalación sencilla sin añadir un hub para la función básica.","La comunicación remota depende de la conexión Wi‑Fi/Internet de la vivienda."),
+        "tapo-t300":("Sensor + Tapo Hub","Si ya estás dentro del ecosistema Tapo o quieres centralizar varios sensores.","Requiere Tapo Hub; es una arquitectura distinta de un sensor Wi‑Fi independiente."),
+        "seqrell-sq7024b":("4G / GSM","Si la prioridad es mantener una vía de comunicación móvil en una segunda residencia.","Depende de cobertura móvil y de la SIM/servicio compatible; conviene valorar el coste total.")
+    }
+    cards=[]
+    for pid in ids:
+        p=by_id.get(pid)
+        if not p: continue
+        typ,fit,note=summaries[pid]
+        href=amazon_url(p, PRODUCTS.get("amazon_tag","TU-TAG"))
+        review=p.get("review")
+        cards.append(
+            '<article class="compare-product-card">'
+            '<div class="compare-product-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 12.5 12 5l8 7.5"></path><path d="M6.5 11.5v7h11v-7"></path><path d="M10 18.5v-4h4v4"></path></svg></div>'
+            f'<span class="compare-product-type">{html.escape(typ)}</span>'
+            f'<h3>{html.escape(p["name"])}</h3>'
+            f'<p>{html.escape(fit)}</p>'
+            f'<p class="compare-product-note">{html.escape(note)}</p>'
+            '<div class="compare-product-actions">'
+            + (f'<a class="button button-secondary" href="{html.escape(review)}">Leer análisis →</a>' if review else '')
+            + f'<a class="button button-primary" href="{html.escape(href,quote=True)}" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon ↗</a>'
+            + '</div></article>'
+        )
+    return ('<section class="compare-products" aria-label="Detectores comparados">'
+            '<div class="affiliate-disclosure"><strong>Enlaces de afiliado:</strong> algunos enlaces de esta comparativa pueden generar una comisión para Casa Bajo Control si compras a través de ellos, sin coste adicional para ti.</div>'
+            '<div class="compare-products-grid">'+''.join(cards)+'</div></section>')
+
 def format_date(iso):
     months=["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"]
     try:
@@ -159,7 +194,7 @@ def build_page(slug,d):
     schema=json.dumps({"@context":"https://schema.org","@type":"Article","headline":d[4],"description":d[2],"url":canonical,"datePublished":date_published,"dateModified":date_modified,"author":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/sobre-nosotros/"},"publisher":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/"},"image":[BASE+image]},ensure_ascii=False,separators=(",",":"))
     vals={"{{TITLE}}":html.escape(d[1]),"{{DESCRIPTION}}":html.escape(d[2]),"{{CANONICAL}}":canonical,"{{JSONLD}}":schema,"{{HEADER}}":header,"{{FOOTER}}":footer,"{{BREADCRUMBS}}":bc,"{{EYEBROW}}":html.escape(d[3]),"{{H1}}":html.escape(d[4]),"{{LEAD}}":html.escape(d[5]),"{{META}}":f'<p class="article-meta">Actualizado: {format_date(date_modified)}</p>',"{{HERO_MEDIA}}":hero_media(d),"{{OG_IMAGE}}":BASE+og_image,"{{BODY}}":d[6]}
     for a,b in vals.items(): tpl=tpl.replace(a,b)
-    tpl=tpl.replace("{{PRODUCTS:sin-internet}}", render_affiliate_products("sin-internet")).replace("{{PRODUCTS:fugas}}", render_affiliate_products("fugas"))
+    tpl=tpl.replace("{{PRODUCTS:sin-internet}}", render_affiliate_products("sin-internet")).replace("{{PRODUCTS:fugas}}", render_affiliate_products("fugas")).replace("{{COMPARISON_PRODUCTS}}", render_comparison_products())
     tpl=re.sub(r"\{\{PRODUCT:([a-z0-9-]+)\}\}", lambda m: render_single_affiliate_product(m.group(1)), tpl)
     tpl=tpl.replace("{{ROOT}}",p)
     write(ROOT/slug/"index.html",tpl)
@@ -193,6 +228,8 @@ if old.exists(): shutil.rmtree(old)
 
 # Stubs de comparativas: URL presente, noindex, sin etiquetar nada como probado.
 def stub(slug,title,eyebrow,h1,lead,crumb,image,alt,parent_label="Comparativas",parent="/comparativas/"):
+    if slug in pages:
+        return
     p=prefix(slug); tpl=read(ROOT/"templates/plana.html")
     extra='<p>Mientras tanto, ya puedes leer nuestros primeros análisis individuales: <a href="/reviews/shelly-flood-gen4/">Shelly Flood Gen4</a> y <a href="/reviews/aqara-water-leak-sensor-t1/">Aqara Water Leak Sensor T1</a> y <a href="/reviews/switchbot-water-leak-detector/">SwitchBot Water Leak Detector</a> y <a href="/reviews/tapo-t300/">TP-Link Tapo T300</a>.</p>' if slug=="comparativas/detectores-fugas-agua" else ''
     body='<section class="article-content"><div class="callout"><strong>En preparación:</strong> no etiquetamos productos como probados hasta completar nuestro protocolo.</div>'+extra+'<p><a class="button button-primary" href="/como-probamos/">Ver cómo probamos</a></p></section>'
@@ -208,7 +245,6 @@ def stub(slug,title,eyebrow,h1,lead,crumb,image,alt,parent_label="Comparativas",
     tpl=tpl.replace("{{ROOT}}",p).replace("<head>","<head><meta name=\"robots\" content=\"noindex,follow\">",1)
     write(ROOT/slug/"index.html",tpl)
 
-stub("comparativas/detectores-fugas-agua","Detectores de fugas de agua | Casa Bajo Control","Agua","Mejores detectores de fugas de agua","Esta comparativa se publicará cuando existan resultados propios.","Detectores de fugas","/img/hero-comparativas.webp","Varios detectores de fugas de agua de distintas marcas sobre una mesa")
 stub("comparativas/sensores-humedad","Sensores de humedad | Casa Bajo Control","Humedad","Mejores sensores de humedad","Esta comparativa se publicará cuando existan resultados propios.","Sensores de humedad","/img/hero-reference.webp","Sensor de humedad en una vivienda")
 stub("comparativas/sensores-temperatura","Sensores de temperatura | Casa Bajo Control","Temperatura","Mejores sensores de temperatura","Esta comparativa se publicará cuando existan resultados propios.","Sensores de temperatura","/img/hero-reference.webp","Sensor de temperatura y humedad en una vivienda")
 stub("comparativas/camaras-segunda-residencia","Cámaras para segunda residencia | Casa Bajo Control","Seguridad","Mejores cámaras para segunda residencia","Esta comparativa se publicará cuando existan resultados propios.","Cámaras","/img/hero-segunda-residencia.webp","Terraza de una segunda residencia con un móvil mostrando el estado de la casa")
@@ -291,7 +327,7 @@ s404=s404.replace('href="legal/','href="/legal/').replace('href="comparativas/"'
 write(ROOT/"404.html",s404)
 
 write(ROOT/"robots.txt",f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-excluded={"/comparativas/detectores-fugas-agua/","/comparativas/sensores-humedad/","/comparativas/sensores-temperatura/","/comparativas/camaras-segunda-residencia/","/comparativas/sensores-puertas-ventanas/"}
+excluded={"/comparativas/sensores-humedad/","/comparativas/sensores-temperatura/","/comparativas/camaras-segunda-residencia/","/comparativas/sensores-puertas-ventanas/"}
 urls={"/","/reviews/","/legal/aviso-legal/","/legal/privacidad/","/legal/cookies/"}
 for slug in pages:
     u="/"+slug.strip("/")+"/"

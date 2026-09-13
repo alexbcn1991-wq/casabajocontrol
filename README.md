@@ -176,3 +176,12 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 
 ## v2.46
 - "Sobre nosotros" redactada (antes 25 palabras): qué es la web, quiénes (Equipo Casa Bajo Control, sin credenciales inventadas), cómo trabajamos (Analizado/Probado), cómo se financia (afiliación Amazon), lo que no hacemos, y remisión al aviso legal para contacto.
+
+## v2.48 — comparativa de detectores de fugas auditada
+- Voz de equipo en las cinco tarjetas de escenario ("Miraríamos", antes "Miraría") y sus líneas de recomendación envueltas en párrafo (se veían con dos tamaños de letra).
+- Tabla: la autonomía del Tapo T300 refleja las tres cifras que publica TP-Link, como en su análisis.
+- H2 "Los cinco modelos de esta comparativa" (antes "que hemos analizado": el seQrell no tiene análisis).
+- Eliminada del build la llamada al stub de esta comparativa, que quedaba en conflicto con la página real.
+
+## v2.49
+- Home: la tarjeta "Detector de fugas: nuestra elección" lleva ahora a la comparativa (texto y botón ajustados: "Ver la comparativa →"). Nada más cambia.
