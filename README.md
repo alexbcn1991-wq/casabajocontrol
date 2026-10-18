@@ -214,3 +214,6 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - /reviews/: cada análisis con etiqueta de categoría, tipo de producto (Detector de fugas · Wi‑Fi sin hub / Zigbee + hub / Sensor + hub / 4G; Válvula de corte · Actuador) y estado (Analizado / En preparación).
 - /agua/: reorganizado en Guías, Comparativa, Análisis de productos y Método, con las mismas etiquetas.
 - Sistema de etiquetas reutilizable (`.tag-agua/.tag-humedad/.tag-temperatura/.tag-seguridad/.tag-residencia`, `.tag-kind`, `.tag-status`) con los colores de las categorías de la home; tarjetas `.hub-card` con hover del sistema.
+
+## v2.56
+- Comparativa de detectores: párrafo en la caja de introducción que recoge la expresión "detección inteligente de fugas de agua" (consulta con impresiones en Search Console) explicando qué significa; meta description ajustada. Nada más cambia.
