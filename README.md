@@ -217,3 +217,7 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 
 ## v2.56
 - Comparativa de detectores: párrafo en la caja de introducción que recoge la expresión "detección inteligente de fugas de agua" (consulta con impresiones en Search Console) explicando qué significa; meta description ajustada. Nada más cambia.
+
+## v2.58 — guía "Cómo localizar una fuga de agua oculta" auditada
+- Texto: eliminada una instrucción del brief que se coló en el texto ("consulta una sola vez").
+- Enlaces entrantes (no tenía ninguno): guía de detección (sección "¿Y si no ves ninguna fuga?"), comparativa (sección de fuga oculta), hubs de agua y guías, y la FAQ del contador de la home.
