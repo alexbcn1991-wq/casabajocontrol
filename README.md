@@ -221,3 +221,10 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 ## v2.58 — guía "Cómo localizar una fuga de agua oculta" auditada
 - Texto: eliminada una instrucción del brief que se coló en el texto ("consulta una sola vez").
 - Enlaces entrantes (no tenía ninguno): guía de detección (sección "¿Y si no ves ninguna fuga?"), comparativa (sección de fuga oculta), hubs de agua y guías, y la FAQ del contador de la home.
+
+## v2.59 — contenido a partir de Search Console (7 días, 24/10)
+- Guía nueva `/guias/como-medir-la-humedad-en-casa/` (1.900 palabras): humedad relativa, rango del RITE (40–50 % invierno, 45–60 % verano), cómo y dónde medir, calibración con sal, condensación/filtración/capilaridad/fuga, qué hacer, casa cerrada, checklist, FAQ, fuentes BOE y CTE. Primera pieza real del clúster de humedad: la tarjeta "Sensores de humedad" de la home deja de llevar a un hub vacío.
+- `/humedad/` reconstruido con tarjetas y etiquetas (guía nueva, sección del pilar, guía de fugas, comparativa en preparación).
+- Guía de fuga oculta: FAQ "¿Qué es una fuga de agua invisible?" y la expresión en la introducción y la meta description (consulta con más impresiones de la semana).
+- Guía sin Internet: frase sobre "detección de fugas de agua en tiempo real" (consulta nueva).
+- Enlaces a la guía de humedad desde el pilar (sección Humedad), el hub de guías y la FAQ de condensación de la home.
