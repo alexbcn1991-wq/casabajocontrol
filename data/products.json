@@ -79,7 +79,7 @@
       "fit": "Si ya tienes un Shelly Plus/Pro/Gen3/Gen4 que pueda hacer de gateway.",
       "note": "Bluetooth: cuenta la distancia al gateway, hasta 10 m en interior según Shelly.",
       "query": "Shelly BLU Door Window",
-      "asin": null,
+      "asin": "B0C717KCK5",
       "review": null
     },
     {
@@ -89,7 +89,7 @@
       "fit": "Si ya usas SwitchBot: arquitectura sencilla con el Hub como salida al exterior.",
       "note": "Sin Hub no hay aviso remoto; unidad más grande que Aqara o Shelly.",
       "query": "SwitchBot Contact Sensor",
-      "asin": null,
+      "asin": "B094XZ8H5H",
       "review": null
     }
   ]

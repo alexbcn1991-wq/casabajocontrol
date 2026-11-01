@@ -1,4 +1,4 @@
-# Casa Bajo Control — v2.31
+# Casa Bajo Control — v2.32
 
 La home de v1.6 queda congelada como diseño maestro.
 
@@ -277,3 +277,6 @@ Pendiente: confirmar que el ASIN B07D37VDM3 corresponde al Aqara T1 (DW-S03D) y 
 
 ## v2.31 — contraste (accesibilidad PageSpeed) (1 nov. 2026)
 - Solo tres colores, sin cambiar tamaños ni maquetación: `.pill.analyzed` #3479c5→#2a66ab, `.pill.pending` #8a949a→#5f6c72, `.residence li span` #66736f→#4a5853. Todos pasan de <4,5:1 a ≥5,5:1 (WCAG AA).
+
+## v2.32 — ASIN de Shelly BLU Door/Window y SwitchBot Contact Sensor (1 nov. 2026)
+- `data/products.json`: B0C717KCK5 (Shelly BLU Door/Window) y B094XZ8H5H (SwitchBot Contact Sensor). La comparativa de sensores de puertas y ventanas enlaza ya los cuatro productos por ASIN; desaparece «Ficha de Amazon pendiente».
