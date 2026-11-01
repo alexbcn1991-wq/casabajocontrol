@@ -91,6 +91,28 @@
       "query": "SwitchBot Contact Sensor",
       "asin": "B094XZ8H5H",
       "review": null
+    },
+    {
+      "id": "eaton-3s-550",
+      "name": "Eaton 3S 550",
+      "type": "SAI · 550 VA / 330 W · 6 tomas Schuko (3 con batería)",
+      "fit": "Para ONT, router y hub con Schuko, sin cables extra, y con alarma que se puede apagar en una casa vacía.",
+      "note": "Eaton no publica autonomía a 15–30 W; batería sustituible por el usuario, sin referencia oficial de recambio documentada.",
+      "single_description": "Tres tomas respaldadas para la cadena mínima (ONT, router, hub), batería sustituible por el usuario y alarma desactivable. Eaton no documenta la autonomía a carga baja: no la prometemos.",
+      "query": "Eaton 3S 550",
+      "asin": "B082TGLD2Q",
+      "review": "/reviews/eaton-3s-550/"
+    },
+    {
+      "id": "apc-bx750mi",
+      "name": "APC Back-UPS BX750MI",
+      "type": "SAI · 750 VA / 410 W · 4 tomas IEC C13 · AVR",
+      "fit": "Para quien prefiere AVR y una batería con referencia oficial de recambio (RBC17), y puede resolver el cableado IEC.",
+      "note": "Schneider no publica autonomía a 15–30 W; tomas IEC, no Schuko (la variante -GR sí es Schuko).",
+      "single_description": "Cuatro tomas IEC respaldadas, AVR y batería RBC17 con vida declarada de 3–5 años. Schneider no documenta la autonomía a carga baja ni si la alarma se puede silenciar: no lo asumimos.",
+      "query": "APC Back-UPS BX750MI",
+      "asin": "B08G8V85X6",
+      "review": "/reviews/apc-back-ups-bx750mi/"
     }
   ]
 }

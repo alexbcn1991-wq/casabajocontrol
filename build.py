@@ -42,10 +42,12 @@ def jsonld(*objs):
 def render_affiliate_products(key):
     groups={
         "sin-internet":["shelly-flood-gen4","aqara-water-leak-t1","switchbot-water-leak","tapo-t300"],
+        "sai":["eaton-3s-550","apc-bx750mi"],
         "fugas":["shelly-flood-gen4","switchbot-water-leak","tapo-t300","aqara-water-leak-t1"]
     }
     featured={
         "sin-internet":"shelly-flood-gen4",
+        "sai":"eaton-3s-550",
         "fugas":"switchbot-water-leak"
     }
     ids=groups.get(key,[])
@@ -226,7 +228,7 @@ def build_page(slug,d):
     schema=json.dumps(art,ensure_ascii=False,separators=(",",":"))+'</script><script type="application/ld+json">'+json.dumps(breadcrumb_schema(slug,crumb_label),ensure_ascii=False,separators=(",",":"))
     vals={"{{TITLE}}":html.escape(d[1]),"{{DESCRIPTION}}":html.escape(d[2]),"{{CANONICAL}}":canonical,"{{JSONLD}}":schema,"{{HEADER}}":header,"{{FOOTER}}":footer,"{{BREADCRUMBS}}":bc,"{{EYEBROW}}":html.escape(d[3]),"{{H1}}":html.escape(d[4]),"{{LEAD}}":html.escape(d[5]),"{{META}}":f'<p class="article-meta">Actualizado: {format_date(date_modified)}</p>',"{{HERO_MEDIA}}":hero_media(d),"{{OG_IMAGE}}":BASE+og_image,"{{BODY}}":d[6]}
     for a,b in vals.items(): tpl=tpl.replace(a,b)
-    tpl=tpl.replace("{{PRODUCTS:sin-internet}}", render_affiliate_products("sin-internet")).replace("{{PRODUCTS:fugas}}", render_affiliate_products("fugas")).replace("{{COMPARISON_PRODUCTS:puertas}}", render_comparison_products("puertas")).replace("{{COMPARISON_PRODUCTS}}", render_comparison_products())
+    tpl=tpl.replace("{{PRODUCTS:sin-internet}}", render_affiliate_products("sin-internet")).replace("{{PRODUCTS:fugas}}", render_affiliate_products("fugas")).replace("{{PRODUCTS:sai}}", render_affiliate_products("sai")).replace("{{COMPARISON_PRODUCTS:puertas}}", render_comparison_products("puertas")).replace("{{COMPARISON_PRODUCTS}}", render_comparison_products())
     tpl=re.sub(r"\{\{PRODUCT:([a-z0-9-]+)\}\}", lambda m: render_single_affiliate_product(m.group(1)), tpl)
     tpl=tpl.replace("{{ROOT}}",p)
     write(ROOT/slug/"index.html",tpl)
@@ -313,8 +315,10 @@ def reviews_hub():
       ("SwitchBot Water Leak Detector","/reviews/switchbot-water-leak-detector/","Detector de fugas · Wi‑Fi sin hub","agua","Analizado","Latencia documentada, alarma de 100 dB, IP67."),
       ("TP-Link Tapo T300","/reviews/tapo-t300/","Detector de fugas · Sensor + hub","agua","Analizado","Hub Tapo, 90 dB, tres cifras de autonomía del fabricante."),
       ("Aqara Valve Controller T1","/reviews/aqara-valve-controller-t1/","Válvula de corte · Actuador sobre la llave","agua","Analizado","Gira tu llave de paso cuando un sensor detecta agua; sin obras, con hub."),
+      ("Eaton 3S 550","/reviews/eaton-3s-550/","SAI · 550 VA · Schuko","energia","Analizado","Mantiene ONT, router y hub durante un apagón; alarma desactivable."),
+      ("APC Back-UPS BX750MI","/reviews/apc-back-ups-bx750mi/","SAI · 750 VA · IEC · AVR","energia","Analizado","Cuatro tomas respaldadas y batería RBC17; tomas IEC, no Schuko."),
     ]
-    CAT={"agua":"Agua","humedad":"Humedad","temperatura":"Temperatura","seguridad":"Seguridad"}
+    CAT={"agua":"Agua","humedad":"Humedad","temperatura":"Temperatura","seguridad":"Seguridad","energia":"Luz y conexión"}
     cards_html=''.join(f'<a class="hub-card" href="{u}"><span class="hub-card-tags"><span class="tag tag-{c}">{CAT[c]}</span><span class="tag tag-kind">{html.escape(k)}</span><span class="tag tag-status">{s}</span></span><strong>{html.escape(n)}</strong><span class="hub-card-desc">{html.escape(desc)}</span></a>' for n,u,k,c,s,desc in cards)
     body='<section class="article-content"><p>Cada análisis responde a lo que la ficha de la tienda no cuenta: qué necesita el producto para funcionar, cómo avisa, qué pasa cuando falla Internet o la luz, cuánto dura la batería según el fabricante y para qué casa tiene sentido. No puntuamos: explicamos para quién encaja y para quién no.</p><p>La etiqueta <strong>Analizado</strong> significa que hemos contrastado manual, ficha técnica y soporte oficial; <strong>Probado</strong> significará que lo hemos instalado y medido nosotros, y hoy no la usamos con ningún producto. Los enlaces a Amazon son de afiliado y no condicionan el contenido; el criterio completo está en <a href="/como-probamos/">cómo analizamos y probamos</a>.</p><div class="hub-grid">'+cards_html+'</div></section>'
     bc='<a href="/">Inicio</a> <span aria-hidden="true">/</span> <span aria-current="page">Análisis</span>'

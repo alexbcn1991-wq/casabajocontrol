@@ -1,4 +1,4 @@
-# Casa Bajo Control — v2.33
+# Casa Bajo Control — v2.34
 
 La home de v1.6 queda congelada como diseño maestro.
 
@@ -286,3 +286,9 @@ Pendiente: confirmar que el ASIN B07D37VDM3 corresponde al Aqara T1 (DW-S03D) y 
 - Barra de tema destacado sobre la cabecera (`FEATURED` en `build.py`): se muestra en todas las páginas salvo en la propia guía; botón de cierre recordado en `localStorage` (sin cookies); en móvil, una línea truncada sin CTA. Para retirarla: `FEATURED=None`.
 - Enlaces entrantes: hub de guías, guía sin Internet (antes de los modelos), pilar de segunda residencia (sección 4), checklist (pregunta 6).
 Pendiente: análisis documental de los dos SAI (APC BX750MI B08G8V85X6, Eaton 3S 550 B082TGLD2Q) para enlazarlos en la sección 04 y en el checklist.
+
+## v2.34 — análisis de los dos SAI (1 nov. 2026)
+- Nuevas `/reviews/eaton-3s-550/` (B082TGLD2Q) y `/reviews/apc-back-ups-bx750mi/` (B08G8V85X6), maquetación `review-content`; textos de ChatGPT auditados (ficha de Schneider contrastada: 750 VA/410 W, 4 IEC C13, AVR, alarmas; Eaton por su ficha). Ninguno extrapola autonomía a carga baja.
+- `data/products.json`: dos SAI con `single_description`; grupo `sai` en `build.py` con el Eaton como «Nuestra selección» (Schuko, tres tomas respaldadas, alarma desactivable).
+- Guía de apagón, sección 04: la nota «todavía ninguno» pasa al bloque de productos `{{PRODUCTS:sai}}`.
+- Hub de análisis: dos tarjetas con categoría nueva «Luz y conexión» (`tag-energia`). Checklist, pregunta 6: Eaton 3S 550 + enlace al análisis.

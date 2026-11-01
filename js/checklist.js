@@ -36,7 +36,7 @@
     { id: 'q6', b: 'energia', t: 'Si se va la luz en la casa, ¿te enteras?',
       o: [{ t: 'Sí, recibo un aviso', s: 2 }, { t: 'Me entero al llegar', s: 0 }],
       r: { t: 'Un corte de luz deja ciegos a tus sensores', p: 'Sin luz no hay router, y sin router la mayoría de sensores no avisan. Saber que la luz ha fallado es saber que estás a ciegas.',
-        l: [{ t: '¿Qué le pasa a tu casa si se va la luz y no estás? Guía para un apagón', h: '/guias/apagon-casa-vacia/' }, { t: 'Electricidad y conectividad en una casa vacía', h: '/segunda-residencia/#sh-4' }] } },
+        l: [{ t: '¿Qué le pasa a tu casa si se va la luz y no estás? Guía para un apagón', h: '/guias/apagon-casa-vacia/' }, { t: 'Eaton 3S 550 — SAI para mantener router y hub encendidos', h: amz('B082TGLD2Q'), k: 'p' }, { t: 'Leer nuestro análisis del Eaton 3S 550', h: '/reviews/eaton-3s-550/' }] } },
     { id: 'q7', b: 'energia', t: 'Si falla el router o el Wi‑Fi, ¿tus avisos siguen funcionando?',
       o: [{ t: 'Sí: vía móvil, o local con batería', s: 2 }, { t: 'Solo la alarma sonora, sin aviso al móvil', s: 1 }, { t: 'No, todo depende del Wi‑Fi', s: 0 }],
       r: { t: 'Tu sistema vale lo que vale su punto más débil', p: 'La pregunta correcta no es si el sensor funciona sin Internet, sino qué parte sigue funcionando y qué parte no.',

@@ -907,3 +907,4 @@ details summary:hover{color:#176d68}
 .featured-bar-close{flex:0 0 auto;width:32px;height:32px;border:0;border-radius:8px;background:rgba(255,255,255,.15);color:#fff;font-size:20px;line-height:1;cursor:pointer}
 .featured-bar-close:hover{background:rgba(255,255,255,.28)}
 @media(max-width:700px){.featured-bar-cta{display:none}.featured-bar-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.featured-bar-link{font-size:13.5px}}
+.tag-energia{background:#eef0fb;color:#3f4fa8}
