@@ -25,6 +25,20 @@ def amazon_url(product, tag):
     query=urllib.parse.quote_plus(product.get("query") or product["name"])
     return f"https://www.amazon.es/s?k={query}&tag={urllib.parse.quote(tag)}"
 
+
+def breadcrumb_schema(slug,last_label):
+    labels={"guias":"Guías","comparativas":"Comparativas","agua":"Agua","humedad":"Humedad","segunda-residencia":"Segunda residencia","como-probamos":"Cómo probamos","sobre-nosotros":"Sobre nosotros","reviews":"Análisis","herramientas":"Herramientas","legal":"Legal"}
+    bits=[x for x in slug.strip("/").split("/") if x]
+    items=[{"@type":"ListItem","position":1,"name":"Inicio","item":BASE+"/"}]
+    acc=""
+    for i,b in enumerate(bits):
+        acc+="/"+b
+        name=last_label if i==len(bits)-1 else labels.get(b,b.replace("-"," ").title())
+        items.append({"@type":"ListItem","position":i+2,"name":name,"item":BASE+acc+"/"})
+    return {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":items}
+def jsonld(*objs):
+    return "".join('<script type="application/ld+json">'+json.dumps(o,ensure_ascii=False,separators=(",",":"))+"</script>" for o in objs)
+
 def render_affiliate_products(key):
     groups={
         "sin-internet":["shelly-flood-gen4","aqara-water-leak-t1","switchbot-water-leak","tapo-t300"],
@@ -195,7 +209,12 @@ def build_page(slug,d):
     og_image = image
     if image.endswith(".webp") and (ROOT / (image[:-5] + ".png").lstrip("/")).exists():
         og_image = image[:-5] + ".png"
-    schema=json.dumps({"@context":"https://schema.org","@type":"Article","headline":d[4],"description":d[2],"url":canonical,"datePublished":date_published,"dateModified":date_modified,"author":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/sobre-nosotros/"},"publisher":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/"},"image":[BASE+image]},ensure_ascii=False,separators=(",",":"))
+    art={"@context":"https://schema.org","@type":"Article","headline":d[4],"description":d[2],"url":canonical,"datePublished":date_published,"dateModified":date_modified,"author":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/sobre-nosotros/"},"publisher":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/","logo":{"@type":"ImageObject","url":BASE+"/img/logo.svg"}},"image":[BASE+image],"inLanguage":"es-ES"}
+    if slug=="herramientas/checklist-segunda-residencia": art={"@context":"https://schema.org","@type":"WebApplication","name":d[4],"description":d[2],"url":canonical,"applicationCategory":"UtilitiesApplication","operatingSystem":"Web","browserRequirements":"Requires JavaScript","isAccessibleForFree":True,"inLanguage":"es-ES","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"publisher":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/"}}
+    elif d[0] in ("plana",) and slug in ("guias","comparativas","agua","humedad"): art={"@context":"https://schema.org","@type":"CollectionPage","name":d[4],"description":d[2],"url":canonical,"inLanguage":"es-ES"}
+    crumb_label=(d[9] if len(d)>9 and d[9] else d[4])
+    # El template envuelve {{JSONLD}} en un <script>; cerramos ese y abrimos el del BreadcrumbList dentro del mismo marcador.
+    schema=json.dumps(art,ensure_ascii=False,separators=(",",":"))+'</script><script type="application/ld+json">'+json.dumps(breadcrumb_schema(slug,crumb_label),ensure_ascii=False,separators=(",",":"))
     vals={"{{TITLE}}":html.escape(d[1]),"{{DESCRIPTION}}":html.escape(d[2]),"{{CANONICAL}}":canonical,"{{JSONLD}}":schema,"{{HEADER}}":header,"{{FOOTER}}":footer,"{{BREADCRUMBS}}":bc,"{{EYEBROW}}":html.escape(d[3]),"{{H1}}":html.escape(d[4]),"{{LEAD}}":html.escape(d[5]),"{{META}}":f'<p class="article-meta">Actualizado: {format_date(date_modified)}</p>',"{{HERO_MEDIA}}":hero_media(d),"{{OG_IMAGE}}":BASE+og_image,"{{BODY}}":d[6]}
     for a,b in vals.items(): tpl=tpl.replace(a,b)
     tpl=tpl.replace("{{PRODUCTS:sin-internet}}", render_affiliate_products("sin-internet")).replace("{{PRODUCTS:fugas}}", render_affiliate_products("fugas")).replace("{{COMPARISON_PRODUCTS:puertas}}", render_comparison_products("puertas")).replace("{{COMPARISON_PRODUCTS}}", render_comparison_products())
@@ -288,10 +307,10 @@ def reviews_hub():
     ]
     CAT={"agua":"Agua","humedad":"Humedad","temperatura":"Temperatura","seguridad":"Seguridad"}
     cards_html=''.join(f'<a class="hub-card" href="{u}"><span class="hub-card-tags"><span class="tag tag-{c}">{CAT[c]}</span><span class="tag tag-kind">{html.escape(k)}</span><span class="tag tag-status">{s}</span></span><strong>{html.escape(n)}</strong><span class="hub-card-desc">{html.escape(desc)}</span></a>' for n,u,k,c,s,desc in cards)
-    body='<section class="article-content"><p>Analizamos sensores y soluciones para detectar problemas domésticos, siempre distinguiendo entre documentación y pruebas propias.</p><div class="hub-grid">'+cards_html+'</div></section>'
+    body='<section class="article-content"><p>Cada análisis responde a lo que la ficha de la tienda no cuenta: qué necesita el producto para funcionar, cómo avisa, qué pasa cuando falla Internet o la luz, cuánto dura la batería según el fabricante y para qué casa tiene sentido. No puntuamos: explicamos para quién encaja y para quién no.</p><p>La etiqueta <strong>Analizado</strong> significa que hemos contrastado manual, ficha técnica y soporte oficial; <strong>Probado</strong> significará que lo hemos instalado y medido nosotros, y hoy no la usamos con ningún producto. Los enlaces a Amazon son de afiliado y no condicionan el contenido; el criterio completo está en <a href="/como-probamos/">cómo analizamos y probamos</a>.</p><div class="hub-grid">'+cards_html+'</div></section>'
     bc='<a href="/">Inicio</a> <span aria-hidden="true">/</span> <span aria-current="page">Análisis</span>'
     vals={"{{TITLE}}":"Análisis de productos | Casa Bajo Control","{{DESCRIPTION}}":"Análisis documentales y pruebas de sensores y soluciones para proteger una vivienda.",
-          "{{CANONICAL}}":canonical,"{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"CollectionPage","name":"Análisis de productos","url":canonical},ensure_ascii=False,separators=(",",":")),
+          "{{CANONICAL}}":canonical,"{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"CollectionPage","name":"Análisis de productos","description":"Análisis documentales y pruebas de sensores y soluciones para proteger una vivienda.","url":canonical,"inLanguage":"es-ES"},ensure_ascii=False,separators=(",",":"))+'</script><script type="application/ld+json">'+json.dumps(breadcrumb_schema("reviews","Análisis"),ensure_ascii=False,separators=(",",":")),
           "{{HEADER}}":render_header(slug),"{{FOOTER}}":read(ROOT/"partials/footer.html").replace("{{ROOT}}",p),
           "{{BREADCRUMBS}}":bc,"{{EYEBROW}}":"Análisis","{{H1}}":"Análisis de productos","{{LEAD}}":"Estudios documentales y pruebas propias de sensores y soluciones para proteger una vivienda.",
           "{{META}}":"","{{HERO_MEDIA}}":hero_media(["plana","","","","","","","","","","/img/hero-analisis.webp","Suelo mojado bajo un fregadero con una fuga, junto a una planta y varios libros sobre seguridad en casa"]),"{{OG_IMAGE}}":BASE+"/img/hero-analisis.png","{{BODY}}":body}
@@ -308,7 +327,7 @@ def plain_page(slug,title,eyebrow,h1,lead,body,noindex=True,out_path=None,crumb=
     canonical=BASE+("/"+slug.strip("/")+"/" if slug else "/")
     bc='<a href="/">Inicio</a> <span aria-hidden="true">/</span> <span aria-current="page">'+html.escape(crumb or h1)+'</span>'
     vals={"{{TITLE}}":html.escape(title),"{{DESCRIPTION}}":html.escape(lead),"{{CANONICAL}}":canonical,
-          "{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"WebPage","name":h1,"url":canonical},ensure_ascii=False,separators=(",",":")),
+          "{{JSONLD}}":json.dumps({"@context":"https://schema.org","@type":"WebPage","name":h1,"url":canonical,"inLanguage":"es-ES"},ensure_ascii=False,separators=(",",":"))+('</script><script type="application/ld+json">'+json.dumps(breadcrumb_schema(slug,crumb or h1),ensure_ascii=False,separators=(",",":")) if slug else ''),
           "{{HEADER}}":render_header(slug),"{{FOOTER}}":read(ROOT/"partials/footer.html").replace("{{ROOT}}",p),
           "{{BREADCRUMBS}}":read(ROOT/"partials/breadcrumbs.html").replace("{{BREADCRUMBS}}",bc),
           "{{EYEBROW}}":eyebrow,"{{H1}}":html.escape(h1),"{{LEAD}}":html.escape(lead),"{{META}}":"","{{HERO_MEDIA}}":"","{{OG_IMAGE}}":BASE+"/img/og-default.png","{{BODY}}":body}
@@ -332,13 +351,16 @@ write(ROOT/"404.html",s404)
 
 write(ROOT/"robots.txt",f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
 excluded={"/comparativas/sensores-humedad/","/comparativas/sensores-temperatura/","/comparativas/camaras-segunda-residencia/"}
-urls={"/","/reviews/","/legal/aviso-legal/","/legal/privacidad/","/legal/cookies/"}
-for slug in pages:
+import datetime
+TODAY=datetime.date.today().isoformat()
+latest=max((d[8] or d[7]) for d in pages.values())
+urls={"/":latest,"/reviews/":latest,"/legal/aviso-legal/":"2026-09-13","/legal/privacidad/":"2026-09-13","/legal/cookies/":"2026-09-13"}
+for slug,d in pages.items():
     u="/"+slug.strip("/")+"/"
-    if u not in excluded: urls.add(u)
+    if u not in excluded: urls[u]=(d[8] or d[7])
 
 xml=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-for u in sorted(urls): xml.append(f"  <url><loc>{BASE}{u}</loc></url>")
+for u in sorted(urls): xml.append(f"  <url><loc>{BASE}{u}</loc><lastmod>{urls[u]}</lastmod></url>")
 xml.append("</urlset>")
 write(ROOT/"sitemap.xml","\n".join(xml)+"\n")
 print("BUILD OK")

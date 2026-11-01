@@ -1,4 +1,4 @@
-# Casa Bajo Control — v2.29
+# Casa Bajo Control — v2.31
 
 La home de v1.6 queda congelada como diseño maestro.
 
@@ -268,3 +268,12 @@ Pendiente: confirmar que el ASIN B07D37VDM3 corresponde al Aqara T1 (DW-S03D) y 
 
 ## v2.29 — botón de resultado del checklist (1 nov. 2026)
 - `/herramientas/checklist-segunda-residencia/`: el botón «Ver mi resultado» pasa a un bloque propio centrado (fondo verde claro, botón de 56 px y ancho completo en móvil) con texto previo y nota, separado del aviso «Cómo puntuamos».
+
+## v2.30 — señales de rastreo y datos estructurados (1 nov. 2026)
+- `sitemap.xml` con `<lastmod>` por URL (fecha de `dateModified` de cada página; home, hubs y /reviews/ con la fecha más reciente del sitio).
+- `BreadcrumbList` (JSON-LD) en todas las páginas interiores, generado desde el slug y la etiqueta de miga; `build.py` incorpora `breadcrumb_schema()`.
+- Schema por tipo de página: `Article` con `publisher.logo` e `inLanguage` en guías/comparativas/análisis; `CollectionPage` en hubs; `WebApplication` en el checklist; `WebPage` en legales. Home: `@graph` con `Organization` (logo, email, áreas de conocimiento) y `WebSite`.
+- Hubs `/guias/`, `/comparativas/` y `/reviews/` con texto editorial que explica el criterio del clúster y el significado de Analizado/Probado (pasan de ~150 a ~300 palabras).
+
+## v2.31 — contraste (accesibilidad PageSpeed) (1 nov. 2026)
+- Solo tres colores, sin cambiar tamaños ni maquetación: `.pill.analyzed` #3479c5→#2a66ab, `.pill.pending` #8a949a→#5f6c72, `.residence li span` #66736f→#4a5853. Todos pasan de <4,5:1 a ≥5,5:1 (WCAG AA).
