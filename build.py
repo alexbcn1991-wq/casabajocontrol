@@ -191,9 +191,18 @@ def nav_html(root,slug):
         attrs=' class="active" aria-current="page"' if active else ""
         out.append(f'<a{attrs} href="{href}">{label}</a>')
     return "".join(out)
+# Barra de tema destacado sobre la cabecera. Para retirarla: FEATURED=None.
+FEATURED={"id":"apagon-2026","href":"/guias/apagon-casa-vacia/","text":"Si se va la luz y no estás en casa: qué falla, qué avisa y cómo prepararla","cta":"Leer la guía"}
+def featured_bar(slug):
+    if not FEATURED or ("/"+slug.strip("/")+"/")==FEATURED["href"]: return ""
+    f=FEATURED
+    return ('<div class="featured-bar" id="featured-bar" data-id="'+html.escape(f["id"])+'" hidden><div class="container featured-bar-inner">'
+            '<a class="featured-bar-link" href="'+html.escape(f["href"])+'"><span class="featured-bar-tag">Nuevo</span><span class="featured-bar-text">'+html.escape(f["text"])+'</span><span class="featured-bar-cta">'+html.escape(f["cta"])+' →</span></a>'
+            '<button type="button" class="featured-bar-close" aria-label="Cerrar aviso">×</button></div></div>'
+            '<script>(function(){var b=document.getElementById("featured-bar");if(!b)return;var k="cbc-bar-"+b.getAttribute("data-id");try{if(localStorage.getItem(k))return;}catch(e){}b.hidden=false;b.querySelector(".featured-bar-close").addEventListener("click",function(){b.hidden=true;try{localStorage.setItem(k,"1");}catch(e){}});})();</script>')
 def render_header(slug):
     root=prefix(slug)
-    h=read(ROOT/"partials/header.html").replace("{{NAV}}",nav_html(root,slug))
+    h=featured_bar(slug)+read(ROOT/"partials/header.html").replace("{{NAV}}",nav_html(root,slug))
     h=h.replace('href="{{ROOT}}"','href="'+(root or "./")+'"')
     return h.replace("{{ROOT}}",root)
 
@@ -232,7 +241,7 @@ def build_home():
     src=read(ROOT/"content/home/index.html")
     hdr=render_header("")
     hdr_only=hdr[hdr.index('<header class="site-header">'):hdr.index('</header>')+len('</header>')]
-    out=re.sub(r'<header class="site-header">.*?</header>',lambda m: hdr_only,src,count=1,flags=re.S)
+    out=re.sub(r'<header class="site-header">.*?</header>',lambda m: featured_bar("")+hdr_only,src,count=1,flags=re.S)
     write(ROOT/"index.html",out)
 build_home()
 

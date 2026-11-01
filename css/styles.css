@@ -895,3 +895,15 @@ details summary:hover{color:#176d68}
 @media(max-width:700px){.ck-score{flex-direction:column;align-items:flex-start;gap:12px}.ck-blocks li{grid-template-columns:96px 1fr 44px}.ck-q{padding:14px 14px}.ck-q legend{font-size:15.5px}}
 .compare-product-pending{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:10px;border:1px dashed #c9d6dc;color:#5b6b70;font-size:13px;font-weight:700}
 @media(max-width:560px){.ck-actions .ck-submit{width:100%;min-width:0}}
+
+/* v2.33 — barra de tema destacado sobre la cabecera */
+.featured-bar{background:#21747a;color:#fff}
+.featured-bar-inner{display:flex;align-items:center;gap:12px;min-height:44px;padding:6px 0}
+.featured-bar-link{display:flex;align-items:center;gap:10px;flex:1;min-width:0;color:#fff;text-decoration:none;font-size:14px;line-height:1.3}
+.featured-bar-link:hover .featured-bar-text{text-decoration:underline}
+.featured-bar-tag{flex:0 0 auto;padding:3px 8px;border-radius:999px;background:#fff;color:#21747a;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase}
+.featured-bar-text{min-width:0;font-weight:600}
+.featured-bar-cta{flex:0 0 auto;font-weight:800;white-space:nowrap}
+.featured-bar-close{flex:0 0 auto;width:32px;height:32px;border:0;border-radius:8px;background:rgba(255,255,255,.15);color:#fff;font-size:20px;line-height:1;cursor:pointer}
+.featured-bar-close:hover{background:rgba(255,255,255,.28)}
+@media(max-width:700px){.featured-bar-cta{display:none}.featured-bar-text{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.featured-bar-link{font-size:13.5px}}

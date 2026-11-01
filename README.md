@@ -1,4 +1,4 @@
-# Casa Bajo Control — v2.32
+# Casa Bajo Control — v2.33
 
 La home de v1.6 queda congelada como diseño maestro.
 
@@ -280,3 +280,9 @@ Pendiente: confirmar que el ASIN B07D37VDM3 corresponde al Aqara T1 (DW-S03D) y 
 
 ## v2.32 — ASIN de Shelly BLU Door/Window y SwitchBot Contact Sensor (1 nov. 2026)
 - `data/products.json`: B0C717KCK5 (Shelly BLU Door/Window) y B094XZ8H5H (SwitchBot Contact Sensor). La comparativa de sensores de puertas y ventanas enlaza ya los cuatro productos por ASIN; desaparece «Ficha de Amazon pendiente».
+
+## v2.33 — guía de apagón y barra de tema destacado (1 nov. 2026)
+- Nueva `/guias/apagon-casa-vacia/` (texto de ChatGPT auditado: AESAN verificada —24–48 h congelador, 4 h frigorífico añadido—; fuente CNMC corregida: el nodo en catalán se sustituye por la guía oficial «Cómo presentar una reclamación»; nota honesta en la sección del SAI: ningún modelo enlazado hasta publicar su análisis). Maquetación `second-home-page`, hero `img/hero-apagon.png/.webp`, categoría «Luz y conexión».
+- Barra de tema destacado sobre la cabecera (`FEATURED` en `build.py`): se muestra en todas las páginas salvo en la propia guía; botón de cierre recordado en `localStorage` (sin cookies); en móvil, una línea truncada sin CTA. Para retirarla: `FEATURED=None`.
+- Enlaces entrantes: hub de guías, guía sin Internet (antes de los modelos), pilar de segunda residencia (sección 4), checklist (pregunta 6).
+Pendiente: análisis documental de los dos SAI (APC BX750MI B08G8V85X6, Eaton 3S 550 B082TGLD2Q) para enlazarlos en la sección 04 y en el checklist.
