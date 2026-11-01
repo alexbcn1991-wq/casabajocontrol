@@ -1,4 +1,4 @@
-# Casa Bajo Control — v2.24
+# Casa Bajo Control — v2.25
 
 La home de v1.6 queda congelada como diseño maestro.
 
@@ -239,3 +239,8 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - Comparativa de detectores: pasa a cuatro arquitecturas/cuatro fichas; tabla a cuatro columnas; el escenario «Necesitas comunicación móvil» y la tarjeta de conclusión se reescriben como postura honesta sin producto (4G/GSM existe, no analizado; mientras tanto alarma local + corte automático) enlazando a la guía sin Internet. `dateModified` 2026-11-01.
 - Guía «Detector de fugas sin Internet»: destacado «Nuestra selección» pasa a Shelly Flood Gen4; párrafo de modelos reescrito (4 modelos, explica por qué no hay 4G). `dateModified` 2026-11-01.
 - Las cuatro reviews de detectores: lista de alternativas queda en tres.
+
+## v2.25 — nueva guía «Fuga de agua: ¿quién paga?» (1 nov. 2026)
+- Nueva página `/guias/fuga-de-agua-quien-paga/` (texto redactado con ChatGPT a partir de brief y auditado: artículos contrastados en BOE, exclusiones de OCU verificadas, mecanismo entre aseguradoras corregido —CIDE/ASCIDE es de autos; para hogar es SGR/CIDA vía TIREA—). Maquetación `second-home-page` (índice, secciones numeradas, tabla, FAQ, fuentes, aviso).
+- Hero nuevo `img/hero-quien-paga.png/.webp`.
+- Enlaces cruzados hacia la nueva guía desde: guía de fuga oculta (sección 08), guía de detección (bloque de fuga activa), pilar de segunda residencia (tarjeta «El seguro»), hub `/guias/` y hub `/agua/`. `dateModified` actualizado en las páginas tocadas.
