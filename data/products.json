@@ -2,14 +2,6 @@
   "amazon_tag": "alex19910c-21",
   "products": [
     {
-      "id": "seqrell-sq7024b",
-      "name": "seQrell SQ7024B",
-      "type": "4G / GSM + detector de fugas",
-      "fit": "La opción más directa si quieres mantener un aviso remoto aunque falle la conexión fija.",
-      "note": "Es un sistema de alarma completo que incluye un detector de fuga de agua; depende de cobertura móvil y de una SIM/servicio compatible.",
-      "query": "seQrell SQ7024B detector fugas agua 4G GSM"
-    },
-    {
       "id": "shelly-flood-gen4",
       "name": "Shelly Flood Gen4",
       "type": "Sensor local / híbrido",

@@ -1,4 +1,4 @@
-# Casa Bajo Control — v2.22
+# Casa Bajo Control — v2.24
 
 La home de v1.6 queda congelada como diseño maestro.
 
@@ -233,3 +233,9 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - Guía de fuga oculta: título, meta, H1 y entradilla incluyen «invisible» (consulta con más impresiones); sección 05 renombrada a «Fuga subterránea…»; nuevo bloque «Después de localizarla» con enlaces a la comparativa, la válvula de corte y el pilar de segunda residencia; `dateModified` 2026-11-01.
 - Home: las tarjetas Temperatura y Seguridad ya no enlazan a comparativas noindex; apuntan a `/segunda-residencia/` y a la guía de okupación. Sin cambios de diseño.
 - Hubs `/comparativas/` y `/humedad/`: las tarjetas «En preparación» pasan a `div.hub-card-pending` (sin enlace) hasta que exista contenido. Las páginas stub siguen existiendo con noindex por si alguien tiene la URL.
+
+## v2.24 — retirada del seQrell SQ7024B (1 nov. 2026)
+- Eliminado de `data/products.json`, de los grupos de productos de `build.py` (`sin-internet`, comparativa, hub de análisis) y del stub de review; la carpeta `reviews/seqrell-sq7024b/` desaparece (404).
+- Comparativa de detectores: pasa a cuatro arquitecturas/cuatro fichas; tabla a cuatro columnas; el escenario «Necesitas comunicación móvil» y la tarjeta de conclusión se reescriben como postura honesta sin producto (4G/GSM existe, no analizado; mientras tanto alarma local + corte automático) enlazando a la guía sin Internet. `dateModified` 2026-11-01.
+- Guía «Detector de fugas sin Internet»: destacado «Nuestra selección» pasa a Shelly Flood Gen4; párrafo de modelos reescrito (4 modelos, explica por qué no hay 4G). `dateModified` 2026-11-01.
+- Las cuatro reviews de detectores: lista de alternativas queda en tres.

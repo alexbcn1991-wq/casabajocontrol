@@ -27,11 +27,11 @@ def amazon_url(product, tag):
 
 def render_affiliate_products(key):
     groups={
-        "sin-internet":["seqrell-sq7024b","shelly-flood-gen4","switchbot-water-leak","tapo-t300","aqara-water-leak-t1"],
+        "sin-internet":["shelly-flood-gen4","aqara-water-leak-t1","switchbot-water-leak","tapo-t300"],
         "fugas":["shelly-flood-gen4","switchbot-water-leak","tapo-t300","aqara-water-leak-t1"]
     }
     featured={
-        "sin-internet":"seqrell-sq7024b",
+        "sin-internet":"shelly-flood-gen4",
         "fugas":"switchbot-water-leak"
     }
     ids=groups.get(key,[])
@@ -100,14 +100,13 @@ def render_single_affiliate_product(product_id):
 
 
 def render_comparison_products():
-    ids=["aqara-water-leak-t1","shelly-flood-gen4","switchbot-water-leak","tapo-t300","seqrell-sq7024b"]
+    ids=["aqara-water-leak-t1","shelly-flood-gen4","switchbot-water-leak","tapo-t300"]
     by_id={p["id"]:p for p in PRODUCTS.get("products",[])}
     summaries={
         "aqara-water-leak-t1":("Zigbee + hub","Si ya utilizas Aqara o quieres una instalación basada en Zigbee.","Necesita hub Aqara y no es una solución móvil independiente."),
         "shelly-flood-gen4":("Wi‑Fi / local-híbrido","Si priorizas acciones locales y flexibilidad de integración.","No necesita hub Shelly en modo Wi‑Fi, pero el aviso remoto depende de la conectividad disponible."),
         "switchbot-water-leak":("Wi‑Fi directo","Si quieres una instalación sencilla sin añadir un hub para la función básica.","La comunicación remota depende de la conexión Wi‑Fi/Internet de la vivienda."),
-        "tapo-t300":("Sensor + Tapo Hub","Si ya estás dentro del ecosistema Tapo o quieres centralizar varios sensores.","Requiere Tapo Hub; es una arquitectura distinta de un sensor Wi‑Fi independiente."),
-        "seqrell-sq7024b":("4G / GSM","Si la prioridad es mantener una vía de comunicación móvil en una segunda residencia.","Depende de cobertura móvil y de la SIM/servicio compatible; conviene valorar el coste total.")
+        "tapo-t300":("Sensor + Tapo Hub","Si ya estás dentro del ecosistema Tapo o quieres centralizar varios sensores.","Requiere Tapo Hub; es una arquitectura distinta de un sensor Wi‑Fi independiente.")
     }
     cards=[]
     for pid in ids:
@@ -281,7 +280,6 @@ def reviews_hub():
       ("SwitchBot Water Leak Detector","/reviews/switchbot-water-leak-detector/","Detector de fugas · Wi‑Fi sin hub","agua","Analizado","Latencia documentada, alarma de 100 dB, IP67."),
       ("TP-Link Tapo T300","/reviews/tapo-t300/","Detector de fugas · Sensor + hub","agua","Analizado","Hub Tapo, 90 dB, tres cifras de autonomía del fabricante."),
       ("Aqara Valve Controller T1","/reviews/aqara-valve-controller-t1/","Válvula de corte · Actuador sobre la llave","agua","Analizado","Gira tu llave de paso cuando un sensor detecta agua; sin obras, con hub."),
-      ("seQrell SQ7024B","/reviews/seqrell-sq7024b/","Detector de fugas · 4G/GSM","agua","En preparación","Vía móvil independiente del router; análisis pendiente."),
     ]
     CAT={"agua":"Agua","humedad":"Humedad","temperatura":"Temperatura","seguridad":"Seguridad"}
     cards_html=''.join(f'<a class="hub-card" href="{u}"><span class="hub-card-tags"><span class="tag tag-{c}">{CAT[c]}</span><span class="tag tag-kind">{html.escape(k)}</span><span class="tag tag-status">{s}</span></span><strong>{html.escape(n)}</strong><span class="hub-card-desc">{html.escape(desc)}</span></a>' for n,u,k,c,s,desc in cards)
@@ -298,7 +296,6 @@ def reviews_hub():
 
 reviews_hub()
 review_stub("reviews/tapo-t300","TP-Link Tapo T300","Análisis documental de un sensor de fugas del ecosistema Tapo.")
-review_stub("reviews/seqrell-sq7024b","seQrell SQ7024B","Análisis documental de una solución con comunicación móvil.")
 # Páginas planas fuera de pages.json (legales en borrador y 404): misma cabecera común, noindex, fuera del sitemap.
 def plain_page(slug,title,eyebrow,h1,lead,body,noindex=True,out_path=None,crumb=None):
     p=prefix(slug) if slug else ""
