@@ -1,4 +1,4 @@
-# Casa Bajo Control — v2.25
+# Casa Bajo Control — v2.26
 
 La home de v1.6 queda congelada como diseño maestro.
 
@@ -244,3 +244,10 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - Nueva página `/guias/fuga-de-agua-quien-paga/` (texto redactado con ChatGPT a partir de brief y auditado: artículos contrastados en BOE, exclusiones de OCU verificadas, mecanismo entre aseguradoras corregido —CIDE/ASCIDE es de autos; para hogar es SGR/CIDA vía TIREA—). Maquetación `second-home-page` (índice, secciones numeradas, tabla, FAQ, fuentes, aviso).
 - Hero nuevo `img/hero-quien-paga.png/.webp`.
 - Enlaces cruzados hacia la nueva guía desde: guía de fuga oculta (sección 08), guía de detección (bloque de fuga activa), pilar de segunda residencia (tarjeta «El seguro»), hub `/guias/` y hub `/agua/`. `dateModified` actualizado en las páginas tocadas.
+
+## v2.26 — la home dice lo que el sitio hace (1 nov. 2026)
+Solo texto y destinos de enlace; sin cambios de diseño, estructura ni imágenes.
+- Meta description y entradilla del hero: «Probamos y comparamos» → «Analizamos y comparamos» (no hay pruebas físicas publicadas; la metodología distingue Analizado/Probado).
+- CTA principal: «Ver comparativas» → «Ver la comparativa», enlazando directamente a `/comparativas/detectores-fugas-agua/` (el hub tiene 4 de 5 comparativas en preparación).
+- Sección «Cómo probamos» → «Cómo analizamos», con texto coherente con la metodología.
+- Banner del checklist: enlaza al checklist real del pilar (`/segunda-residencia/#sh-6`); el botón móvil pasa a «Ver el checklist de cierre». El texto «Hacer el checklist» incrustado en la imagen del banner de escritorio se queda hasta que exista el checklist interactivo.
