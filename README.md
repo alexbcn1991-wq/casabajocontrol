@@ -228,3 +228,8 @@ No publicar las páginas legales de borrador hasta completar los datos reales.
 - Guía de fuga oculta: FAQ "¿Qué es una fuga de agua invisible?" y la expresión en la introducción y la meta description (consulta con más impresiones de la semana).
 - Guía sin Internet: frase sobre "detección de fugas de agua en tiempo real" (consulta nueva).
 - Enlaces a la guía de humedad desde el pilar (sección Humedad), el hub de guías y la FAQ de condensación de la home.
+
+## v2.23 — primeras correcciones tras Search Console (1 nov. 2026)
+- Guía de fuga oculta: título, meta, H1 y entradilla incluyen «invisible» (consulta con más impresiones); sección 05 renombrada a «Fuga subterránea…»; nuevo bloque «Después de localizarla» con enlaces a la comparativa, la válvula de corte y el pilar de segunda residencia; `dateModified` 2026-11-01.
+- Home: las tarjetas Temperatura y Seguridad ya no enlazan a comparativas noindex; apuntan a `/segunda-residencia/` y a la guía de okupación. Sin cambios de diseño.
+- Hubs `/comparativas/` y `/humedad/`: las tarjetas «En preparación» pasan a `div.hub-card-pending` (sin enlace) hasta que exista contenido. Las páginas stub siguen existiendo con noindex por si alguien tiene la URL.
