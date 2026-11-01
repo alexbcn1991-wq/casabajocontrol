@@ -72,7 +72,7 @@
     });
     html += '</div></fieldset>';
   });
-  html += '<div class="ck-actions"><button type="submit" class="button button-primary">Ver mi resultado</button><p class="ck-missing" id="ck-missing" hidden>Te faltan preguntas por responder: <span></span>.</p></div>';
+  html += '<div class="ck-actions"><p class="ck-actions-lead">¿Ya has respondido las diez?</p><button type="submit" class="button button-primary ck-submit">Ver mi resultado <span aria-hidden="true">→</span></button><p class="ck-actions-note">Puntuación por bloques y qué revisar primero. Sin registro.</p><p class="ck-missing" id="ck-missing" hidden>Te faltan preguntas por responder: <span></span>.</p></div>';
   form.innerHTML = html;
 
   function answers() {

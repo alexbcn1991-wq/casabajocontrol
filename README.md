@@ -1,4 +1,4 @@
-# Casa Bajo Control — v2.28
+# Casa Bajo Control — v2.29
 
 La home de v1.6 queda congelada como diseño maestro.
 
@@ -265,3 +265,6 @@ Pendiente: añadir producto de seguridad (sensor de apertura) a la pregunta 8 cu
 - `build.py`: `render_comparison_products(key)` genérico (`{{COMPARISON_PRODUCTS:puertas}}`), botón de Amazon solo si hay ASIN.
 - Enlaces: hub `/comparativas/` (tarjeta publicada), home (tarjeta «Seguridad» → comparativa), guía de okupación (sección 6), checklist pregunta 8 (comparativa + Tapo T110).
 Pendiente: confirmar que el ASIN B07D37VDM3 corresponde al Aqara T1 (DW-S03D) y no al modelo original; ASIN de Shelly BLU Door/Window y SwitchBot Contact Sensor; análisis individuales de Aqara T1 y Tapo T110.
+
+## v2.29 — botón de resultado del checklist (1 nov. 2026)
+- `/herramientas/checklist-segunda-residencia/`: el botón «Ver mi resultado» pasa a un bloque propio centrado (fondo verde claro, botón de 56 px y ancho completo en móvil) con texto previo y nota, separado del aviso «Cómo puntuamos».

@@ -862,8 +862,11 @@ details summary:hover{color:#176d68}
 .ck-opt:hover{border-color:#21747a}
 .ck-opt input{margin:0;accent-color:#21747a;flex:0 0 auto}
 .ck-opt:has(input:checked){border-color:#21747a;background:#f1f7f6}
-.ck-actions{margin:28px 0 0}
-.ck-missing{margin:12px 0 0;color:#b2402e;font-size:14.5px}
+.ck-actions{margin:32px 0 40px;padding:28px 22px;border-radius:16px;background:#eaf6f1;border:1px solid #bfe3d4;text-align:center}
+.ck-actions-lead{margin:0 0 12px;font-weight:800;font-size:19px;color:#101d29}
+.ck-actions .ck-submit{margin:0 auto;width:auto;min-width:260px;min-height:56px;padding:0 32px;font-size:16px}
+.ck-actions-note{margin:12px 0 0;font-size:14px;color:#2f4147}
+.ck-missing{margin:12px 0 0;color:#b2402e;font-size:14.5px;font-weight:700}
 .ck-score{display:flex;gap:22px;align-items:center;padding:24px;border-radius:16px;margin:0 0 20px;border:1px solid transparent}
 .ck-score-ok{background:#eaf6f1;border-color:#bfe3d4}.ck-score-mid{background:#fff6e5;border-color:#f3dfae}.ck-score-bad{background:#fdeeea;border-color:#f3c4b8}
 .ck-score-num{display:flex;align-items:baseline;gap:2px;flex:0 0 auto}
@@ -891,3 +894,4 @@ details summary:hover{color:#176d68}
 .ck-noscript{padding:18px 20px;border-radius:12px;background:#fff6e5;border:1px solid #f3dfae;margin:0 0 20px}
 @media(max-width:700px){.ck-score{flex-direction:column;align-items:flex-start;gap:12px}.ck-blocks li{grid-template-columns:96px 1fr 44px}.ck-q{padding:14px 14px}.ck-q legend{font-size:15.5px}}
 .compare-product-pending{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border-radius:10px;border:1px dashed #c9d6dc;color:#5b6b70;font-size:13px;font-weight:700}
+@media(max-width:560px){.ck-actions .ck-submit{width:100%;min-width:0}}
