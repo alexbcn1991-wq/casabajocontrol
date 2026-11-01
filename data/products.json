@@ -51,6 +51,46 @@
       "query": "Aqara Valve Controller T1",
       "review": "/reviews/aqara-valve-controller-t1/",
       "asin": "B0DB8KS8Q3"
+    },
+    {
+      "id": "aqara-door-t1",
+      "name": "Aqara Door and Window Sensor T1",
+      "type": "Sensor de apertura · Zigbee 3.0",
+      "fit": "Si ya tienes hub Aqara: amplías puertas y ventanas sin añadir otro ecosistema.",
+      "note": "Necesita hub Aqara; el aviso remoto depende de la conectividad del hub.",
+      "query": "Aqara Door and Window Sensor T1",
+      "asin": "B07D37VDM3",
+      "review": null
+    },
+    {
+      "id": "tapo-t110",
+      "name": "TP-Link Tapo T110",
+      "type": "Sensor de apertura · Sub-1G + hub Tapo",
+      "fit": "Si ya tienes Tapo H100/H200: mismo hub para sensores de fuga y de apertura.",
+      "note": "Necesita hub Tapo; las acciones locales no sustituyen al aviso remoto.",
+      "query": "Tapo T110",
+      "asin": "B0BF5MC9QX",
+      "review": null
+    },
+    {
+      "id": "shelly-blu-door-window",
+      "name": "Shelly BLU Door/Window",
+      "type": "Sensor de apertura · Bluetooth + gateway Shelly",
+      "fit": "Si ya tienes un Shelly Plus/Pro/Gen3/Gen4 que pueda hacer de gateway.",
+      "note": "Bluetooth: cuenta la distancia al gateway, hasta 10 m en interior según Shelly.",
+      "query": "Shelly BLU Door Window",
+      "asin": null,
+      "review": null
+    },
+    {
+      "id": "switchbot-contact",
+      "name": "SwitchBot Contact Sensor",
+      "type": "Sensor de apertura · Bluetooth + SwitchBot Hub",
+      "fit": "Si ya usas SwitchBot: arquitectura sencilla con el Hub como salida al exterior.",
+      "note": "Sin Hub no hay aviso remoto; unidad más grande que Aqara o Shelly.",
+      "query": "SwitchBot Contact Sensor",
+      "asin": null,
+      "review": null
     }
   ]
 }

@@ -1,4 +1,4 @@
-# Casa Bajo Control — v2.26
+# Casa Bajo Control — v2.28
 
 La home de v1.6 queda congelada como diseño maestro.
 
@@ -251,3 +251,17 @@ Solo texto y destinos de enlace; sin cambios de diseño, estructura ni imágenes
 - CTA principal: «Ver comparativas» → «Ver la comparativa», enlazando directamente a `/comparativas/detectores-fugas-agua/` (el hub tiene 4 de 5 comparativas en preparación).
 - Sección «Cómo probamos» → «Cómo analizamos», con texto coherente con la metodología.
 - Banner del checklist: enlaza al checklist real del pilar (`/segunda-residencia/#sh-6`); el botón móvil pasa a «Ver el checklist de cierre». El texto «Hacer el checklist» incrustado en la imagen del banner de escritorio se queda hasta que exista el checklist interactivo.
+
+## v2.27 — checklist interactivo (1 nov. 2026)
+- Nueva herramienta `/herramientas/checklist-segunda-residencia/`: 10 preguntas en 5 bloques (agua, humedad, luz y conexión, seguridad, seguro), puntuación 0–100 y por bloque, recomendaciones ordenadas (sin cubrir → a medias) con guía y, solo donde hay análisis publicado, producto (Shelly Flood Gen4, Aqara Valve Controller T1). Sin backend ni cookies; el resultado se codifica en `#r=…` para copiar/compartir. `js/checklist.js` + bloque CSS `.ck-*`.
+- Home: el banner y el botón del checklist apuntan a la herramienta; eyebrow móvil «Próximamente» → «Herramienta». Sin cambios de diseño.
+- Pilar de segunda residencia: enlace al interactivo desde la intro del checklist estático (sección 6).
+- `build.py`: etiqueta de miga «Herramientas».
+Pendiente: añadir producto de seguridad (sensor de apertura) a la pregunta 8 cuando se publique la comparativa de sensores de puertas y ventanas.
+
+## v2.28 — comparativa de sensores de puertas y ventanas (1 nov. 2026)
+- Nueva `/comparativas/sensores-puertas-ventanas/` (texto de ChatGPT auditado: Aqara T1 contrastado con el manual oficial —CR1632, 41×22×11 mm, Zigbee 3.0, hub obligatorio—, Tapo T110 con su ficha —CR2032, 2 años, Sub-1G—, Shelly BLU D/W con su documentación —35×35×7 mm, CR2032, 5 años, 10 m interior—; añadida la advertencia del manual de Aqara de que no es equipo de seguridad). Maquetación `comparison-content` igual que la de detectores. Sale del `excluded` del sitemap; deja de ser stub.
+- `data/products.json`: cuatro sensores de apertura (ASIN solo en Aqara T1 y Tapo T110; Shelly BLU y SwitchBot sin ASIN → tarjeta con «Ficha de Amazon pendiente», sin enlace de búsqueda).
+- `build.py`: `render_comparison_products(key)` genérico (`{{COMPARISON_PRODUCTS:puertas}}`), botón de Amazon solo si hay ASIN.
+- Enlaces: hub `/comparativas/` (tarjeta publicada), home (tarjeta «Seguridad» → comparativa), guía de okupación (sección 6), checklist pregunta 8 (comparativa + Tapo T110).
+Pendiente: confirmar que el ASIN B07D37VDM3 corresponde al Aqara T1 (DW-S03D) y no al modelo original; ASIN de Shelly BLU Door/Window y SwitchBot Contact Sensor; análisis individuales de Aqara T1 y Tapo T110.

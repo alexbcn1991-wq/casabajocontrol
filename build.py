@@ -10,7 +10,7 @@ def write(p,s):
     p.parent.mkdir(parents=True,exist_ok=True); p.write_text(s,encoding="utf-8")
 def prefix(slug): return "../"*len([x for x in slug.split("/") if x])
 def crumbs(slug,d=None):
-    labels={"guias":"Guías","comparativas":"Comparativas","agua":"Agua","humedad":"Humedad","segunda-residencia":"Segunda residencia","como-probamos":"Cómo probamos","sobre-nosotros":"Sobre nosotros","contacto":"Contacto","reviews":"Análisis"}
+    labels={"guias":"Guías","comparativas":"Comparativas","agua":"Agua","humedad":"Humedad","segunda-residencia":"Segunda residencia","como-probamos":"Cómo probamos","sobre-nosotros":"Sobre nosotros","contacto":"Contacto","reviews":"Análisis","herramientas":"Herramientas"}
     bits=[x for x in slug.strip("/").split("/") if x]
     out=['<a href="/">Inicio</a>']; acc=""
     for i,b in enumerate(bits):
@@ -99,14 +99,19 @@ def render_single_affiliate_product(product_id):
       '</div><a class="button button-primary affiliate-button affiliate-button-featured" href="'+html.escape(href,quote=True)+'" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon <span aria-hidden="true">↗</span></a></div></section>')
 
 
-def render_comparison_products():
-    ids=["aqara-water-leak-t1","shelly-flood-gen4","switchbot-water-leak","tapo-t300"]
+def render_comparison_products(key="fugas"):
+    groups={"fugas":["aqara-water-leak-t1","shelly-flood-gen4","switchbot-water-leak","tapo-t300"],"puertas":["aqara-door-t1","tapo-t110","shelly-blu-door-window","switchbot-contact"]}
+    ids=groups[key]
     by_id={p["id"]:p for p in PRODUCTS.get("products",[])}
     summaries={
         "aqara-water-leak-t1":("Zigbee + hub","Si ya utilizas Aqara o quieres una instalación basada en Zigbee.","Necesita hub Aqara y no es una solución móvil independiente."),
         "shelly-flood-gen4":("Wi‑Fi / local-híbrido","Si priorizas acciones locales y flexibilidad de integración.","No necesita hub Shelly en modo Wi‑Fi, pero el aviso remoto depende de la conectividad disponible."),
         "switchbot-water-leak":("Wi‑Fi directo","Si quieres una instalación sencilla sin añadir un hub para la función básica.","La comunicación remota depende de la conexión Wi‑Fi/Internet de la vivienda."),
-        "tapo-t300":("Sensor + Tapo Hub","Si ya estás dentro del ecosistema Tapo o quieres centralizar varios sensores.","Requiere Tapo Hub; es una arquitectura distinta de un sensor Wi‑Fi independiente.")
+        "tapo-t300":("Sensor + Tapo Hub","Si ya estás dentro del ecosistema Tapo o quieres centralizar varios sensores.","Requiere Tapo Hub; es una arquitectura distinta de un sensor Wi‑Fi independiente."),
+        "aqara-door-t1":("Zigbee 3.0 + hub Aqara","Si ya tienes hub Aqara y quieres ampliar puertas y ventanas sin añadir otro ecosistema.","Necesita hub Aqara; el aviso remoto depende de la conectividad del hub."),
+        "tapo-t110":("Sub-1G + hub Tapo","Si ya tienes Tapo H100/H200: el mismo hub para sensores de fuga y de apertura.","Necesita hub Tapo; las acciones locales no sustituyen al aviso remoto."),
+        "shelly-blu-door-window":("Bluetooth + gateway Shelly","Si ya tienes un Shelly Plus/Pro/Gen3/Gen4 que pueda hacer de gateway.","Bluetooth: cuenta la distancia al gateway, hasta 10 m en interior según Shelly."),
+        "switchbot-contact":("Bluetooth + SwitchBot Hub","Si ya usas SwitchBot: arquitectura sencilla con el Hub como salida al exterior.","Sin Hub no hay aviso remoto; la unidad es más grande que las de Aqara o Shelly.")
     }
     cards=[]
     for pid in ids:
@@ -124,10 +129,10 @@ def render_comparison_products():
             f'<p class="compare-product-note">{html.escape(note)}</p>'
             '<div class="compare-product-actions">'
             + (f'<a class="button button-secondary" href="{html.escape(review)}">Leer análisis →</a>' if review else '')
-            + f'<a class="button button-primary" href="{html.escape(href,quote=True)}" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon ↗</a>'
+            + (f'<a class="button button-primary" href="{html.escape(href,quote=True)}" rel="sponsored nofollow noopener" target="_blank">Ver en Amazon ↗</a>' if p.get("asin") else '<span class="compare-product-pending">Ficha de Amazon pendiente</span>')
             + '</div></article>'
         )
-    return ('<section class="compare-products" aria-label="Detectores comparados">'
+    return ('<section class="compare-products" aria-label="Productos comparados">'
             '<div class="affiliate-disclosure"><strong>Enlaces de afiliado:</strong> algunos enlaces de esta comparativa pueden generar una comisión para Casa Bajo Control si compras a través de ellos, sin coste adicional para ti.</div>'
             '<div class="compare-products-grid">'+''.join(cards)+'</div></section>')
 
@@ -193,7 +198,7 @@ def build_page(slug,d):
     schema=json.dumps({"@context":"https://schema.org","@type":"Article","headline":d[4],"description":d[2],"url":canonical,"datePublished":date_published,"dateModified":date_modified,"author":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/sobre-nosotros/"},"publisher":{"@type":"Organization","name":"Casa Bajo Control","url":BASE+"/"},"image":[BASE+image]},ensure_ascii=False,separators=(",",":"))
     vals={"{{TITLE}}":html.escape(d[1]),"{{DESCRIPTION}}":html.escape(d[2]),"{{CANONICAL}}":canonical,"{{JSONLD}}":schema,"{{HEADER}}":header,"{{FOOTER}}":footer,"{{BREADCRUMBS}}":bc,"{{EYEBROW}}":html.escape(d[3]),"{{H1}}":html.escape(d[4]),"{{LEAD}}":html.escape(d[5]),"{{META}}":f'<p class="article-meta">Actualizado: {format_date(date_modified)}</p>',"{{HERO_MEDIA}}":hero_media(d),"{{OG_IMAGE}}":BASE+og_image,"{{BODY}}":d[6]}
     for a,b in vals.items(): tpl=tpl.replace(a,b)
-    tpl=tpl.replace("{{PRODUCTS:sin-internet}}", render_affiliate_products("sin-internet")).replace("{{PRODUCTS:fugas}}", render_affiliate_products("fugas")).replace("{{COMPARISON_PRODUCTS}}", render_comparison_products())
+    tpl=tpl.replace("{{PRODUCTS:sin-internet}}", render_affiliate_products("sin-internet")).replace("{{PRODUCTS:fugas}}", render_affiliate_products("fugas")).replace("{{COMPARISON_PRODUCTS:puertas}}", render_comparison_products("puertas")).replace("{{COMPARISON_PRODUCTS}}", render_comparison_products())
     tpl=re.sub(r"\{\{PRODUCT:([a-z0-9-]+)\}\}", lambda m: render_single_affiliate_product(m.group(1)), tpl)
     tpl=tpl.replace("{{ROOT}}",p)
     write(ROOT/slug/"index.html",tpl)
@@ -326,7 +331,7 @@ s404=s404.replace('href="legal/','href="/legal/').replace('href="comparativas/"'
 write(ROOT/"404.html",s404)
 
 write(ROOT/"robots.txt",f"User-agent: *\nAllow: /\nSitemap: {BASE}/sitemap.xml\n")
-excluded={"/comparativas/sensores-humedad/","/comparativas/sensores-temperatura/","/comparativas/camaras-segunda-residencia/","/comparativas/sensores-puertas-ventanas/"}
+excluded={"/comparativas/sensores-humedad/","/comparativas/sensores-temperatura/","/comparativas/camaras-segunda-residencia/"}
 urls={"/","/reviews/","/legal/aviso-legal/","/legal/privacidad/","/legal/cookies/"}
 for slug in pages:
     u="/"+slug.strip("/")+"/"
